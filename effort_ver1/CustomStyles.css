@@ -1,0 +1,58 @@
+﻿
+.custom-navbar {
+    background-color: rgb(29, 5, 110);
+    height: 100px;
+}
+
+.custom-navar-txt {
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    margin: 20px;
+    !important
+}
+
+.dropdown-custom {
+    background-color: rgb(29, 5, 110);
+}
+
+.custom-dropdown-txt {
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+}
+
+.custom-carousel {
+    color: white;
+    background-color: black;
+    text-align: center;
+    height: 40px;
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    text
+}
+
+.custom-carousel-txt {
+    text-align: center;
+    font-size: 15px;
+    font-family: sans-serif;
+    margin-top:10px;
+}
+
+.nav-link:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.37);
+    border-radius:4px 4px;
+}
+
+.dropdown-item:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.37);
+    border-radius: 4px 4px;
+}
+
+.nav-link:visited {
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.37);
+    border-radius: 4px 4px;
+}
