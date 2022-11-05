@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>-EFFORT-</title>
+    <title>Effort</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -29,20 +29,20 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link custom-navar-txt" href="#">Home</a>
+                                <a class="nav-link custom-navar-txt" href="Default.aspx">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link custom-navar-txt" href="#">Productos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link custom-navar-txt" href="#">Ingreso</a>
+                                <a class="nav-link custom-navar-txt" href="Login.aspx" id="LogLink">Ingreso</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle custom-navar-txt" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Más opciones
                                 </a>
                                 <ul class="dropdown-menu dropdown-custom">
                                     <li><a class="dropdown-item custom-dropdown-txt" href="#">Mapa de entregas</a></li>
-                                    <li><a class="dropdown-item custom-dropdown-txt" href="#">Quienes somos</a></li>
+                                    <li><a class="dropdown-item custom-dropdown-txt" href="AboutUs.aspx">Quienes somos</a></li>
                                     <li><a class="dropdown-item custom-dropdown-txt" href="#">Contacto</a></li>
                                 </ul>
                             </li>
@@ -51,12 +51,47 @@
                 </div>
             </nav>
         </div>
+
+<%--        <asp:ScriptManager ID="ScriptMngr1" runat="server"></asp:ScriptManager>
         <div>
+            <asp:Panel class="login-popup rounding" ID="LogPanel" runat="server">
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Label ID="LabelUser" runat="server" Text="Usuario"></asp:Label>
+                            <asp:TextBox runat="server" ID="TxtUser" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="LabelPassword" runat="server" Text="Contraseña"></asp:Label>
+                            <asp:TextBox runat="server" ID="TxtPassword" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Button Text="Aceptar" runat="server" />
+                        </td>
+                    </tr>
+
+                </table>
+            </asp:Panel>
+
+          <Modalpopupextender id="MDPopup" runat="server" class="background.login-popup" popupcontrolid="logPanel" targetcontrolid="LogLink"></>--%>
+
+        <div class="container">
+           
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
         </div>
+         <hr />
+        <footer>Pie de página</footer>
     </form>
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    </asp:ContentPlaceHolder>
-<%--    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <%--    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active custom-carousel" >
                 <h6 class="custom-carousel-txt">Registrate como cliente aquí</h6>
@@ -78,6 +113,5 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>--%>
-
 </body>
 </html>
