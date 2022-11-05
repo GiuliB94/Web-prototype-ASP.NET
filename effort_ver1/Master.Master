@@ -1,10 +1,12 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="effort_ver1.Master" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>Effort</title>
+    <title>-EFFORT-</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -35,7 +37,7 @@
                                 <a class="nav-link custom-navar-txt" href="#">Productos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link custom-navar-txt" href="Login.aspx" id="LogLink">Ingreso</a>
+                                <asp:LinkButton Text="Ingreso" runat="server" id="LogLink" class="nav-link custom-navar-txt"> </asp:linkbutton>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle custom-navar-txt" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Más opciones
@@ -52,42 +54,43 @@
             </nav>
         </div>
 
-<%--        <asp:ScriptManager ID="ScriptMngr1" runat="server"></asp:ScriptManager>
-        <div>
-            <asp:Panel class="login-popup rounding" ID="LogPanel" runat="server">
-                <table>
-                    <tr>
-                        <td>
-                            <asp:Label ID="LabelUser" runat="server" Text="Usuario"></asp:Label>
-                            <asp:TextBox runat="server" ID="TxtUser" />
+        <asp:ScriptManager ID="ScriptMngr1" runat="server"></asp:ScriptManager>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label ID="LabelPassword" runat="server" Text="Contraseña"></asp:Label>
-                            <asp:TextBox runat="server" ID="TxtPassword" />
+        <asp:Panel class="login-popup rounding" ID="LogPanel" Style="display: none" runat="server">
+            <table>
+                <tr>
+                    <td>
+                        <asp:Label ID="LabelUser" runat="server" Text="Usuario"></asp:Label>
+                        <asp:TextBox runat="server" ID="TxtUser" />
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Button Text="Aceptar" runat="server" />
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="LabelPassword" runat="server" Text="Contraseña"></asp:Label>
+                        <asp:TextBox runat="server" ID="TxtPassword" />
 
-                </table>
-            </asp:Panel>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Button Text="Aceptar" ID="Logbtn" runat="server" />
+                        <asp:Button Text="Cancelar" ID="Button1" runat="server" />
+                    </td>
+                </tr>
 
-          <Modalpopupextender id="MDPopup" runat="server" class="background.login-popup" popupcontrolid="logPanel" targetcontrolid="LogLink"></>--%>
+            </table>
+        </asp:Panel>
+        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="LogLink" PopupControlID="LogPanel" BackgroundCssClass="background.login-popup" DropShadow="true" OkControlID="Logbtn" CancelControlID="Button1"></ajaxToolkit:ModalPopupExtender>
+
 
         <div class="container">
-           
+
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
 
         </div>
-         <hr />
+        <hr />
         <footer>Pie de página</footer>
     </form>
 
