@@ -10,27 +10,31 @@ using Domain;
 
 namespace Data
 {
-    internal class ProductList
+    internal class ClientList
     {
-        public List<Product> Show()
+        public List<Client> Show()
         {
-            List<Product> list = new List<Product>();
+            List<Client> list = new List<Client>();
             AccessData data = new AccessData();
 
             try
             {
-                //Se setea la query para traer los productos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
-                data.setQuery("Select * from Products");
+                //Se setea la query para traer los clients //JOIN CON COMPANIES...
+                data.setQuery("Select * from Clients");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
-                    Product aux = new Product();
+                    Client aux = new Client();
                     aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Product"];
-                    aux.size = (string)data.Reader["Size"];
-                    aux.color = (string)data.Reader["Color"];
+                    aux.name = (string)data.Reader["Name"];
+                    aux.lastName = (string)data.Reader["LastName"];
+                    aux.password = (string)data.Reader["Password"];
+                    aux.idCompany = (int)data.Reader["IdCompany"];
+                    aux.email = (string)data.Reader["Email"];
+                    aux.phone = (string)data.Reader["Phone"];
+                    aux.category = (int)data.Reader["Category"];
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -52,7 +56,7 @@ namespace Data
             }
         }
 
-        public void Add(Product newProduct)
+        public void Add(Client newClient)
         {
             //Se abre la conección a DB
             AccessData datos = new AccessData();
@@ -71,7 +75,7 @@ namespace Data
             }
         }
 
-        public void Modify(Product modProduct)
+        public void Modify(Client modClient)
         {
             //Se abre la conección a DB
             AccessData datos = new AccessData();
@@ -95,7 +99,7 @@ namespace Data
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Products where id=@id");
+                datos.setQuery("delete from Clients where Id=@id");
                 datos.SetParameter("@id", id);
                 datos.executeAction();
             }
@@ -109,9 +113,9 @@ namespace Data
             }
         }
 
-        public List<Product> Filter(string searchBy, string when, string filter)
+        public List<Client> Filter(string searchBy, string when, string filter)
         {
-            List<Product> list = new List<Product>();
+            List<Client> list = new List<Client>();
             AccessData data = new AccessData();
 
             string query = "";
@@ -119,18 +123,18 @@ namespace Data
             try
             {
                 //A CHEQUEAR...
-                if (searchBy == "Precio")
+                if (searchBy == "Category")
                 {
                     switch (when)
                     {
                         case "Mayor a":
-                            query += "P.Precio > " + filter;
+                            query += "C.Category > " + filter;
                             break;
                         case "Menor a":
-                            query += "P.Precio < " + filter;
+                            query += "C.Category < " + filter;
                             break;
                         case "Igual a":
-                            query += "P.Precio = " + filter;
+                            query += "C.Category = " + filter;
                             break;
                     }
                 }
@@ -139,14 +143,14 @@ namespace Data
                     string column;
                     switch (searchBy)
                     {
-                        case "Código":
-                            column = "P.Id";
+                        case "Name":
+                            column = "C.Name";
                             break;
-                        case "Nombre artículo":
-                            column = "P.Name";
+                        case "LastName":
+                            column = "C.LastName";
                             break;
-                        case "Color":
-                            column = "P.Color";
+                        default:
+                            column = "ACAIRIAELCOMPANYNAME?";
                             break;
                     }
                     switch (searchBy)
@@ -171,11 +175,15 @@ namespace Data
                 while (data.Reader.Read())
                 {
                     //Se cargan los articulos de la base
-                    Product aux = new Product();
+                    Client aux = new Client();
                     aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Product"];
-                    aux.size = (string)data.Reader["Size"];
-                    aux.color = (string)data.Reader["Color"];
+                    aux.name = (string)data.Reader["Name"];
+                    aux.lastName = (string)data.Reader["LastName"];
+                    aux.password = (string)data.Reader["Password"];
+                    aux.idCompany = (int)data.Reader["IdCompany"];
+                    aux.email = (string)data.Reader["Email"];
+                    aux.phone = (string)data.Reader["Phone"];
+                    aux.category = (int)data.Reader["Category"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
