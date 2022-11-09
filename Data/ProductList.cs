@@ -90,7 +90,7 @@ namespace Data
             }
         }
 
-        public void Drop(int id)
+        public void Delete(int id)
         {
             AccessData datos = new AccessData();
             try
@@ -109,7 +109,7 @@ namespace Data
             }
         }
 
-        public List<Product> filtrar(string searchBy, string when, string filter)
+        public List<Product> Filter(string searchBy, string when, string filter)
         {
             List<Product> list = new List<Product>();
             AccessData data = new AccessData();
