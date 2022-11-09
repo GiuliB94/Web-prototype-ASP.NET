@@ -37,7 +37,7 @@
                                 <a class="nav-link custom-navar-txt" href="#">Productos</a>
                             </li>
                             <li class="nav-item">
-                                <asp:LinkButton Text="Ingreso" runat="server" id="LogLink" class="nav-link custom-navar-txt"> </asp:linkbutton>
+                                <asp:LinkButton Text="Ingreso" runat="server" ID="LogLink" class="nav-link custom-navar-txt"> </asp:LinkButton>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle custom-navar-txt" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Más opciones
@@ -57,29 +57,44 @@
         <asp:ScriptManager ID="ScriptMngr1" runat="server"></asp:ScriptManager>
 
         <asp:Panel class="login-popup rounding" ID="LogPanel" Style="display: none" runat="server">
-            <table>
-                <tr>
-                    <td>
-                        <asp:Label ID="LabelUser" runat="server" Text="Usuario"></asp:Label>
-                        <asp:TextBox runat="server" ID="TxtUser" />
+            <div>
+                <table style="margin: 40px 10px 15px 5px">
+                    <tr>
+                        <td>
+                            <asp:Label ID="LabelUser" runat="server" Text="Usuario"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="TxtUser" Style="width: 150px; border-radius: 3px 4px; margin: 4px;" CssClass="password" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="LabelPassword" runat="server" Text="Contraseña"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="TxtPassword" Style="width: 150px; border-radius: 3px 4px; margin: 4px 4px 1px;" TextMode="Password" PasswordChar="*" CssClass="password" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a style="font-size: smaller" href="#">Olvidé mi contraseña</a></td>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Label ID="LabelPassword" runat="server" Text="Contraseña"></asp:Label>
-                        <asp:TextBox runat="server" ID="TxtPassword" />
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <asp:Button Text="Aceptar" ID="Logbtn" class="btn btn-outline-light" Style="margin-top:10px; font-size: smaller" runat="server" />
+                            <asp:Button Text="Cancelar" ID="Button1" class="btn btn-outline-light" Style="margin-top:10px; font-size: smaller" runat="server" />
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Button Text="Aceptar" ID="Logbtn" runat="server" />
-                        <asp:Button Text="Cancelar" ID="Button1" runat="server" />
-                    </td>
-                </tr>
+                        </td>
 
-            </table>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
         </asp:Panel>
         <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="LogLink" PopupControlID="LogPanel" BackgroundCssClass="background.login-popup" DropShadow="true" OkControlID="Logbtn" CancelControlID="Button1"></ajaxToolkit:ModalPopupExtender>
 
