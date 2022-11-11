@@ -1,37 +1,33 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Xml.Linq;
-using Domain;
 
 namespace Data
 {
-    internal class ProductList
+    internal class MaterialList
     {
-        public List<Product> Show()
+        public List<Material> Show()
         {
-            List<Product> list = new List<Product>();
+            List<Material> list = new List<Material>();
             AccessData data = new AccessData();
 
             try
             {
-                //Se setea la query para traer los productos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
-                data.setQuery("Select * from Products");
+                //Se setea la query para traer los Materials
+                data.setQuery("Select * from Materials");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
-                    Product aux = new Product();
+                    Material aux = new Material();
                     aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Product"];
-                    aux.size = (string)data.Reader["Size"];
-                    aux.color = (string)data.Reader["Color"];
-                    aux.price = (int)data.Reader["Price"];
+                    aux.name = (string)data.Reader["Name"];
+                    aux.amount = (int)data.Reader["Amount"];
+                    aux.cost = (int)data.Reader["Cost"];
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -53,7 +49,7 @@ namespace Data
             }
         }
 
-        public void Add(Product newProduct)
+        public void Add(Material newMaterial)
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
@@ -72,7 +68,7 @@ namespace Data
             }
         }
 
-        public void Modify(Product modProduct)
+        public void Modify(Material modMaterial)
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
@@ -96,7 +92,7 @@ namespace Data
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Products where id=@id");
+                datos.setQuery("delete from Material where Id=@id");
                 datos.SetParameter("@id", id);
                 datos.executeAction();
             }
@@ -110,9 +106,9 @@ namespace Data
             }
         }
 
-        public List<Product> Filter(string searchBy, string when, string filter)
+        public List<Material> Filter(string searchBy, string when, string filter)
         {
-            List<Product> list = new List<Product>();
+            List<Material> list = new List<Material>();
             AccessData data = new AccessData();
 
             string query = "";
@@ -120,37 +116,27 @@ namespace Data
             try
             {
                 //A CHEQUEAR...
-                if (searchBy == "Precio")
+                string column;
+                if (searchBy == "Amount" || searchBy == "Cost")
                 {
+                    column = searchBy == "Amount" ? "M.Amount" : "M.Cost";
                     switch (when)
                     {
                         case "Mayor a":
-                            query += "P.Precio > " + filter;
+                            query += column + " > " + filter;
                             break;
                         case "Menor a":
-                            query += "P.Precio < " + filter;
+                            query += column + " < " + filter;
                             break;
                         case "Igual a":
-                            query += "P.Precio = " + filter;
+                            query += column + " = " + filter;
                             break;
                     }
                 }
                 else
                 {
-                    string column;
-                    switch (searchBy)
-                    {
-                        case "Código":
-                            column = "P.Id";
-                            break;
-                        case "Nombre":
-                            column = "P.Name";
-                            break;
-                        case "Color":
-                            column = "P.Color";
-                            break;
-                    }
-                    switch (searchBy)
+                    column = "M.Name";
+                    switch (when)
                     {
                         case "Igual a":
                             query += column + " like '" + filter + "'";
@@ -172,12 +158,11 @@ namespace Data
                 while (data.Reader.Read())
                 {
                     //Se cargan los articulos de la base
-                    Product aux = new Product();
+                    Material aux = new Material();
                     aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Product"];
-                    aux.size = (string)data.Reader["Size"];
-                    aux.color = (string)data.Reader["Color"];
-                    aux.price = (int)data.Reader["Price"];
+                    aux.name = (string)data.Reader["Name"];
+                    aux.amount = (int)data.Reader["Amount"];
+                    aux.cost = (int)data.Reader["Cost"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
@@ -196,4 +181,3 @@ namespace Data
         }
     }
 }
-

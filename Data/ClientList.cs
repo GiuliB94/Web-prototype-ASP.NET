@@ -51,18 +51,18 @@ namespace Data
             }
 
             finally
-            {   //se cierra la conección a DB
+            {   //se cierra la conexión a DB
                 data.closeConnection();
             }
         }
 
         public void Add(Client newClient)
         {
-            //Se abre la conección a DB
+            //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
-            {   //Se incerta en DB los datos cargados 
+            {   //Se inserta en DB los datos cargados 
                 datos.setQuery("");
             }
             catch (Exception ex)
@@ -70,18 +70,18 @@ namespace Data
                 throw ex;
             }
             finally
-            {   //Se abre la conección a DB
+            {   //Se abre la conexión a DB
                 datos.closeConnection();
             }
         }
 
         public void Modify(Client modClient)
         {
-            //Se abre la conección a DB
+            //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
-            {   //Se incerta en DB los datos cargados en la plantilla "modificar"
+            {   //Se inserta en DB los datos cargados en la plantilla "modificar"
                 datos.setQuery("");
             }
             catch (Exception ex)
@@ -89,7 +89,7 @@ namespace Data
                 throw ex;
             }
             finally
-            {   //Se cierra la conección a DB
+            {   //Se cierra la conexión a DB
                 datos.closeConnection();
             }
         }
@@ -146,8 +146,14 @@ namespace Data
                         case "Name":
                             column = "C.Name";
                             break;
-                        case "LastName":
+                        case "Last Name":
                             column = "C.LastName";
+                            break;
+                        case "Email":
+                            column = "C.Email";
+                            break;
+                        case "Phone":
+                            column = "C.Phone";
                             break;
                         default:
                             column = "ACAIRIAELCOMPANYNAME?";
@@ -196,7 +202,7 @@ namespace Data
                 throw ex;
             }
             finally
-            {   //se cierra la conección a DB
+            {   //se cierra la conexión a DB
                 data.closeConnection();
             }
         }

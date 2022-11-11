@@ -12,5 +12,6 @@ namespace Domain
         public string size { get; set; }
         public List<Material> materialsUsed { get; set; }
         public string color { get; set; }
+        public int price { get; set; }
     }
 }
