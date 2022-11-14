@@ -1,4 +1,10 @@
 ﻿
+
+@font-face {
+    font-family: 'Arvo'; /*a name to be used later*/
+    src: url('Font/Arvo-Regular.ttf'); /*URL to font*/
+}
+
 .custom-navbar {
     background-color: rgb(29, 5, 110);
     height: 100px;
@@ -7,19 +13,26 @@
 .custom-navar-txt {
     font-size: 18px;
     color: rgb(255, 255, 255);
-    font-family: sans-serif;
+    font-family: Jokerman;
     margin: 20px;
     !important
 }
 
-.dropdown-custom {
-    background-color: rgb(29, 5, 110);
+.custom-font {
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    font-family: Wingdings;
+    margin-top: 100px;
 }
+
+/*.dropdown-custom {
+    background-color: rgb(29, 5, 110);
+}*/
 
 .custom-dropdown-txt {
     font-size: 15px;
     color: rgb(255, 255, 255);
-    font-family: sans-serif;
+    font-family: "Arvo", Titillium Web;
 }
 
 .custom-carousel {
@@ -82,4 +95,9 @@
     filter: blur(10px);
     opacity: 0.8;
 
+}
+
+.textbox-custom {
+
+    width: 150px;
 }

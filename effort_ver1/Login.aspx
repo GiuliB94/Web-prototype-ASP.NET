@@ -16,7 +16,7 @@
             </div>
             <div class="mb-3">
                 <label for="TxtPass" class="form-label">Password</label>
-                <asp:TextBox runat="server" ID="TxtPass" CssClass="form-control" style="width:300px;" CssCalss="password"/>
+                <asp:TextBox runat="server" ID="TxtPass" CssClass="form-control" style="width:300px;" CssClass="password"/>
             </div>
             <asp:Button Text="Aceptar" ID="btnAceptar" CssClass="btn btn-primary" runat="server" />
         </div>
