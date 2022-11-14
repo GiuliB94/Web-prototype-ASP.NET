@@ -65,11 +65,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessData.cs" />
+    <Compile Include="ClientList.cs" />
+    <Compile Include="CompanyList.cs" />
+    <Compile Include="MaterialList.cs" />
+    <Compile Include="ProductList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{69019b26-dc37-4398-8d39-33f6b347ecac}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

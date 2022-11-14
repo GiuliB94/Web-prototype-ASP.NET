@@ -43,6 +43,23 @@ namespace Data
                 throw ex;
             }
         }
+        public void SetParameter(string parameterName, object value)
+        {
+            command.Parameters.AddWithValue(parameterName, value);
+        }
+        public void executeAction()
+        {
+            command.Connection = connection;
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }       
         public void closeConnection()
         {
             if (reader != null)
