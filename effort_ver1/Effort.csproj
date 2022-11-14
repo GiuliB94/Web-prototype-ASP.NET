@@ -96,7 +96,6 @@
     <Content Include="AboutUs.aspx" />
     <Content Include="CustomStyles.css" />
     <Content Include="Default.aspx" />
-    <Content Include="effort_ver1.csproj.user" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
@@ -145,7 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
-    <Content Include="effort_ver1.csproj" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
