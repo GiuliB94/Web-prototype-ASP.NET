@@ -44,6 +44,8 @@
     <Compile Include="Client.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Material.cs" />
+    <Compile Include="OrderElements.cs" />
+    <Compile Include="OrderHeader.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

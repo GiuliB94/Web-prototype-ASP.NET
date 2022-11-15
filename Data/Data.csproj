@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessData.cs" />
+    <Compile Include="OrderList.cs" />
     <Compile Include="ClientList.cs" />
     <Compile Include="CompanyList.cs" />
     <Compile Include="MaterialList.cs" />
