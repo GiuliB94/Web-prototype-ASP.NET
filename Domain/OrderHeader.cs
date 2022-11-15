@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Domain
 {
-    internal class OrderHeader
+    public class OrderHeader
     {
         int id;
         DateTime orderDate;

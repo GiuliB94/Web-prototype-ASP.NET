@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    internal class MaterialList
+    public class MaterialList
     {
         public List<Material> Show()
         {

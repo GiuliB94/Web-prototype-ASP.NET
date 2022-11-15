@@ -10,7 +10,7 @@ using Domain;
 
 namespace Data
 {
-    internal class ClientList
+    public class ClientList
     {
         public List<Client> Show()
         {

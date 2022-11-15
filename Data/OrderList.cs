@@ -6,15 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-
-
 namespace Data
 {
-    internal class OrderList 
+    public class OrderList 
     {
-        public List<OrderElements> Show()
+        public List<OrderElement> Show()
         {
-            List<OrderElements> list = new List<OrderElements>();
+            List<OrderElement> list = new List<OrderElement>();
             AccessData data = new AccessData();
 
             try
@@ -26,12 +24,8 @@ namespace Data
                 while (data.Reader.Read())
                 {
                     //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
-                    OrderElements aux = new OrderElements();
-                    aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Product"];
-                    aux.size = (string)data.Reader["Size"];
-                    aux.color = (string)data.Reader["Color"];
-                    aux.price = (int)data.Reader["Price"];
+                    OrderElement aux = new OrderElement();
+
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -137,7 +131,7 @@ namespace Data
                 }
                 else
                 {
-                    string column;
+                    string column = "";
                     switch (searchBy)
                     {
                         case "Código":
@@ -175,7 +169,7 @@ namespace Data
                     Product aux = new Product();
                     aux.id = (int)data.Reader["Id"];
                     aux.name = (string)data.Reader["Product"];
-                    aux.size = (string)data.Reader["Size"];
+                    aux.size = (int)data.Reader["Size"];
                     aux.color = (string)data.Reader["Color"];
                     aux.price = (int)data.Reader["Price"];
 
@@ -196,4 +190,4 @@ namespace Data
         }
     }
 }
-}
+

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Domain
 {
-    internal class OrderElements
+    public class OrderElement
     {
         int idOrder;
         int lineItem;

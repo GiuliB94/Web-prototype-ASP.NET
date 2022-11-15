@@ -9,9 +9,10 @@ namespace Domain
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string size { get; set; }
-        public List<Material> materialsUsed { get; set; }
+        public int size { get; set; }
+        //public List<Material> materialsUsed { get; set; }
         public string color { get; set; }
-        public int price { get; set; }
+        public decimal price { get; set; }
+        public string description { get; set; }
     }
 }

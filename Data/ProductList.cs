@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Xml.Linq;
+using MySqlConnector;
 using Domain;
 
 namespace Data
 {
-    internal class ProductList
+    public class ProductList
     {
         public List<Product> Show()
         {
@@ -27,11 +22,12 @@ namespace Data
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
                     Product aux = new Product();
-                    aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Product"];
-                    aux.size = (string)data.Reader["Size"];
-                    aux.color = (string)data.Reader["Color"];
-                    aux.price = (int)data.Reader["Price"];
+                    aux.id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.name = data.Reader["Name"].ToString();
+                    aux.size = (int)data.Reader["Size"];
+                    aux.color = data.Reader["Color"].ToString();
+                    aux.price = Convert.ToDecimal(data.Reader["Price"]);
+                    aux.description = data.Reader["Description"].ToString();
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -137,7 +133,7 @@ namespace Data
                 }
                 else
                 {
-                    string column;
+                    string column = "";
                     switch (searchBy)
                     {
                         case "Código":
@@ -174,10 +170,11 @@ namespace Data
                     //Se cargan los articulos de la base
                     Product aux = new Product();
                     aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Product"];
-                    aux.size = (string)data.Reader["Size"];
+                    aux.name = (string)data.Reader["Name"];
+                    aux.size = (int)data.Reader["Size"];
                     aux.color = (string)data.Reader["Color"];
-                    aux.price = (int)data.Reader["Price"];
+                    aux.price = (decimal)data.Reader["Price"];
+                    aux.description = (string)data.Reader["Description"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);

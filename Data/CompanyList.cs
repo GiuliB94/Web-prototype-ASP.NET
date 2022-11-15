@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    internal class CompanyList
+    public class CompanyList
     {
         public List<Company> Show()
         {
@@ -119,7 +119,7 @@ namespace Data
             try
             {
                 //A CHEQUEAR...
-                string column;
+                string column= "";
                 switch (searchBy)
                 {
                     case "CUIT":
