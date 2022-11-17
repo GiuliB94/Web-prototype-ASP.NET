@@ -10,22 +10,27 @@ namespace Data
 {
     public class OrderList 
     {
-        public List<OrderElement> Show()
+        public List<OrderHeader> Show()
         {
-            List<OrderElement> list = new List<OrderElement>();
+            List<OrderHeader> list = new List<OrderHeader>();
             AccessData data = new AccessData();
 
             try
             {
                 //Se setea la query para traer los los pedidos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
-                data.setQuery("Select OrderNumber from Products");
+                data.setQuery("Select * from OrderHeader");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
                     //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
-                    OrderElement aux = new OrderElement();
-
+                    OrderHeader aux = new OrderHeader();
+                    aux.id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.orderDate = Convert.ToDateTime(data.Reader["OrderDate"]);
+                    aux.deliveryDate = Convert.ToDateTime(data.Reader["DeliveryDate"]);
+                    aux.idClient = Convert.ToInt16(data.Reader["IdClient"]);
+                    aux.amount = Convert.ToDecimal(data.Reader["Amount"]);
+                    aux.status = data.Reader["Status"].ToString();
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -47,14 +52,14 @@ namespace Data
             }
         }
 
-        public void Add(Product newProduct)
+        public void Add(OrderHeader newOrderHeader)
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
             {   //Se inserta en DB los datos cargados 
-                datos.setQuery("");
+                datos.setQuery("bueno si dsp vemos");
             }
             catch (Exception ex)
             {
@@ -66,14 +71,14 @@ namespace Data
             }
         }
 
-        public void Modify(Product modOrder) //Se deberia poder modificar un pedido? 
+        public void Modify(OrderHeader modOrderHeader) //Se deberia poder modificar un pedido? 
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
             {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("");
+                datos.setQuery("Select telacreistewexd");
             }
             catch (Exception ex)
             {
@@ -104,9 +109,9 @@ namespace Data
             }
         }
 
-        public List<Product> Filter(string searchBy, string when, string filter)
+        public List<OrderHeader> Filter(string searchBy, string when, string filter)
         {
-            List<Product> list = new List<Product>();
+            List<OrderHeader> list = new List<OrderHeader>();
             AccessData data = new AccessData();
 
             string query = "";
@@ -166,12 +171,13 @@ namespace Data
                 while (data.Reader.Read())
                 {
                     //Se cargan los articulos de la base
-                    Product aux = new Product();
+                    OrderHeader aux = new OrderHeader();
                     aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Product"];
-                    aux.size = (int)data.Reader["Size"];
-                    aux.color = (string)data.Reader["Color"];
-                    aux.price = (int)data.Reader["Price"];
+                    aux.orderDate = (DateTime)data.Reader["OrderDate"];
+                    aux.deliveryDate = (DateTime)data.Reader["DeliveryDate"];
+                    aux.idClient = (int)data.Reader["IdClient"];
+                    aux.amount = (int)data.Reader["Amount"];
+                    aux.status = (string)data.Reader["Status"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);

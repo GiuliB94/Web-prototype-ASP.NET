@@ -5,5 +5,19 @@
     <link rel="stylesheet" href="CustomStyles1.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="dgvProducts" runat="server"></asp:GridView>
+    <div style="margin-left: 25px">
+        <p class="custom-font-red" style="font-size: 30px;">Productos</p>
+    </div>
+    <div class="row">
+        <div class="col-6">
+
+        </div>
+    </div>
+    <asp:GridView ID="dgvProducts" CssClass="table table-light table-bordered" AutoGenerateColumns="false" runat="server">
+        <Columns>
+            <asp:BoundField HeaderText="Producto" DataField="name" />
+            <asp:BoundField HeaderText="Precio" DataField="price" />
+        </Columns>
+
+    </asp:GridView>
 </asp:Content>

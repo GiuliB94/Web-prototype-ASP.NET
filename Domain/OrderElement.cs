@@ -7,9 +7,9 @@ namespace Domain
 {
     public class OrderElement
     {
-        int idOrder;
-        int lineItem;
-        int idProduct;
-        int quantity;
+        public int idOrder { get; set; }
+        public int lineItem { get; set; }
+        public int idProduct { get; set; }
+        public int quantity { get; set; }
     }
 }

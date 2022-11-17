@@ -1,40 +1,33 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Xml.Linq;
-using Domain;
 
 namespace Data
 {
-    public class ClientList
+    public class OrderElementList
     {
-        public List<Client> Show()
+        public List<OrderElement> Show()
         {
-            List<Client> list = new List<Client>();
+            List<OrderElement> list = new List<OrderElement>();
             AccessData data = new AccessData();
 
             try
             {
-                //Se setea la query para traer los clients //JOIN CON COMPANIES...
-                data.setQuery("Select * from Clients");
+                //Se setea la query para traer los los pedidos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
+                data.setQuery("Select * from OrderElements");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
-                    //Se cargan los productos de la base // Se deberian verificar nulls? 
-                    Client aux = new Client();
-                    aux.id = Convert.ToInt16(data.Reader["Id"]);
-                    aux.name = data.Reader["Name"].ToString();
-                    aux.lastName = data.Reader["LastName"].ToString();
-                    aux.password = data.Reader["Password"].ToString();
-                    aux.idCompany = Convert.ToInt16(data.Reader["IdCompany"]);
-                    aux.email = data.Reader["Email"].ToString();
-                    aux.phone = data.Reader["Phone"].ToString();
-                    aux.category = Convert.ToInt16(data.Reader["PriceCategory"]);
+                    //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
+                    OrderElement aux = new OrderElement();
+                    aux.idOrder = Convert.ToInt16(data.Reader["IdOrder"]);
+                    aux.lineItem = Convert.ToInt16(data.Reader["LineItem"]);
+                    aux.idProduct = Convert.ToInt16(data.Reader["IdProduct"]);
+                    aux.quantity = (int)data.Reader["Quantity"];
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -56,14 +49,14 @@ namespace Data
             }
         }
 
-        public void Add(Client newClient)
+        public void Add(OrderElement newOrderElement)
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
             {   //Se inserta en DB los datos cargados 
-                datos.setQuery("");
+                datos.setQuery("bueno si dsp vemos");
             }
             catch (Exception ex)
             {
@@ -75,14 +68,14 @@ namespace Data
             }
         }
 
-        public void Modify(Client modClient)
+        public void Modify(OrderElement modOrderElement) //Se deberia poder modificar un pedido? 
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
             {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("");
+                datos.setQuery("Select telacreistewexd");
             }
             catch (Exception ex)
             {
@@ -94,12 +87,12 @@ namespace Data
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int id) //Se deberia poder borrar un pedido? Pa mi que no
         {
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Clients where Id=@id");
+                datos.setQuery("delete from  where id=@id");
                 datos.SetParameter("@id", id);
                 datos.executeAction();
             }
@@ -113,9 +106,9 @@ namespace Data
             }
         }
 
-        public List<Client> Filter(string searchBy, string when, string filter)
+        public List<OrderElement> Filter(string searchBy, string when, string filter)
         {
-            List<Client> list = new List<Client>();
+            List<OrderElement> list = new List<OrderElement>();
             AccessData data = new AccessData();
 
             string query = "";
@@ -123,40 +116,34 @@ namespace Data
             try
             {
                 //A CHEQUEAR...
-                if (searchBy == "Category")
+                if (searchBy == "Precio")
                 {
                     switch (when)
                     {
                         case "Mayor a":
-                            query += "C.Category > " + filter;
+                            query += "P.Precio > " + filter;
                             break;
                         case "Menor a":
-                            query += "C.Category < " + filter;
+                            query += "P.Precio < " + filter;
                             break;
                         case "Igual a":
-                            query += "C.Category = " + filter;
+                            query += "P.Precio = " + filter;
                             break;
                     }
                 }
                 else
                 {
-                    string column;
+                    string column = "";
                     switch (searchBy)
                     {
-                        case "Name":
-                            column = "C.Name";
+                        case "Código":
+                            column = "P.Id";
                             break;
-                        case "Last Name":
-                            column = "C.LastName";
+                        case "Nombre":
+                            column = "P.Name";
                             break;
-                        case "Email":
-                            column = "C.Email";
-                            break;
-                        case "Phone":
-                            column = "C.Phone";
-                            break;
-                        default:
-                            column = "ACAIRIAELCOMPANYNAME?";
+                        case "Color":
+                            column = "P.Color";
                             break;
                     }
                     switch (searchBy)
@@ -181,15 +168,11 @@ namespace Data
                 while (data.Reader.Read())
                 {
                     //Se cargan los articulos de la base
-                    Client aux = new Client();
-                    aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Name"];
-                    aux.lastName = (string)data.Reader["LastName"];
-                    aux.password = (string)data.Reader["Password"];
-                    aux.idCompany = (int)data.Reader["IdCompany"];
-                    aux.email = (string)data.Reader["Email"];
-                    aux.phone = (string)data.Reader["Phone"];
-                    aux.category = (int)data.Reader["Category"];
+                    OrderElement aux = new OrderElement();
+                    aux.idOrder = Convert.ToInt16(data.Reader["Id"]);
+                    aux.lineItem = Convert.ToInt16(data.Reader["OrderDate"]);
+                    aux.idProduct = Convert.ToInt16(data.Reader["DeliveryDate"]);
+                    aux.quantity = (int)data.Reader["IdClient"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
@@ -208,4 +191,3 @@ namespace Data
         }
     }
 }
-

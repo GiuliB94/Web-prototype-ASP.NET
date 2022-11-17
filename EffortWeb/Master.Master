@@ -49,6 +49,14 @@
                                     <li><a class="dropdown-item custom-dropdown-txt" href="Contact.aspx">Contacto</a></li>
                                 </ul>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle custom-navar-txt" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mi cuenta
+                                </a>
+                                <ul class="dropdown-menu dropdown-custom">
+                                    <li><a class="dropdown-item custom-dropdown-txt" href="MyOrders.aspx">Mis pedidos</a></li>
+                                    <li><a class="dropdown-item custom-dropdown-txt" href="Clients.aspx">Ver clientes</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>

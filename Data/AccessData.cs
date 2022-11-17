@@ -10,7 +10,7 @@ namespace Data
     public class AccessData
     {
         private MySqlConnection connection;
-        private string connString = "server = 190.61.250.150; userid = effort_admin; password = proyectazo; database = effort_db";
+        private string connString = "server = 190.61.250.150; userid = effort_admin; password = proyectazo; database = effort_db;";
         private MySqlCommand command;
         private MySqlDataReader reader;
 
