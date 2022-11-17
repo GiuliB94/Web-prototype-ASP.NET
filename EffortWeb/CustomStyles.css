@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Arvo'; /*a name to be used later*/
-    src: url('Font/Arvo-Regular.ttf'); /*URL to font*/
+    src: url('fonts/Arvo-Regular.ttf'); /*URL to font*/
 }
 
 .custom-navbar {
