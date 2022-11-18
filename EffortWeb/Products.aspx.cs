@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Data;
 
-namespace effort_ver1
+namespace EffortWeb
 {
 	public partial class Products : System.Web.UI.Page
 	{
