@@ -60,8 +60,8 @@
         <asp:Panel class="login-popup" ID="LogPanel" Style="display: none" runat="server">
             <div>
                 <table >
-                    <tr>
-                        <td>
+                    <tr >
+                        <td >
                             <asp:Label ID="LabelUser" runat="server" Text="Usuario"></asp:Label>
                         </td>
                         <td>
