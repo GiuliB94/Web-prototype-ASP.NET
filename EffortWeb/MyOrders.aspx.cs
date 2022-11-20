@@ -12,8 +12,13 @@ namespace EffortWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            OrderList myOrderList = new OrderList();
-            dgvMyOrders.DataSource = myOrderList.Show();
+            if (Session["myOrderList"] == null) 
+            {
+                OrderList myOrderList = new OrderList();
+                Session.Add("myOrderList", myOrderList.Show());
+            }
+
+            dgvMyOrders.DataSource = Session["myOrderList"];
             dgvMyOrders.DataBind();
         }
 

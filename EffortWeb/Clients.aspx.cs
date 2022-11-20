@@ -12,8 +12,8 @@ namespace EffortWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ClientList myOrderList = new ClientList();
-            dgvClients.DataSource = myOrderList.Show();
+            ClientList clientList = new ClientList();
+            dgvClients.DataSource = clientList.Show();
             dgvClients.DataBind();
         }
 

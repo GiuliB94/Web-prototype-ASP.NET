@@ -35,6 +35,7 @@ namespace Data
                     aux.email = data.Reader["Email"].ToString();
                     aux.phone = data.Reader["Phone"].ToString();
                     aux.category = Convert.ToInt16(data.Reader["PriceCategory"]);
+                    aux.active = Convert.ToBoolean(data.Reader["Active"]);
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -190,6 +191,7 @@ namespace Data
                     aux.email = (string)data.Reader["Email"];
                     aux.phone = (string)data.Reader["Phone"];
                     aux.category = (int)data.Reader["Category"];
+                    aux.active = (bool)data.Reader["Active"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
