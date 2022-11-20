@@ -97,6 +97,7 @@
     <Content Include="CustomStyles.css" />
     <Content Include="CustomStyles1.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DefaultMail.html" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Map.aspx" />
