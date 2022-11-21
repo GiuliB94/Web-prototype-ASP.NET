@@ -26,5 +26,11 @@ namespace EffortWeb
 		{
             Response.Redirect("ProductForm.aspx");
         }
-	}
+
+        protected void dgvProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var idSelected = dgvProducts.SelectedDataKey.Value.ToString();
+            Response.Redirect("ProductForm.aspx?id=" + idSelected);
+        }
+    }
 }

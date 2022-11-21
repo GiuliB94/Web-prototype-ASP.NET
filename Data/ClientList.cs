@@ -20,7 +20,52 @@ namespace Data
             try
             {
                 //Se setea la query para traer los clients //JOIN CON COMPANIES...
-                data.setQuery("Select * from Clients");
+                data.setQuery("Select * from Clients where active = true");
+                data.executeQuery();
+
+                while (data.Reader.Read())
+                {
+                    //Se cargan los productos de la base // Se deberian verificar nulls? 
+                    Client aux = new Client();
+                    aux.id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.name = data.Reader["Name"].ToString();
+                    aux.lastName = data.Reader["LastName"].ToString();
+                    aux.password = data.Reader["Password"].ToString();
+                    aux.idCompany = Convert.ToInt16(data.Reader["IdCompany"]);
+                    aux.email = data.Reader["Email"].ToString();
+                    aux.phone = data.Reader["Phone"].ToString();
+                    aux.category = Convert.ToInt16(data.Reader["PriceCategory"]);
+                    aux.active = Convert.ToBoolean(data.Reader["Active"]);
+
+                    //Se agrega el registro leído a la lista de productos
+                    list.Add(aux);
+
+                }
+
+                //devuelvo listado de productos
+                return list;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {   //se cierra la conexión a DB
+                data.closeConnection();
+            }
+        }
+
+        public List<Client> ShowPendings()
+        {
+            List<Client> list = new List<Client>();
+            AccessData data = new AccessData();
+
+            try
+            {
+                //Se setea la query para traer los clients //JOIN CON COMPANIES...
+                data.setQuery("Select * from Clients where active=false");
                 data.executeQuery();
 
                 while (data.Reader.Read())

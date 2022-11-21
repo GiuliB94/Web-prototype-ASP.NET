@@ -12,6 +12,8 @@ namespace EffortWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblClients.Text = "Lista de clientes";
+
             ClientList clientList = new ClientList();
             if (Session["clientList"] == null)
             {
@@ -19,11 +21,33 @@ namespace EffortWeb
             }
             dgvClients.DataSource = Session["clientList"];
             dgvClients.DataBind();
+            dgvPendingClients.Visible = false;
         }
-         
         protected void dgvClients_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Aca se deberia mostrar el perfil del cliente
+            var idSelected = dgvClients.SelectedDataKey.Value.ToString();
+            Response.Redirect("ClientForm.aspx?id=" + idSelected);
+        }
+
+        protected void btnPendings_Click(object sender, EventArgs e)
+        {
+            lblClients.Text = "Seleccione el cliente para dar de alta";
+            btnPendings.Visible = false;
+            dgvPendingClients.Visible = true;
+            dgvClients.Visible = false;
+            ClientList pendingClientList = new ClientList();
+            if (Session["pendingClientList"] == null)
+            {
+                Session.Add("pendingClientList", pendingClientList.ShowPendings());
+            }
+            dgvPendingClients.DataSource = Session["pendingClientList"];
+            dgvPendingClients.DataBind();
+        }
+
+        protected void dgvPendingClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var idSelected = dgvPendingClients.SelectedDataKey.Value.ToString();
+            Response.Redirect("ClientForm.aspx?id=" + idSelected);
         }
     }
 }

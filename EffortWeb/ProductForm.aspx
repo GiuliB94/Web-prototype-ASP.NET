@@ -73,7 +73,13 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6 mb-3">
-                        <asp:Button Text="Aceptar" ID="btnAddProduct" OnClick="btnAddProduct_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" runat="server" Width="170" Height="50" />
+                        <asp:Button Text="Agregar" ID="btnAddProduct" OnClick="btnAddProduct_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" runat="server" Width="170" Height="50" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 mb-3" Css>
+                        <asp:Button Text="Modificar" ID="btnModProduct" OnClick="btnModProduct_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" runat="server" Width="170" Height="50" />
+                        <asp:Button Text="Eliminar" ID="btnDeleteProduct" OnClick="btnDeleteProduct_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" runat="server" Width="170" Height="50" />
                     </div>
                 </div>
             </div>

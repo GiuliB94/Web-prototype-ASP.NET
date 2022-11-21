@@ -64,6 +64,7 @@
                 <div class="row">
                     <div class="col-sm-6 mb-3">
                         <asp:Button Text="Enviar solicitud" ID="btnSendClientForm" OnClick="btnSendClientForm_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" runat="server" Width="170" Height="50" />
+                        <asp:Button Text="Dar de alta" ID="btnSignUp" OnClick="btnSignUp_Click" Visible="false" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" runat="server" Width="170" Height="50" />                    
                     </div>
                 </div>
             </div>
