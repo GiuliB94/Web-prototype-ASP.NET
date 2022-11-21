@@ -23,7 +23,7 @@ namespace EffortWeb
         }
 
         protected void dgvMyOrders_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {   //RECUPERAR EL ID DE LA ORDEN, Y HACER UN DGV CON LOS ELEMENTOS DE ESA ORDEN
             OrderElementList myOrderElementsList = new OrderElementList();
             dgvMyOrders.DataSource = myOrderElementsList.Show();
             dgvMyOrders.DataBind();

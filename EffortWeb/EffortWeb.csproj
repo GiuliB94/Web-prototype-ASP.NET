@@ -103,6 +103,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Map.aspx" />
     <Content Include="MyOrders.aspx" />
+    <Content Include="OrderProducts.aspx" />
+    <Content Include="ProductForm.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -172,6 +174,20 @@
     </Compile>
     <Compile Include="MyOrders.aspx.designer.cs">
       <DependentUpon>MyOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderProducts.aspx.cs">
+      <DependentUpon>OrderProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderProducts.aspx.designer.cs">
+      <DependentUpon>OrderProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductForm.aspx.cs">
+      <DependentUpon>ProductForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductForm.aspx.designer.cs">
+      <DependentUpon>ProductForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>

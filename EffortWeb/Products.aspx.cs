@@ -12,9 +12,19 @@ namespace EffortWeb
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			ProductList productList = new ProductList();
-			dgvProducts.DataSource = productList.Show();
-			dgvProducts.DataBind();
+            if (Session["productList"] == null)
+            {
+                ProductList productList = new ProductList();
+                Session.Add("productList", productList.Show());
+            }
+
+            dgvProducts.DataSource = Session["productList"];
+            dgvProducts.DataBind();
+        }
+
+		protected void btnAddProduct_Click(object sender, EventArgs e)
+		{
+            Response.Redirect("ProductForm.aspx");
         }
 	}
 }

@@ -10,13 +10,12 @@
     </div>
     <asp:GridView ID="dgvMyOrders" OnSelectedIndexChanged="dgvMyOrders_SelectedIndexChanged" CssClass="table table-light table-bordered" AutoGenerateColumns="false" runat="server">
         <Columns>
-            <asp:CheckBoxField HeaderText="Seleccionar" />
             <asp:BoundField HeaderText="Número de pedido" DataField="id" />
             <asp:BoundField HeaderText="Fecha de pedido" DataField="orderDate" />
             <asp:BoundField HeaderText="Importe" DataField="amount" />
             <asp:BoundField HeaderText="Fecha de entrega" DataField="deliveryDate" />
             <asp:BoundField HeaderText="Estado" DataField="status" />
-            <asp:CommandField ShowSelectButton="true" SelectText="Ver productos"  />
+            <asp:CommandField ShowSelectButton="true" SelectText="Ver productos" /> 
         </Columns>
     </asp:GridView>
 </asp:Content>

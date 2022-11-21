@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ClientForm.aspx.cs" Inherits="effort_ver1.ClientForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ProductForm.aspx.cs" Inherits="effort_ver1.ProductForm" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
@@ -6,68 +7,76 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="margin-left: 25px">
-        <p class="custom-font-red" style="font-size: 30px;">Ingrese sus datos</p>
+        <p class="custom-font-red" style="font-size: 30px;">Nuevo producto</p>
     </div>
     <div class="row">
         <div class="col-6">
             <div>
                 <p class="custom-font-text" style="margin-left: 25px">
-                    Envia tu solicitud de alta de cliente.
+                    Ingrese los detalles.
                 </p>
             </div>
-            <%--  Formulario para completar los datos de los clientes // Esto viaja a clientes, pero con el active en false y despues se le da de alta.--%>
+            <%--  Formulario para agregar un producto (VISIBLE SOLO PARA LOS ADMIN)--%>
             <div style="margin-left: 25px; margin-top: 25px;">
                 <div class="row">
                     <div class="col-sm-2 mb-3">
-                        <label for="txtName" class="form-label custom-font-text">Nombre</label>
+                        <label for="txtId" class="form-label custom-font-text">ID</label>
+                    </div>
+                    <div class="col-sm-4 mb-3" style="text-align: right">
+                        <asp:TextBox runat="server" ID="txtId" CssClass="form-control" />
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 mb-3">
+                        <label for="txtName" class="form-label custom-font-text">Artículo</label>
                     </div>
                     <div class="col-sm-4 mb-3" style="text-align: right">
                         <asp:TextBox runat="server" ID="txtName" CssClass="form-control" />
                     </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-sm-2 mb-3">
-                        <label for="txtLastName" class="form-label custom-font-text">Apellido</label>
-                    </div>
-                    <div class="col-sm-4 mb-3" style="text-align: right">
-                        <asp:TextBox runat="server" ID="txtLastName" CssClass="form-control" />
-                    </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-2 mb-3">
-                        <label for="txtIdCompany" class="form-label custom-font-text">Empresa</label>
+                        <label for="txtDescription" class="form-label custom-font-text">Descripción</label>
                     </div>
                     <div class="col-sm-4 mb-3" style="text-align: right">
-                        <asp:TextBox runat="server" ID="txtIdCompany" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="txtDescription" CssClass="form-control" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-2 mb-3">
-                        <label for="txtEmail" class="form-label custom-font-text">Email</label>
+                        <label for="txtSize" class="form-label custom-font-text">Talle</label>
                     </div>
                     <div class="col-sm-4 mb-3" style="text-align: right">
-                        <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" />
+                        <asp:TextBox runat="server" ID="txtSize" CssClass="form-control" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-2 mb-3">
-                        <label for="txtPhone" class="form-label custom-font-text">Teléfono</label>
+                        <label for="txtColor" class="form-label custom-font-text">Color</label>
                     </div>
                     <div class="col-sm-4 mb-3" style="text-align: right">
-                        <asp:TextBox runat="server" ID="txtPhone" CssClass="form-control" TextMode="Phone" />
+                        <asp:TextBox runat="server" ID="txtColor" CssClass="form-control" /> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2 mb-3">
+                        <label for="txtPrice" class="form-label custom-font-text">Precio</label>
+                    </div>
+                    <div class="col-sm-4 mb-3" style="text-align: right">
+                        <asp:TextBox runat="server" ID="txtPrice" CssClass="form-control" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 mb-3">
-                        <asp:Button Text="Enviar solicitud" ID="btnSendClientForm" OnClick="btnSendClientForm_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" runat="server" Width="170" Height="50" />
+                        <asp:Button Text="Aceptar" ID="btnAddProduct" OnClick="btnAddProduct_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" runat="server" Width="170" Height="50" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </asp:Content>
-

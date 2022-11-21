@@ -13,10 +13,14 @@ namespace EffortWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             ClientList clientList = new ClientList();
-            dgvClients.DataSource = clientList.Show();
+            if (Session["clientList"] == null)
+            {
+                Session.Add("clientList", clientList.Show());
+            }
+            dgvClients.DataSource = Session["clientList"];
             dgvClients.DataBind();
         }
-
+         
         protected void dgvClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Aca se deberia mostrar el perfil del cliente
