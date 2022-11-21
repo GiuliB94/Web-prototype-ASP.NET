@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
+    <Content Include="ClientForm.aspx" />
     <Content Include="Clients.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="CustomStyles.css" />
@@ -112,6 +113,13 @@
     </Compile>
     <Compile Include="AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientForm.aspx.cs">
+      <DependentUpon>ClientForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientForm.aspx.designer.cs">
+      <DependentUpon>ClientForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clients.aspx.cs">
       <DependentUpon>Clients.aspx</DependentUpon>

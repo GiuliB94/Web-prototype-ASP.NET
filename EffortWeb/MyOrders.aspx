@@ -13,10 +13,10 @@
             <asp:CheckBoxField HeaderText="Seleccionar" />
             <asp:BoundField HeaderText="Número de pedido" DataField="id" />
             <asp:BoundField HeaderText="Fecha de pedido" DataField="orderDate" />
-            <asp:BoundField HeaderText="Fecha de entrega" DataField="deliveryDate" />
             <asp:BoundField HeaderText="Importe" DataField="amount" />
+            <asp:BoundField HeaderText="Fecha de entrega" DataField="deliveryDate" />
             <asp:BoundField HeaderText="Estado" DataField="status" />
-            <asp:CommandField ShowSelectButton="true" SelectText="Ver pedido"  />
+            <asp:CommandField ShowSelectButton="true" SelectText="Ver productos"  />
         </Columns>
     </asp:GridView>
 </asp:Content>

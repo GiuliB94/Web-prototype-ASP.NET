@@ -15,6 +15,7 @@ namespace Domain
         public string email { get; set; }   
         public string phone { get; set; }
         public int category { get; set; }
+        public bool active { get; set; }
 
     }
 }

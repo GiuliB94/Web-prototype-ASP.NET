@@ -47,6 +47,16 @@
                                     <li><a class="dropdown-item custom-dropdown-txt" href="Map.aspx">Mapa de entregas</a></li>
                                     <li><a class="dropdown-item custom-dropdown-txt" href="AboutUs.aspx">Quienes somos</a></li>
                                     <li><a class="dropdown-item custom-dropdown-txt" href="Contact.aspx">Contacto</a></li>
+                                    <li><a class="dropdown-item custom-dropdown-txt" href="Clients.aspx">Clientes</a></li>
+                                     <li><a class="dropdown-item custom-dropdown-txt" href="ClientForm.aspx">Crear cuenta</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle custom-navar-txt" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pedidos
+                                </a>
+                                <ul class="dropdown-menu dropdown-custom">
+                                    <li><a class="dropdown-item custom-dropdown-txt" href="MyOrders.aspx">Historial de pedidos</a></li>
+                                    <li><a class="dropdown-item custom-dropdown-txt" href="AboutUs.aspx">Realizar pedido</a></li>
                                 </ul>
                             </li>
                         </ul>
