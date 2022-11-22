@@ -23,9 +23,9 @@ namespace effort_ver1
                 Session.Add("clientList", clientList.Show());
             }
 
-            if (Request.QueryString["id"] != null)
+            if (Request.QueryString["ClientID"] != null)
             {
-                int id = int.Parse(Request.QueryString["id"]); //Obtengo el ID
+                int id = int.Parse(Request.QueryString["ClientID"]); //Obtengo el ID
 
                 List<Client> temportalList = (List<Client>)Session["clientList"]; //Busco al cliente seleccionado en la lista de clientes activos
                 Client selected = temportalList.Find(x => x.id == id);
@@ -69,12 +69,12 @@ namespace effort_ver1
             }
             List<Client> temporalList = (List<Client>)Session["pendingClientList"];
             temporalList.Add(newClient);
-            Response.Redirect("Default.aspx");
+            Response.Redirect("Clients.aspx");
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(Request.QueryString["id"]); //Obtengo el ID
+            int id = int.Parse(Request.QueryString["ClientId"]); //Obtengo el ID
             List<Client> temportalList = (List<Client>)Session["pendingClientList"]; //Busco al cliente seleccionado en la lista de clientes activos
             Client selected = temportalList.Find(x => x.id == id);
             selected.active = true;

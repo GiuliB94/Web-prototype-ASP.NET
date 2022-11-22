@@ -51,7 +51,7 @@ namespace EffortWeb
         protected void dgvPendingClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idSelected = dgvPendingClients.SelectedDataKey.Value.ToString();
-            Response.Redirect("ClientForm.aspx?productID=" + idSelected);
+            Response.Redirect("ClientForm.aspx?ClientID=" + idSelected);
         }
     }
 }
