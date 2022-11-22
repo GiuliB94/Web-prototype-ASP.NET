@@ -12,16 +12,20 @@ namespace EffortWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblClients.Text = "Lista de clientes";
-
-            ClientList clientList = new ClientList();
-            if (Session["clientList"] == null)
+            if (!IsPostBack) //Si es la primera vez que carga la pagina...
             {
-                Session.Add("clientList", clientList.Show());
-            }
-            dgvClients.DataSource = Session["clientList"];
-            dgvClients.DataBind();
-            dgvPendingClients.Visible = false;
+                dgvPendingClients.Visible = false;
+                dgvClients.Visible = true;
+
+                lblClients.Text = "Lista de clientes";
+                ClientList clientList = new ClientList();
+                if (Session["clientList"] == null)
+                {
+                    Session.Add("clientList", clientList.Show());
+                }
+                dgvClients.DataSource = Session["clientList"];
+                dgvClients.DataBind();
+            }    
         }
         protected void dgvClients_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -47,7 +51,7 @@ namespace EffortWeb
         protected void dgvPendingClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idSelected = dgvPendingClients.SelectedDataKey.Value.ToString();
-            Response.Redirect("ClientForm.aspx?id=" + idSelected);
+            Response.Redirect("ClientForm.aspx?productID=" + idSelected);
         }
     }
 }

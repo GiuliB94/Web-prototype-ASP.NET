@@ -9,7 +9,7 @@ namespace Data
 {
     public class OrderElementList
     {
-        public List<OrderElement> Show()
+        public List<OrderElement> Show(int id)
         {
             List<OrderElement> list = new List<OrderElement>();
             AccessData data = new AccessData();
@@ -17,7 +17,7 @@ namespace Data
             try
             {
                 //Se setea la query para traer los los pedidos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
-                data.setQuery("Select * from OrderElements");
+                data.setQuery("Select * from OrderElements where idOrder = " + id);
                 data.executeQuery();
 
                 while (data.Reader.Read())

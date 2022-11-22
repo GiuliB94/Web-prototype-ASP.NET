@@ -16,6 +16,7 @@ namespace effort_ver1
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
             ClientList clientList = new ClientList();
             if (Session["clientList"] == null)
             {

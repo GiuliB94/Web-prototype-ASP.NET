@@ -12,7 +12,7 @@
         }
     </style>
     <div style="margin-left: 25px">
-        <asp:Label Text="text" ID="lblClients" runat="server" class="custom-font-red" style="font-size: 30px;"/>
+        <asp:Label Text="" ID="lblClients" runat="server" class="custom-font-red" style="font-size: 30px;"/>
         <div class="col-sm-9 mb-5">
                 <%--DEBERIA SER VISIBLE SOLO PARA LOS USUARIOS ADMIN--%>
                 <asp:Button Text="Ver solicitudes pendientes" ID="btnPendings" onClick="btnPendings_Click" class="btn btn-outline-primary" runat="server" Width="200" Height="40" />

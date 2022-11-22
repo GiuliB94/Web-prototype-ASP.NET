@@ -65,7 +65,7 @@ namespace Data
             try
             {
                 //Se setea la query para traer los clients //JOIN CON COMPANIES...
-                data.setQuery("Select * from Clients where active=false");
+                data.setQuery("Select * from Clients where active = false");
                 data.executeQuery();
 
                 while (data.Reader.Read())

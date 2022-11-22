@@ -1,10 +1,12 @@
-﻿using Domain;
+﻿using Data;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace effort_ver1
 {
@@ -14,25 +16,47 @@ namespace effort_ver1
         {
             btnModProduct.Visible = false;
             btnDeleteProduct.Visible = false;
+            lblProducto.Text = "Nuevo producto"; 
 
-            if (Request.QueryString["id"] != null)
+            //Verifica que haya ID de producto en la URL    
+            if (Request.QueryString["productID"] != null) 
             {
-                int id = int.Parse(Request.QueryString["id"]);
-                List<Product> temportalList = (List<Product>)Session["productList"];
-                Product selected = temportalList.Find(x => x.id == id);
+                lblDetails.Visible = false;
+                lblProducto.Text = "Detalles";
 
+                int id = int.Parse(Request.QueryString["productID"]); 
+                if (Session["productList"] == null)
+                {
+                    ProductList productList = new ProductList();
+                    Session.Add("productList", productList.Show());
+                }
+                
+                List<Product> temporalList = (List<Product>)Session["productList"];
+                Product selected = temporalList.Find(x => x.id == id);
+                //Carga los campos 
                 txtId.Text = id.ToString();
                 txtId.ReadOnly = true;
                 txtName.Text = selected.name;
                 txtDescription.Text = selected.description;
-                txtDescription.Text = selected.description;
                 txtSize.Text = selected.size.ToString();
                 txtColor.Text = selected.color;
                 txtPrice.Text = selected.price.ToString();
-
+                //Visibilidad de botones
                 btnModProduct.Visible = true;
                 btnDeleteProduct.Visible = true;
                 btnAddProduct.Visible = false;
+
+                //Si el producto es de una orden, seteo campos en read only
+                if (Request.QueryString["Order"] != null)
+                {
+                    txtName.ReadOnly = true;
+                    txtDescription.ReadOnly = true;
+                    txtSize.ReadOnly = true;
+                    txtColor.ReadOnly = true;
+                    txtPrice.ReadOnly = true;
+                    btnModProduct.Visible = false;
+                    btnDeleteProduct.Visible = false;
+                }
 
             }
         }
