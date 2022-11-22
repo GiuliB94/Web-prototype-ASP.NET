@@ -60,9 +60,13 @@ namespace effort_ver1
             newClient.category = 1; //Lo selecciona el usuario o el admin cuando le da el alta? 
             newClient.active = false; //Llega en false, cuando el admin le da el alta pasa a true.
             //Serviria de algo tenes la fecha de alta del usuario?
-
             
-            List <Client> temporalList = (List<Client>)Session["clientList"];
+            if (Session["pendingClientList"] == null)
+            {
+                ClientList pendingClientList = new ClientList();
+                Session.Add("pendingClientList", pendingClientList.ShowPendings());
+            }
+            List<Client> temporalList = (List<Client>)Session["pendingClientList"];
             temporalList.Add(newClient);
             Response.Redirect("Default.aspx");
         }
