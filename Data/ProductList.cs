@@ -73,9 +73,17 @@ namespace Data
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
+
             try
             {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("");
+                datos.setQuery("update Products set Color=@color, Name=@name, Description=@description, Size=@size, Price=@price where Id=@id");
+                datos.SetParameter("@id", modProduct.id);
+                datos.SetParameter("@color", modProduct.color);
+                datos.SetParameter("@name", modProduct.name);
+                datos.SetParameter("@price", modProduct.price);
+                datos.SetParameter("@description", modProduct.description);
+                datos.SetParameter("@size", modProduct.size);
+                datos.executeAction();
             }
             catch (Exception ex)
             {

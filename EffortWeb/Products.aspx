@@ -23,7 +23,7 @@
                     <asp:BoundField HeaderText="Talle" DataField="size" />
                     <asp:BoundField HeaderText="Color" DataField="color" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                     <asp:BoundField HeaderText="Precio" DataField="price" />
-                    <asp:CommandField ShowSelectButton="true" SelectText="Ver" />
+                    <asp:CommandField ShowSelectButton="true" SelectText="Ver"/>
                 </Columns>
             </asp:GridView>
         </div>
