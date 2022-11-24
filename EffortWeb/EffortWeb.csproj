@@ -103,6 +103,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Map.aspx" />
     <Content Include="MyOrders.aspx" />
+    <Content Include="NewOrder.aspx" />
     <Content Include="OrderProducts.aspx" />
     <Content Include="ProductForm.aspx" />
     <Content Include="Products.aspx" />
@@ -174,6 +175,13 @@
     </Compile>
     <Compile Include="MyOrders.aspx.designer.cs">
       <DependentUpon>MyOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewOrder.aspx.cs">
+      <DependentUpon>NewOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewOrder.aspx.designer.cs">
+      <DependentUpon>NewOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="OrderProducts.aspx.cs">
       <DependentUpon>OrderProducts.aspx</DependentUpon>
