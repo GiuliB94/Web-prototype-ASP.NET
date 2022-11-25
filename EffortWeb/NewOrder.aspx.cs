@@ -23,12 +23,11 @@ namespace effort_ver1
             }
             dgvOrderElementList.DataSource = (List<Product>)Session["newOrder"];
             dgvOrderElementList.DataBind();
-
         }
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Products.aspx?newOrder=addProduct");
+            Response.Redirect("Catalog.aspx");
         }
     }
 }

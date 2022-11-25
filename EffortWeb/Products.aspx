@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col-8">
-            <asp:GridView ID="dgvProducts" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged" DataKeyNames="id" CssClass="table table-light table-bordered" AutoGenerateColumns="False" runat="server" OnRowCommand="dgvProducts_RowCommand">
+            <asp:GridView ID="dgvProducts" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged" DataKeyNames="id" CssClass="table table-light table-bordered" AutoGenerateColumns="False" runat="server" >
                 <Columns>
                     <asp:BoundField HeaderText="Id" DataField="id" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                     <asp:BoundField HeaderText="Producto" DataField="name" />
@@ -25,7 +25,6 @@
                     <asp:BoundField HeaderText="Color" DataField="color" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                     <asp:BoundField HeaderText="Precio" DataField="price" />
                     <asp:CommandField ShowSelectButton="true" SelectText="Ver"/>
-                    <asp:ButtonField ButtonType="Button" Text="Agregar producto" CommandName = "AgregarProducto"  />
                 </Columns>
             </asp:GridView>
         </div>

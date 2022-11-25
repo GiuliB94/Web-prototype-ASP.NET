@@ -15,7 +15,10 @@ namespace Data
             try
             {
                 //Se setea la query para traer los productos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
-                data.setQuery("Select * from Products");
+                data.setQuery("Select * from Products"); //-> Despues cambiar esto por un StoredProcedure
+                //string sp = ""; 
+                //data.setProcedure(sp);
+
                 data.executeQuery();
 
                 while (data.Reader.Read())

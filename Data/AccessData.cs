@@ -29,6 +29,12 @@ namespace Data
             this.command.CommandType = System.Data.CommandType.Text;
             this.command.CommandText = query;
         }
+        public void setProcedure(string sp)
+        {
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = sp;
+        }
+
         public void executeQuery()
         {
             command.Connection = connection;

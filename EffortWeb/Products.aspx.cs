@@ -19,14 +19,8 @@ namespace EffortWeb
                 ProductList productList = new ProductList();
                 Session.Add("productList", productList.Show());
             }
-            dgvProducts.Columns[7].Visible = false;
             dgvProducts.DataSource = Session["productList"];
             dgvProducts.DataBind();
-
-            if (Request.QueryString["newOrder"] == "addProduct")
-            {
-                dgvProducts.Columns[7].Visible = true;
-            }
         }
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
@@ -42,7 +36,7 @@ namespace EffortWeb
         }
 
 
-        public void dgvProducts_RowCommand(object sender, GridViewCommandEventArgs e)
+        /*public void dgvProducts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string commandName = e.CommandName;
             if(commandName == "AgregarProducto")
@@ -67,6 +61,6 @@ namespace EffortWeb
                 var idSelected = dgvProducts.SelectedDataKey.Value.ToString();
                 Response.Redirect("ProductForm.aspx?productID=" + idSelected);
             }
-        }
+        }*/
     }
 }
