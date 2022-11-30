@@ -48,6 +48,7 @@
                                     <li><a class="dropdown-item custom-dropdown-txt" href="AboutUs.aspx">Quienes somos</a></li>
                                     <li><a class="dropdown-item custom-dropdown-txt" href="Contact.aspx">Contacto</a></li>
                                     <li><a class="dropdown-item custom-dropdown-txt" href="Clients.aspx">Clientes</a></li>
+                                    <li><a class="dropdown-item custom-dropdown-txt" href="Catalog.aspx">Catálogo</a></li>
                                      <li><a class="dropdown-item custom-dropdown-txt" href="ClientForm.aspx">Crear cuenta</a></li>
                                 </ul>
                             </li>

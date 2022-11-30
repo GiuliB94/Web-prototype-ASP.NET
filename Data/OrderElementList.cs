@@ -17,7 +17,7 @@ namespace Data
             try
             {
                 //Se setea la query para traer los los pedidos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
-                data.setQuery("Select * from OrderElements where idOrder = " + id);
+                data.setQuery("Select P.Name, P.Size, P.Color, P.Price, O.Quantity\r\nfrom Products as P, OrderElements as O, OrderHeader as H \r\nwhere P.Id = O.IdProduct and\r\nH.Id = O.IdOrder and \r\nH.Id = " + id);
                 data.executeQuery();
 
                 while (data.Reader.Read())

@@ -25,5 +25,11 @@ namespace effort_ver1
                 ListaProductos = (List<Product>)Session["productList"];
             }
         }
+
+        protected void btn_AddProduct_Click(object sender, EventArgs e)
+        {
+            string idSelected = ((Button)sender).CommandArgument;
+
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="MyOrders.aspx.cs" Inherits="EffortWeb.MyOrders" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
@@ -16,7 +17,7 @@
             <asp:BoundField HeaderText="Fecha de entrega" DataField="deliveryDate" />
             <asp:BoundField HeaderText="Estado" DataField="status" />
             <asp:BoundField HeaderText="Cliente" DataField="idClient" />
-            <asp:CommandField ShowSelectButton="true" SelectText="Ver productos" /> 
+            <asp:CommandField ShowSelectButton="true" SelectText="Ver productos" />
         </Columns>
     </asp:GridView>
 </asp:Content>
