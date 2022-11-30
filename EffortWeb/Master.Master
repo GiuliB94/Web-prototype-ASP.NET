@@ -18,7 +18,7 @@
     </asp:ContentPlaceHolder>
 
 </head>
-<body >
+<body>
     <form runat="server">
         <div>
             <nav class="navbar navbar-expand-lg custom-navbar">
@@ -35,7 +35,10 @@
                                 <a class="nav-link custom-navar-txt" href="Default.aspx">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link custom-navar-txt" href="Products.aspx">Productos</a>
+                                <a class="nav-link custom-navar-txt" href="Products.aspx">Lista de precios</a>
+                            </li>
+                            <li>
+                                <a class="nav-link custom-navar-txt" href="Catalog.aspx">Catálogo</a>
                             </li>
                             <li class="nav-item">
                                 <asp:LinkButton Text="Ingreso" runat="server" ID="LogLink" class="nav-link custom-navar-txt"> </asp:LinkButton>
@@ -48,8 +51,7 @@
                                     <li><a class="dropdown-item custom-dropdown-txt" href="AboutUs.aspx">Quienes somos</a></li>
                                     <li><a class="dropdown-item custom-dropdown-txt" href="Contact.aspx">Contacto</a></li>
                                     <li><a class="dropdown-item custom-dropdown-txt" href="Clients.aspx">Clientes</a></li>
-                                    <li><a class="dropdown-item custom-dropdown-txt" href="Catalog.aspx">Catálogo</a></li>
-                                     <li><a class="dropdown-item custom-dropdown-txt" href="ClientForm.aspx">Crear cuenta</a></li>
+                                    <li><a class="dropdown-item custom-dropdown-txt" href="ClientForm.aspx">Crear cuenta</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -70,9 +72,9 @@
 
         <asp:Panel class="login-popup" ID="LogPanel" Style="display: none" runat="server">
             <div>
-                <table >
-                    <tr >
-                        <td >
+                <table>
+                    <tr>
+                        <td>
                             <asp:Label ID="LabelUser" runat="server" Text="Usuario"></asp:Label>
                         </td>
                         <td>
@@ -111,7 +113,7 @@
         <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="LogLink" PopupControlID="LogPanel" BackgroundCssClass="background.login-popup" DropShadow="true" OkControlID="Logbtn" CancelControlID="Button1"></ajaxToolkit:ModalPopupExtender>
 
 
-        <div class="container-fluid" style="margin-top:50px">
+        <div class="container-fluid" style="margin-top: 50px">
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

@@ -14,15 +14,21 @@ namespace effort_ver1
         public List<Product> ListaProductos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["productList"] == null)
+            if (!IsPostBack)
             {
-                ProductList list = new ProductList();
-                ListaProductos = list.Show();
+                if (Session["productList"] == null)
+                {
+                    ProductList list = new ProductList();
+                    ListaProductos = list.Show();
 
-            }
-            else
-            {
-                ListaProductos = (List<Product>)Session["productList"];
+                }
+                else
+                {
+                    ListaProductos = (List<Product>)Session["productList"];
+                }
+
+                ListView1.DataSource = ListaProductos;
+                ListView1.DataBind();
             }
         }
 

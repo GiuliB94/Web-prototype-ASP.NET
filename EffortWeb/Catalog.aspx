@@ -5,25 +5,40 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
     <link rel="stylesheet" href="CustomStyles1.css" type="text/css" />
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p class="custom-font-red" style="font-size: 30px;">Catálogo</p>
-    <div class="row row-cols1 row-cols-md-3 g-4">
-        <%
-            foreach (Domain.Product item in ListaProductos )
-            {%>
-        <div class="col">
-            <div class="card" style="width: 18rem; top: 0px; left: 0px;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><%:item.name%></h5>
-                    <p class="card-text"><%:item.description%></p>
-                    <p class="card-text">$ <%:item.price%></p>
-                    <asp:TextBox Text="1" ID="quantity" runat="server" AutoPostBack="True"></asp:TextBox>
-                    <asp:Button ID="btn_AddProduct" CommandArgument="<%:item.id%>" CommandName="ProductId" OnClick="btn_AddProduct_Click" runat="server" CssClass="btn btn-primary" Text="Agregar"/>
-                </div>
-            </div>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <center>
+        <div align="center">
+            <asp:ListView ID="ListView1" runat="server" GroupItemCount="5" Style="margin-right: 0px">
+                <ItemTemplate>
+                    <td>
+                        <div class="card" style="width: 18rem; top: 0px; left: 0px;">
+                            <h5 class="card-title"><%#Eval("name")%></h5>
+                            <div class="card-body">
+                                <asp:ImageButton ID="ImageButton" runat="server" Height="235px" BackColor="Blue" ImageUrl="~/Productos/NoImage" Width="138px" />
+                                <p class="card-text"><%#Eval("description")%></p>
+                                <p class="card-text">$<%#Eval("price")%></p>
+                                <asp:TextBox Text="1" ID="quantity" runat="server" AutoPostBack="True" Width="30%"></asp:TextBox>
+                                <asp:Button ID="btn_AddProduct" CommandArgument="Agregar" CommandName="ProductId" OnClick="btn_AddProduct_Click" runat="server" CssClass="btn btn-primary" Text="Agregar" />
+                            </div>
+                        </div>
+                    </td>
+                </ItemTemplate>
+                <LayoutTemplate>
+                    <table runat="server">
+                        <tr runat="server">
+                            <td id="groupPlaceHolder"></td>
+                        </tr>
+                    </table>
+                </LayoutTemplate>
+                <GroupTemplate>
+                    <tr runat="server">
+                        <td id="itemPlaceHolder"></td>
+                    </tr>
+                </GroupTemplate>
+            </asp:ListView>
+            <br />
+            <br />
         </div>
-        <%}%>
-
-    </div>
+    </center>
 </asp:Content>
+
