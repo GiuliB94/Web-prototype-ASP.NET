@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace effort_ver1
+namespace effort_ver1.MenuUser
 {
 
 

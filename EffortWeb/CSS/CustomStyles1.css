@@ -1,0 +1,205 @@
+﻿@font-face {
+    font-family: 'Tillium Web Extra Light'; /*a name to be used later*/
+    src: url('TitilliumWeb-ExtraLight.ttf')format('truetype');
+    ; /*URL to font*/
+    
+}
+
+@font-face {
+    font-family: 'Tillium Web Bold'; /*a name to be used later*/
+    src: url('TitilliumWeb-SemiBold.ttf')format('truetype');
+    ; /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Tillium Web Regular'; /*a name to be used later*/
+    src: url('TitilliumWeb-Regular.ttf')format('truetype');
+    ; /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Tillium Web Semi Bold'; /*a name to be used later*/
+    src: url('TitilliumWeb-Regular.ttf')format('truetype');
+    ; /*URL to font*/
+}
+
+.custom-navbar {
+    background-color: rgb(29, 5, 110);
+    height: 100px;
+}
+
+.custom-navar-txt {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-family: 'Tillium Web Extra Light';
+    margin: 20px;
+    letter-spacing:2px;
+    !important
+}
+
+.custom-font {
+    font-size: 23px;
+    color: rgb(255, 255, 255);
+    font-family: 'Tillium Web Extra Light';
+    margin-top: 100px;
+}
+
+.dropdown-custom {
+    background-color: rgb(29, 5, 110);
+}
+
+.custom-dropdown-txt {
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    font-family: 'Tillium Web Extra Light';
+    !important
+}
+
+.custom-carousel {
+    color: white;
+    background-color: black;
+    text-align: center;
+    height: 40px;
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    text
+}
+
+.custom-carousel-txt {
+    text-align: center;
+    font-size: 15px;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
+
+.nav-link:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.37);
+    border-radius: 4px 4px;
+}
+
+.dropdown-item:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.37);
+    border-radius: 4px 4px;
+}
+
+.nav-link:visited {
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.37);
+    border-radius: 4px 4px;
+}
+
+/*.rounding {
+    font-size: 15px;
+    margin: 10px, 10px, 10px, 10px;
+    padding: 3px, 3px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}*/
+
+.login-popup {
+
+    background-color: rgb(29, 5, 110);
+    padding: 10px, 10px;
+    width: 400px;
+    height: 200px;
+    color: rgb(255, 255, 255);
+    font-family: Arvo;
+}
+
+.background.login-popup {
+    background-color: black;
+    filter: blur(10px);
+    opacity: 0.8;
+}
+
+.textbox-custom {
+    width: 150px;
+}
+
+.banner-img {
+    height: 100%;
+    width: 100%;
+    object-fit: inherit;
+    opacity: 0.7;
+}
+
+.default-banner-left {
+    height: 200px;
+    margin-top: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: right;
+    background-image: linear-gradient(to left, rgb(202, 202, 202), rgba(255, 255, 255));
+}
+.default-banner-right {
+    height: 200px;
+    margin-top: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: right;
+    background-image: linear-gradient(to right, rgb(202, 202, 202),rgba(255, 255, 255));
+}
+.default-banner-bottom {
+    height: 200px;
+    margin-top: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: right;
+    background-color: rgb(29, 5, 110);
+    font-family: 'Tillium Web Bold';
+    font-size: 30px;
+    color: white;
+}
+
+.custom-font-white {
+    font-family: 'Tillium Web Semi Bold';
+    font-size: 20px;
+    color: white;
+}
+
+
+.custom-font-title {
+    font-family: 'Tillium Web Bold';
+    font-size: 30px;
+    color: darkslategray;
+}
+.custom-font-text {
+    font-family: 'Tillium Web Regular';
+    font-size: 20px;
+    color: darkslategray;
+}
+
+.custom-font-blue {
+    font-family: 'Tillium Web Bold';
+    font-size: 20px;
+    color: rgb(29, 5, 110);
+}
+
+.custom-font-red {
+    font-family: 'Tillium Web Bold';
+    font-size: 20px;
+    color: red;
+}
+
+.a:link {
+    text-decoration: none;
+}
+
+
+.a:visited {
+    text-decoration: none;
+}
+
+
+.a:hover {
+    text-decoration: none;
+}
+
+
+.a:active {
+    text-decoration: none;
+}
+
+

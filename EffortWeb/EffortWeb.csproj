@@ -91,18 +91,20 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AboutUs.aspx" />
-    <Content Include="Catalog.aspx" />
     <Content Include="ClientForm.aspx" />
     <Content Include="Clients.aspx" />
-    <Content Include="Contact.aspx" />
+    <Content Include="CSS\CustomStyles.css" />
+    <Content Include="CSS\CustomStyles1.css" />
     <Content Include="CustomStyles.css" />
     <Content Include="CustomStyles1.css" />
-    <Content Include="Default.aspx" />
     <Content Include="DefaultMail.html" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
-    <Content Include="Map.aspx" />
+    <Content Include="MenuUser\AboutUs.aspx" />
+    <Content Include="MenuUser\Catalog.aspx" />
+    <Content Include="MenuUser\Contact.aspx" />
+    <Content Include="MenuUser\Home.aspx" />
+    <Content Include="MenuUser\Map.aspx" />
     <Content Include="MyOrders.aspx" />
     <Content Include="NewOrder.aspx" />
     <Content Include="OrderProducts.aspx" />
@@ -111,20 +113,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutUs.aspx.cs">
-      <DependentUpon>AboutUs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AboutUs.aspx.designer.cs">
-      <DependentUpon>AboutUs.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Catalog.aspx.cs">
-      <DependentUpon>Catalog.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Catalog.aspx.designer.cs">
-      <DependentUpon>Catalog.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ClientForm.aspx.cs">
       <DependentUpon>ClientForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -139,20 +127,6 @@
     <Compile Include="Clients.aspx.designer.cs">
       <DependentUpon>Clients.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,19 +137,54 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Map.aspx.cs">
-      <DependentUpon>Map.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Map.aspx.designer.cs">
-      <DependentUpon>Map.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\MasterUser.master.cs">
+      <DependentUpon>MasterUser.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\MasterUser.master.designer.cs">
+      <DependentUpon>MasterUser.master</DependentUpon>
+    </Compile>
+    <Compile Include="MenuUser\AboutUs.aspx.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuUser\AboutUs.aspx.designer.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuUser\Catalog.aspx.cs">
+      <DependentUpon>Catalog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuUser\Catalog.aspx.designer.cs">
+      <DependentUpon>Catalog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuUser\Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuUser\Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuUser\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuUser\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuUser\Map.aspx.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuUser\Map.aspx.designer.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyOrders.aspx.cs">
       <DependentUpon>MyOrders.aspx</DependentUpon>
@@ -216,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
+    <Content Include="MasterPages\MasterUser.master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

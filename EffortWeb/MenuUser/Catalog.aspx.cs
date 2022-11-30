@@ -1,13 +1,13 @@
 ﻿using Data;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Domain;
 
-namespace effort_ver1
+namespace effort_ver1.MenuUser
 {
     public partial class Catalog : System.Web.UI.Page
     {
