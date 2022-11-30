@@ -100,16 +100,15 @@
     <Content Include="DefaultMail.html" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
+    <Content Include="MenuAdmin\AllOrders.aspx" />
+    <Content Include="MenuAdmin\PriceList.aspx" />
+    <Content Include="MenuAdmin\ProductForm.aspx" />
     <Content Include="MenuUser\AboutUs.aspx" />
     <Content Include="MenuUser\Catalog.aspx" />
     <Content Include="MenuUser\Contact.aspx" />
     <Content Include="MenuUser\Home.aspx" />
     <Content Include="MenuUser\Map.aspx" />
     <Content Include="MyOrders.aspx" />
-    <Content Include="NewOrder.aspx" />
-    <Content Include="OrderProducts.aspx" />
-    <Content Include="ProductForm.aspx" />
-    <Content Include="Products.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -144,12 +143,40 @@
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
-    <Compile Include="MasterPages\MasterUser.master.cs">
-      <DependentUpon>MasterUser.master</DependentUpon>
+    <Compile Include="MasterPages\MasterAdmin.Master.cs">
+      <DependentUpon>MasterAdmin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterPages\MasterUser.master.designer.cs">
-      <DependentUpon>MasterUser.master</DependentUpon>
+    <Compile Include="MasterPages\MasterAdmin.Master.designer.cs">
+      <DependentUpon>MasterAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\MasterUser.Master.cs">
+      <DependentUpon>MasterUser.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\MasterUser.Master.designer.cs">
+      <DependentUpon>MasterUser.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdmin\AllOrders.aspx.cs">
+      <DependentUpon>AllOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuAdmin\AllOrders.aspx.designer.cs">
+      <DependentUpon>AllOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdmin\PriceList.aspx.cs">
+      <DependentUpon>PriceList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuAdmin\PriceList.aspx.designer.cs">
+      <DependentUpon>PriceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdmin\ProductForm.aspx.cs">
+      <DependentUpon>ProductForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuAdmin\ProductForm.aspx.designer.cs">
+      <DependentUpon>ProductForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuUser\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
@@ -193,39 +220,12 @@
     <Compile Include="MyOrders.aspx.designer.cs">
       <DependentUpon>MyOrders.aspx</DependentUpon>
     </Compile>
-    <Compile Include="NewOrder.aspx.cs">
-      <DependentUpon>NewOrder.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="NewOrder.aspx.designer.cs">
-      <DependentUpon>NewOrder.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OrderProducts.aspx.cs">
-      <DependentUpon>OrderProducts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OrderProducts.aspx.designer.cs">
-      <DependentUpon>OrderProducts.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ProductForm.aspx.cs">
-      <DependentUpon>ProductForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ProductForm.aspx.designer.cs">
-      <DependentUpon>ProductForm.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Products.aspx.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Products.aspx.designer.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
-    <Content Include="MasterPages\MasterUser.master" />
+    <Content Include="MasterPages\MasterUser.Master" />
+    <Content Include="MasterPages\MasterAdmin.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -237,6 +237,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Productos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

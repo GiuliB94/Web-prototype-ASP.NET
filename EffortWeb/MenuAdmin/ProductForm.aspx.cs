@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
-namespace effort_ver1
+namespace effort_ver1.MenuAdmin
 {
     public partial class ProductForm : System.Web.UI.Page
     {
@@ -27,18 +27,18 @@ namespace effort_ver1
             BtnAccept.Visible = false;
 
             //Verifica que haya ID de producto en la URL    
-            if (Request.QueryString["productID"] != null) 
+            if (Request.QueryString["productID"] != null)
             {
                 lblDetails.Visible = false;
                 lblProducto.Text = "Detalles";
 
-                int id = int.Parse(Request.QueryString["productID"]); 
+                int id = int.Parse(Request.QueryString["productID"]);
                 if (Session["productList"] == null)
                 {
                     ProductList productList = new ProductList();
                     Session.Add("productList", productList.Show());
                 }
-                
+
                 List<Product> temporalList = (List<Product>)Session["productList"];
                 Product selected = temporalList.Find(x => x.id == id);
                 //Carga los campos 
@@ -61,11 +61,11 @@ namespace effort_ver1
                 ////Si el producto es de una orden, seteo campos en read only
                 if (Request.QueryString["Order"] != null)
                 {
-                //    txtName.ReadOnly = true;
-                //    txtDescription.ReadOnly = true;
-                //    txtSize.ReadOnly = true;
-                //    txtColor.ReadOnly = true;
-                //    txtPrice.ReadOnly = true;
+                    //    txtName.ReadOnly = true;
+                    //    txtDescription.ReadOnly = true;
+                    //    txtSize.ReadOnly = true;
+                    //    txtColor.ReadOnly = true;
+                    //    txtPrice.ReadOnly = true;
                     btnModProduct.Visible = false;
                     btnDeleteProduct.Visible = false;
                 }
@@ -80,7 +80,7 @@ namespace effort_ver1
             newProduct.name = txtName.Text;
             newProduct.description = txtDescription.Text;
             newProduct.size = int.Parse(txtSize.Text);
-            newProduct.color = txtColor.Text;  
+            newProduct.color = txtColor.Text;
             newProduct.price = int.Parse(txtPrice.Text);
 
             List<Product> temportalList = (List<Product>)Session["productList"];
@@ -88,7 +88,7 @@ namespace effort_ver1
 
             //Si se viene desde el agregar, oculto los botones.
 
-            Response.Redirect("Default.aspx");
+            Response.Redirect("../MenuAdmin/PriceList.aspx");
         }
 
         protected void btnModProduct_Click(object sender, EventArgs e)

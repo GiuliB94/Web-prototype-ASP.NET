@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Products.aspx.cs" Inherits="EffortWeb.Products" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="PriceList.aspx.cs" Inherits="effort_ver1.MenuAdmin.PriceList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
-    <link rel="stylesheet" href="CustomStyles1.css" type="text/css" />
+    <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
@@ -30,7 +30,6 @@
         </div>
         <div class="row">
             <div class="col-sm-6 mb-3">
-                <%--DEBERIA SER VISIBLE SOLO PARA LOS USUARIOS ADMIN--%>
                 <asp:Button Text="Agregar producto" ID="btnAddProduct" OnClick="btnAddProduct_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" runat="server" Width="170" Height="50" />
             </div>
         </div>

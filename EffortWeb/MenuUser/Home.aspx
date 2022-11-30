@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterUser.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="effort_ver1.MenuUser.Home" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="../MasterPages/MasterUser.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="effort_ver1.MenuUser.Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Stylesheets" runat="server">
-    <link rel="stylesheet" href="CustomStyles1.css" type="text/css" />
+    <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 

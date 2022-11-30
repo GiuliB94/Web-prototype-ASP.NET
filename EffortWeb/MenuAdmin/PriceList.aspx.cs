@@ -1,19 +1,17 @@
-﻿using System;
+﻿using Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Data;
-using Domain;
 
-namespace EffortWeb
+namespace effort_ver1.MenuAdmin
 {
-	public partial class Products : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    public partial class PriceList : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
             if (Session["productList"] == null)
             {
                 ProductList productList = new ProductList();
@@ -24,15 +22,15 @@ namespace EffortWeb
         }
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
-		{
-            Response.Redirect("ProductForm.aspx");
+        {
+            Response.Redirect("../MenuAdmin/ProductForm.aspx");
         }
 
         protected void dgvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             var idSelected = dgvProducts.SelectedDataKey.Value.ToString();
-            Response.Redirect("ProductForm.aspx?productID=" + idSelected);
+            Response.Redirect("../MenuAdmin/ProductForm.aspx?productID=" + idSelected);
         }
 
 

@@ -7,20 +7,29 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace EffortWeb
+namespace effort_ver1.MenuAdmin
 {
 
 
-    public partial class MyOrders
+    public partial class PriceList
     {
 
         /// <summary>
-        /// Control dgvMyOrders.
+        /// Control dgvProducts.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvMyOrders;
+        protected global::System.Web.UI.WebControls.GridView dgvProducts;
+
+        /// <summary>
+        /// Control btnAddProduct.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddProduct;
     }
 }

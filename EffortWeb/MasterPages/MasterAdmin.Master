@@ -1,4 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterUser.master.cs" Inherits="effort_ver1.MasterPages.MasterUser" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterAdmin.master.cs" Inherits="effort_ver1.MasterPages.MasterAdmin" %>
+
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -32,22 +33,16 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link custom-navar-txt" href="../MenuUser/Home.aspx">Home</a>
+                                <a class="nav-link custom-navar-txt" >Home</a>
                             </li>
                             <li>
-                                <a class="nav-link custom-navar-txt" href="../MenuUser/Catalog.aspx">Catálogo</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle custom-navar-txt" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Más opciones
-                                </a>
-                                <ul class="dropdown-menu dropdown-custom">
-                                    <li><a class="dropdown-item custom-dropdown-txt" href="../MenuUser/Map.aspx">Mapa de entregas</a></li>
-                                    <li><a class="dropdown-item custom-dropdown-txt" href="../MenuUser/AboutUs.aspx">Quienes somos</a></li>
-                                    <li><a class="dropdown-item custom-dropdown-txt" href="../MenuUser/Contact.aspx">Contacto</a></li>
-                                </ul>
+                                <a class="nav-link custom-navar-txt" href="../MenuAdmin/PriceList.aspx">Lista de precios</a>
                             </li>
                             <li>
-                                <a class="nav-link custom-navar-txt" href="../MenuAdmin/PriceList.aspx">Menus Admin</a>
+                                <a class="nav-link custom-navar-txt" href="../MenuAdmin/AllOrders.aspx">Pedidos</a>
+                            </li>
+                            <li>
+                                <a class="nav-link custom-navar-txt" href="../MenuUser/Home.aspx">Menus Usuarios</a>
                             </li>
                         </ul>
                     </div>

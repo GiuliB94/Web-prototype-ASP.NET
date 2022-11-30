@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="MyOrders.aspx.cs" Inherits="EffortWeb.MyOrders" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="AllOrders.aspx.cs" Inherits="effort_ver1.MenuAdmin.AllOrders" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -9,7 +9,7 @@
     <div style="margin-left: 25px">
         <p class="custom-font-red" style="font-size: 30px;">Mis Pedidos</p>
     </div>
-    <asp:GridView ID="dgvMyOrders" DataKeyNames="id" OnSelectedIndexChanged="dgvMyOrders_SelectedIndexChanged" CssClass="table table-light table-bordered" AutoGenerateColumns="false" runat="server">
+    <asp:GridView ID="dgvAllOrders" DataKeyNames="id" OnSelectedIndexChanged="dgvAllOrders_SelectedIndexChanged" CssClass="table table-light table-bordered" AutoGenerateColumns="false" runat="server">
         <Columns>
             <asp:BoundField HeaderText="Número de pedido" DataField="id" />
             <asp:BoundField HeaderText="Fecha de pedido" DataField="orderDate" />
