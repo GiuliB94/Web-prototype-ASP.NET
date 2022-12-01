@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{69019B26-DC37-4398-8D39-33F6B347ECAC}</ProjectGuid>
+    <ProjectGuid>{23C5DDA0-F960-4B8B-9ABB-C84741F9509F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>Business2</RootNamespace>
+    <AssemblyName>Business2</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,17 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="Company.cs" />
-    <Compile Include="Material.cs" />
-    <Compile Include="OrderElement.cs" />
-    <Compile Include="OrderHeader.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="ClientBusiness.cs" />
+    <Compile Include="CompanyBusiness.cs" />
+    <Compile Include="MaterialBusiness.cs" />
+    <Compile Include="OrderBusiness.cs" />
+    <Compile Include="OrderElementBusiness.cs" />
+    <Compile Include="ProductBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="UserBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{7fb8920b-0abb-420b-b3b2-16549c27d62e}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{69019b26-dc37-4398-8d39-33f6b347ecac}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

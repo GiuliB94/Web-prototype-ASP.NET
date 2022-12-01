@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +12,13 @@ namespace effort_ver1.MenuAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["OrderList"] == null)
+            if (Session["OrderBusiness"] == null)
             {
-                OrderList OrderList = new OrderList();
-                Session.Add("OrderList", OrderList.Show());
+                OrderBusiness OrderList = new OrderBusiness();
+                Session.Add("OrderBusiness", OrderList.Show());
             }
 
-            dgvAllOrders.DataSource = Session["OrderList"];
+            dgvAllOrders.DataSource = Session["OrderBusiness"];
             dgvAllOrders.DataBind();
         }
 

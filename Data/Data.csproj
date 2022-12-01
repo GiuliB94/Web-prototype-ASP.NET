@@ -65,13 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessData.cs" />
-    <Compile Include="UserData.cs" />
-    <Compile Include="OrderElementList.cs" />
-    <Compile Include="OrderList.cs" />
-    <Compile Include="ClientList.cs" />
-    <Compile Include="CompanyList.cs" />
-    <Compile Include="MaterialList.cs" />
-    <Compile Include="ProductList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

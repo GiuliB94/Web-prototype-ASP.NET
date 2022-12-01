@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace effort_ver1.MenuAdmin
                 dgvClients.Visible = true;
 
                 lblClients.Text = "Lista de clientes";
-                ClientList clientList = new ClientList();
+                ClientBusiness clientList = new ClientBusiness();
                 if (Session["clientList"] == null)
                 {
                     Session.Add("clientList", clientList.Show());
@@ -40,7 +40,7 @@ namespace effort_ver1.MenuAdmin
             btnPendings.Visible = false;
             dgvPendingClients.Visible = true;
             dgvClients.Visible = false;
-            ClientList pendingClientList = new ClientList();
+            ClientBusiness pendingClientList = new ClientBusiness();
             if (Session["pendingClientList"] == null)
             {
                 Session.Add("pendingClientList", pendingClientList.ShowPendings());

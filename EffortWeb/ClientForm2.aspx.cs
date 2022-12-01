@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Data;
+using Business;
 using Domain;
 
 namespace effort_ver1
@@ -16,8 +16,7 @@ namespace effort_ver1
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-            ClientList clientList = new ClientList();
+            ClientBusiness clientList = new ClientBusiness();
             if (Session["clientList"] == null)
             {
                 Session.Add("clientList", clientList.Show());
@@ -62,7 +61,7 @@ namespace effort_ver1
             
             if (Session["pendingClientList"] == null)
             {
-                ClientList pendingClientList = new ClientList();
+                ClientBusiness pendingClientList = new ClientBusiness();
                 Session.Add("pendingClientList", pendingClientList.ShowPendings());
             }
             List<Client> temporalList = (List<Client>)Session["pendingClientList"];
@@ -77,7 +76,7 @@ namespace effort_ver1
             Client selected = temportalList.Find(x => x.id == id);
             selected.state = true;
 
-            List<Client> clientList = (List<Client>)Session["ClientList"];
+            List<Client> clientList = (List<Client>)Session["ClientBusiness"];
             clientList.Add(selected);
             Response.Redirect("Clients.aspx");
         }

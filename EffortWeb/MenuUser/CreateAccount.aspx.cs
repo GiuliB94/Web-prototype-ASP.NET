@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Domain;
-using Data;
+using Business;
 
 namespace effort_ver1.MenuUser
 {
@@ -18,14 +18,13 @@ namespace effort_ver1.MenuUser
 
         protected void btnCreateUser_Click(object sender, EventArgs e)
         {
-            UserData aux = new UserData();
+            UserBusiness aux = new UserBusiness();
             User newUser = new User();
-            newUser.email = TxtEmail.Text;
-            newUser.password = TxtPass.Text;
-            newUser.permission = 0;
-            newUser.state = true;
+            newUser.Email = TxtEmail.Text;
+            newUser.Password = TxtPass.Text;
+            newUser.Permission = 0;
+            newUser.State = true;
             aux.Add(newUser);
-
         }
     }
 }

@@ -1,33 +1,37 @@
-﻿using Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MySqlConnector;
+using Domain;
+using Data;
 
-namespace Data
+namespace Business
 {
-    public class OrderElementList
+    public class ProductBusiness
     {
-        public List<OrderElement> Show(int id)
+        public List<Product> Show()
         {
-            List<OrderElement> list = new List<OrderElement>();
+            List<Product> list = new List<Product>();
             AccessData data = new AccessData();
 
             try
             {
-                //Se setea la query para traer los los pedidos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
-                data.setQuery("Select P.Name, P.Size, P.Color, P.Price, O.Quantity\r\nfrom Products as P, OrderElements as O, OrderHeader as H \r\nwhere P.Id = O.IdProduct and\r\nH.Id = O.IdOrder and \r\nH.Id = " + id);
+                //Se setea la query para traer los productos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
+                data.setQuery("Select * from Products"); //-> Despues cambiar esto por un StoredProcedure
+                //string sp = ""; 
+                //data.setProcedure(sp);
+
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
-                    //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
-                    OrderElement aux = new OrderElement();
-                    aux.idOrder = Convert.ToInt16(data.Reader["IdOrder"]);
-                    aux.lineItem = Convert.ToInt16(data.Reader["LineItem"]);
-                    aux.idProduct = Convert.ToInt16(data.Reader["IdProduct"]);
-                    aux.quantity = (int)data.Reader["Quantity"];
+                    //Se cargan los productos de la base // Se deberian verificar nulls? 
+                    Product aux = new Product();
+                    aux.id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.name = data.Reader["Name"].ToString();
+                    aux.size = (int)data.Reader["Size"];
+                    aux.color = data.Reader["Color"].ToString();
+                    aux.price = Convert.ToDecimal(data.Reader["Price"]);
+                    aux.description = data.Reader["Description"].ToString();
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -49,14 +53,14 @@ namespace Data
             }
         }
 
-        public void Add(OrderElement newOrderElement)
+        public void Add(Product newProduct)
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
             {   //Se inserta en DB los datos cargados 
-                datos.setQuery("bueno si dsp vemos");
+                datos.setQuery("");
             }
             catch (Exception ex)
             {
@@ -68,14 +72,22 @@ namespace Data
             }
         }
 
-        public void Modify(OrderElement modOrderElement) //Se deberia poder modificar un pedido? 
+        public void Modify(Product modProduct)
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
+
             try
             {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("Select telacreistewexd");
+                datos.setQuery("update Products set Color=@color, Name=@name, Description=@description, Size=@size, Price=@price where Id=@id");
+                datos.SetParameter("@id", modProduct.id);
+                datos.SetParameter("@color", modProduct.color);
+                datos.SetParameter("@name", modProduct.name);
+                datos.SetParameter("@price", modProduct.price);
+                datos.SetParameter("@description", modProduct.description);
+                datos.SetParameter("@size", modProduct.size);
+                datos.executeAction();
             }
             catch (Exception ex)
             {
@@ -87,12 +99,12 @@ namespace Data
             }
         }
 
-        public void Delete(int id) //Se deberia poder borrar un pedido? Pa mi que no
+        public void Delete(int id)
         {
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from  where id=@id");
+                datos.setQuery("delete from Products where id=@id");
                 datos.SetParameter("@id", id);
                 datos.executeAction();
             }
@@ -106,9 +118,9 @@ namespace Data
             }
         }
 
-        public List<OrderElement> Filter(string searchBy, string when, string filter)
+        public List<Product> Filter(string searchBy, string when, string filter)
         {
-            List<OrderElement> list = new List<OrderElement>();
+            List<Product> list = new List<Product>();
             AccessData data = new AccessData();
 
             string query = "";
@@ -168,11 +180,13 @@ namespace Data
                 while (data.Reader.Read())
                 {
                     //Se cargan los articulos de la base
-                    OrderElement aux = new OrderElement();
-                    aux.idOrder = Convert.ToInt16(data.Reader["Id"]);
-                    aux.lineItem = Convert.ToInt16(data.Reader["OrderDate"]);
-                    aux.idProduct = Convert.ToInt16(data.Reader["DeliveryDate"]);
-                    aux.quantity = (int)data.Reader["IdClient"];
+                    Product aux = new Product();
+                    aux.id = (int)data.Reader["Id"];
+                    aux.name = (string)data.Reader["Name"];
+                    aux.size = (int)data.Reader["Size"];
+                    aux.color = (string)data.Reader["Color"];
+                    aux.price = (decimal)data.Reader["Price"];
+                    aux.description = (string)data.Reader["Description"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
@@ -191,3 +205,4 @@ namespace Data
         }
     }
 }
+

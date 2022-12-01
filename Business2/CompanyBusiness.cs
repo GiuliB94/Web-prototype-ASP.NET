@@ -4,30 +4,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data;
 
-namespace Data
+namespace Business
 {
-    public class MaterialList
+    public class CompanyList
     {
-        public List<Material> Show()
+        public List<Company> Show()
         {
-            List<Material> list = new List<Material>();
+            List<Company> list = new List<Company>();
             AccessData data = new AccessData();
 
             try
             {
-                //Se setea la query para traer los Materials
-                data.setQuery("Select * from Materials");
+                //Se setea la query para traer los clients 
+                data.setQuery("Select * from Companies");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
-                    Material aux = new Material();
+                    Company aux = new Company();
                     aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Name"];
-                    aux.amount = (int)data.Reader["Amount"];
-                    aux.cost = (int)data.Reader["Cost"];
+                    aux.cuit = (int)data.Reader["Cuit"];
+                    aux.companyName = (string)data.Reader["CompanyName"];
+                    aux.streetName = (string)data.Reader["StreetName"];
+                    aux.streetNumber = (int)data.Reader["StreetNumber"];
+                    aux.postalCode = (int)data.Reader["PostalCode"];
+                    aux.city = (string)data.Reader["City"];
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -44,14 +48,14 @@ namespace Data
             }
 
             finally
-            {   //se cierra la conexión a DB
+            {   //se cierra la conección a DB
                 data.closeConnection();
             }
         }
 
-        public void Add(Material newMaterial)
+        public void Add(Company newCompany)
         {
-            //Se abre la conexión a DB
+            //Se abre la conección a DB
             AccessData datos = new AccessData();
 
             try
@@ -63,14 +67,14 @@ namespace Data
                 throw ex;
             }
             finally
-            {   //Se abre la conexión a DB
+            {   //Se abre la conección a DB
                 datos.closeConnection();
             }
         }
 
-        public void Modify(Material modMaterial)
+        public void Modify(Company modCompany)
         {
-            //Se abre la conexión a DB
+            //Se abre la conección a DB
             AccessData datos = new AccessData();
 
             try
@@ -92,7 +96,7 @@ namespace Data
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Material where Id=@id");
+                datos.setQuery("delete from Companies where Id=@id");
                 datos.SetParameter("@id", id);
                 datos.executeAction();
             }
@@ -106,9 +110,9 @@ namespace Data
             }
         }
 
-        public List<Material> Filter(string searchBy, string when, string filter)
+        public List<Company> Filter(string searchBy, string when, string filter)
         {
-            List<Material> list = new List<Material>();
+            List<Company> list = new List<Company>();
             AccessData data = new AccessData();
 
             string query = "";
@@ -116,53 +120,49 @@ namespace Data
             try
             {
                 //A CHEQUEAR...
-                string column;
-                if (searchBy == "Amount" || searchBy == "Cost")
+                string column= "";
+                switch (searchBy)
                 {
-                    column = searchBy == "Amount" ? "M.Amount" : "M.Cost";
-                    switch (when)
-                    {
-                        case "Mayor a":
-                            query += column + " > " + filter;
-                            break;
-                        case "Menor a":
-                            query += column + " < " + filter;
-                            break;
-                        case "Igual a":
-                            query += column + " = " + filter;
-                            break;
-                    }
+                    case "CUIT":
+                        column = "C.Cuit";
+                        break;
+                    case "Nombre de la empresa":
+                        column = "C.CompanyName";
+                        break;
+                    case "Ciudad":
+                        column = "C.City";
+                        break;
                 }
-                else
+                switch (searchBy)
                 {
-                    column = "M.Name";
-                    switch (when)
-                    {
-                        case "Igual a":
-                            query += column + " like '" + filter + "'";
-                            break;
-                        case "Contiene":
-                            query += column + " like '%" + filter + "%'";
-                            break;
-                        case "Comienza con":
-                            query += column + " like '" + filter + "%'";
-                            break;
-                        case "Termina con":
-                            query += column + " like '%" + filter + "'";
-                            break;
-                    }
+                    case "Igual a":
+                        query += column + " like '" + filter + "'";
+                        break;
+                    case "Contiene":
+                        query += column + " like '%" + filter + "%'";
+                        break;
+                    case "Comienza con":
+                        query += column + " like '" + filter + "%'";
+                        break;
+                    case "Termina con":
+                        query += column + " like '%" + filter + "'";
+                        break;
                 }
+                
 
                 data.setQuery(query);
                 data.executeQuery();
                 while (data.Reader.Read())
                 {
                     //Se cargan los articulos de la base
-                    Material aux = new Material();
+                    Company aux = new Company();
                     aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Name"];
-                    aux.amount = (int)data.Reader["Amount"];
-                    aux.cost = (int)data.Reader["Cost"];
+                    aux.cuit = (int)data.Reader["Cuit"];
+                    aux.companyName = (string)data.Reader["CompanyName"];
+                    aux.streetName = (string)data.Reader["StreetName"];
+                    aux.streetNumber = (int)data.Reader["StreetNumber"];
+                    aux.postalCode = (int)data.Reader["PostalCode"];
+                    aux.city = (string)data.Reader["City"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
@@ -175,7 +175,7 @@ namespace Data
                 throw ex;
             }
             finally
-            {   //se cierra la conexión a DB
+            {   //se cierra la conección a DB
                 data.closeConnection();
             }
         }

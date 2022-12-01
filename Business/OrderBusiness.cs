@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data;
 
 
-namespace Data
+namespace Business
 {
-    public class OrderList 
+    public class OrderBusiness
     {
         public List<OrderHeader> Show()
         {

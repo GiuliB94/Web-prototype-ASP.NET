@@ -247,6 +247,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{045ed367-7007-45f4-b92d-42ad35327a6d}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{7fb8920b-0abb-420b-b3b2-16549c27d62e}</Project>
       <Name>Data</Name>

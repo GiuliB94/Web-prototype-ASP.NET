@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Business;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace effort_ver1.MenuAdmin
                 int id = int.Parse(Request.QueryString["productID"]);
                 if (Session["productList"] == null)
                 {
-                    ProductList productList = new ProductList();
+                    ProductBusiness productList = new ProductBusiness();
                     Session.Add("productList", productList.Show());
                 }
 
@@ -110,7 +110,7 @@ namespace effort_ver1.MenuAdmin
 
         protected void BtnAccept_Click(object sender, EventArgs e)
         {
-            ProductList temportalList = new ProductList();
+            ProductBusiness temportalList = new ProductBusiness();
             Product ChangedProduct = new Product();
             ChangedProduct.id = int.Parse(txtId.Text); //Hacer que se genere automaticamente en la bd
             ChangedProduct.name = txtName.Text;

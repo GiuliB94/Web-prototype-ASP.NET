@@ -1,11 +1,12 @@
-﻿using Data;
-using Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Business;
+using Domain;
 
 namespace effort_ver1.MenuUser
 {
@@ -13,7 +14,11 @@ namespace effort_ver1.MenuUser
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                ValidationText.Visible = false;
+                ValidationTimer.Enabled = false;
+            }
         }
 
         protected void btnLogIn_Click(object sender, EventArgs e)
@@ -21,14 +26,14 @@ namespace effort_ver1.MenuUser
             string email = TxtEmail.Text;
             string password = TxtPass.Text;
 
-            UserData aux = new UserData();
+            UserBusiness aux = new UserBusiness();
             User user = new User();
 
             user = aux.CheckLogIn(email, password);
-            if (user.state == true)
+            if (user.State == true)
             {
-                this.Session["UserId"] = user.id;
-                if (user.permission == 1)
+                this.Session["UserId"] = user.Id;
+                if (user.Permission == 1)
                 {
                     Response.Redirect("../MenuAdmin/PriceList.aspx");
                 }
@@ -37,11 +42,23 @@ namespace effort_ver1.MenuUser
                     Response.Redirect("../MenuUser/Home.aspx");
                 }
             }
+            else
+            {
+                ValidationText.Visible = true;
+                ValidationTimer.Enabled = true;
+                TxtPass.Text = "";
+            }
         }
 
         protected void btnCreateAccount_Click(object sender, EventArgs e)
         {
             Response.Redirect("../MenuUser/CreateAccount.aspx");
+        }
+
+        protected void ValidationTimer_Tick(object sender, EventArgs e)
+        {
+            ValidationText.Visible = false;
+            ValidationTimer.Enabled = false;
         }
     }
 }

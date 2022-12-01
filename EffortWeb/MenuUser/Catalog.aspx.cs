@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Business;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace effort_ver1.MenuUser
             {
                 if (Session["productList"] == null)
                 {
-                    ProductList list = new ProductList();
+                    ProductBusiness list = new ProductBusiness();
                     ListaProductos = list.Show();
 
                 }

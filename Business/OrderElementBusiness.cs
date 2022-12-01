@@ -1,58 +1,34 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
-using Domain;
-
 
 namespace Business
 {
-    public class UserBusiness
+    public class OrderElementBusiness
     {
-        public User CheckLogIn(string email, string pw)
+        public List<OrderElement> Show(int id)
         {
-            User aux = new User();
-            AccessData data = new AccessData();
-
-            data.setQuery("Select * from Users where Email = '" + email + "' and Password = '" + pw + "';" );
-            data.executeQuery();
-
-            while (data.Reader.Read())
-            {
-                //Se cargan los productos de la base // Se deberian verificar nulls? 
-                
-                aux.Id = Convert.ToInt16(data.Reader["Id"]);
-                aux.Email = data.Reader["Email"].ToString();
-                aux.Password = data.Reader["Password"].ToString();
-                aux.Permission = Convert.ToInt16(data.Reader["Permission"]);
-                aux.State = Convert.ToBoolean(data.Reader["State"]);
-
-            }
-
-            return aux;
-        }
-        public List<User> Show()
-        {
-            List<User> list = new List<User>();
+            List<OrderElement> list = new List<OrderElement>();
             AccessData data = new AccessData();
 
             try
             {
-                //Se setea la query para traer los users 
-                data.setQuery("Select * from Users where state = true");
+                //Se setea la query para traer los los pedidos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
+                data.setQuery("Select P.Name, P.Size, P.Color, P.Price, O.Quantity\r\nfrom Products as P, OrderElements as O, OrderHeader as H \r\nwhere P.Id = O.IdProduct and\r\nH.Id = O.IdOrder and \r\nH.Id = " + id);
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
-                    //Se cargan los productos de la base // Se deberian verificar nulls? 
-                    User aux = new User();
-                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
-                    aux.Email = data.Reader["Email"].ToString();
-                    aux.Password = data.Reader["Password"].ToString();
-                    aux.Permission = Convert.ToInt16(data.Reader["Permission"]);
-                    aux.State = Convert.ToBoolean(data.Reader["State"]);
+                    //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
+                    OrderElement aux = new OrderElement();
+                    aux.idOrder = Convert.ToInt16(data.Reader["IdOrder"]);
+                    aux.lineItem = Convert.ToInt16(data.Reader["LineItem"]);
+                    aux.idProduct = Convert.ToInt16(data.Reader["IdProduct"]);
+                    aux.quantity = (int)data.Reader["Quantity"];
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -74,34 +50,33 @@ namespace Business
             }
         }
 
-        public void Add(User newUser)
+        public void Add(OrderElement newOrderElement)
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
             {   //Se inserta en DB los datos cargados 
-                datos.setQuery("Insert into Users (Email, Password, Permission, State) values ('" + newUser.Email + "','" + newUser.Password + "'," + newUser.Permission + "," + newUser.State + ");");
-                datos.executeQuery();
+                datos.setQuery("bueno si dsp vemos");
             }
             catch (Exception ex)
             {
                 throw ex;
             }
             finally
-            {   //Se cierra la conexión a DB
+            {   //Se abre la conexión a DB
                 datos.closeConnection();
             }
         }
 
-        public void Modify(User modUser)
+        public void Modify(OrderElement modOrderElement) //Se deberia poder modificar un pedido? 
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
             {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("");
+                datos.setQuery("Select telacreistewexd");
             }
             catch (Exception ex)
             {
@@ -113,12 +88,12 @@ namespace Business
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int id) //Se deberia poder borrar un pedido? Pa mi que no
         {
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Clients where Id=@id"); //NO... BAJA LOGICA
+                datos.setQuery("delete from  where id=@id");
                 datos.SetParameter("@id", id);
                 datos.executeAction();
             }
@@ -132,9 +107,9 @@ namespace Business
             }
         }
 
-        /*public List<User> Filter(string searchBy, string when, string filter)
+        public List<OrderElement> Filter(string searchBy, string when, string filter)
         {
-            List<User> list = new List<User>();
+            List<OrderElement> list = new List<OrderElement>();
             AccessData data = new AccessData();
 
             string query = "";
@@ -142,40 +117,34 @@ namespace Business
             try
             {
                 //A CHEQUEAR...
-                if (searchBy == "Category")
+                if (searchBy == "Precio")
                 {
                     switch (when)
                     {
                         case "Mayor a":
-                            query += "C.Category > " + filter;
+                            query += "P.Precio > " + filter;
                             break;
                         case "Menor a":
-                            query += "C.Category < " + filter;
+                            query += "P.Precio < " + filter;
                             break;
                         case "Igual a":
-                            query += "C.Category = " + filter;
+                            query += "P.Precio = " + filter;
                             break;
                     }
                 }
                 else
                 {
-                    string column;
+                    string column = "";
                     switch (searchBy)
                     {
-                        case "Name":
-                            column = "C.Name";
+                        case "Código":
+                            column = "P.Id";
                             break;
-                        case "Last Name":
-                            column = "C.LastName";
+                        case "Nombre":
+                            column = "P.Name";
                             break;
-                        case "Email":
-                            column = "C.Email";
-                            break;
-                        case "Phone":
-                            column = "C.Phone";
-                            break;
-                        default:
-                            column = "ACAIRIAELCOMPANYNAME?";
+                        case "Color":
+                            column = "P.Color";
                             break;
                     }
                     switch (searchBy)
@@ -200,16 +169,11 @@ namespace Business
                 while (data.Reader.Read())
                 {
                     //Se cargan los articulos de la base
-                    Client aux = new Client();
-                    aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Name"];
-                    aux.lastName = (string)data.Reader["LastName"];
-                    aux.password = (string)data.Reader["Password"];
-                    aux.idCompany = (int)data.Reader["IdCompany"];
-                    aux.email = (string)data.Reader["Email"];
-                    aux.phone = (string)data.Reader["Phone"];
-                    aux.category = (int)data.Reader["Category"];
-                    aux.state = (bool)data.Reader["Active"];
+                    OrderElement aux = new OrderElement();
+                    aux.idOrder = Convert.ToInt16(data.Reader["Id"]);
+                    aux.lineItem = Convert.ToInt16(data.Reader["OrderDate"]);
+                    aux.idProduct = Convert.ToInt16(data.Reader["DeliveryDate"]);
+                    aux.quantity = (int)data.Reader["IdClient"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
@@ -224,8 +188,7 @@ namespace Business
             finally
             {   //se cierra la conexión a DB
                 data.closeConnection();
-            
-        }*/
+            }
+        }
     }
 }
-

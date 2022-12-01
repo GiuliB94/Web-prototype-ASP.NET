@@ -1,36 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
-using MySqlConnector;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Data;
 using Domain;
 
-namespace Data
+
+namespace Business
 {
-    public class ProductList
+    public class UserBusiness
     {
-        public List<Product> Show()
+        public User CheckLogIn(string email, string pw)
         {
-            List<Product> list = new List<Product>();
+            User aux = new User();
+            AccessData data = new AccessData();
+
+            data.setQuery("Select * from Users where Email = '" + email + "' and Password = '" + pw + "';" );
+            data.executeQuery();
+
+            while (data.Reader.Read())
+            {
+                //Se cargan los productos de la base // Se deberian verificar nulls? 
+                
+                aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                aux.Email = data.Reader["Email"].ToString();
+                aux.Password = data.Reader["Password"].ToString();
+                aux.Permission = Convert.ToInt16(data.Reader["Permission"]);
+                aux.State = Convert.ToBoolean(data.Reader["State"]);
+
+            }
+
+            return aux;
+        }
+        public List<User> Show()
+        {
+            List<User> list = new List<User>();
             AccessData data = new AccessData();
 
             try
             {
-                //Se setea la query para traer los productos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
-                data.setQuery("Select * from Products"); //-> Despues cambiar esto por un StoredProcedure
-                //string sp = ""; 
-                //data.setProcedure(sp);
-
+                //Se setea la query para traer los users 
+                data.setQuery("Select * from Users where state = true");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
-                    Product aux = new Product();
-                    aux.id = Convert.ToInt16(data.Reader["Id"]);
-                    aux.name = data.Reader["Name"].ToString();
-                    aux.size = (int)data.Reader["Size"];
-                    aux.color = data.Reader["Color"].ToString();
-                    aux.price = Convert.ToDecimal(data.Reader["Price"]);
-                    aux.description = data.Reader["Description"].ToString();
+                    User aux = new User();
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.Email = data.Reader["Email"].ToString();
+                    aux.Password = data.Reader["Password"].ToString();
+                    aux.Permission = Convert.ToInt16(data.Reader["Permission"]);
+                    aux.State = Convert.ToBoolean(data.Reader["State"]);
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -52,41 +74,34 @@ namespace Data
             }
         }
 
-        public void Add(Product newProduct)
+        public void Add(User newUser)
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
             {   //Se inserta en DB los datos cargados 
-                datos.setQuery("");
+                datos.setQuery("Insert into Users (Email, Password, Permission, State) values ('" + newUser.Email + "','" + newUser.Password + "'," + newUser.Permission + "," + newUser.State + ");");
+                datos.executeQuery();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
             finally
-            {   //Se abre la conexión a DB
+            {   //Se cierra la conexión a DB
                 datos.closeConnection();
             }
         }
 
-        public void Modify(Product modProduct)
+        public void Modify(User modUser)
         {
             //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
-
             try
             {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("update Products set Color=@color, Name=@name, Description=@description, Size=@size, Price=@price where Id=@id");
-                datos.SetParameter("@id", modProduct.id);
-                datos.SetParameter("@color", modProduct.color);
-                datos.SetParameter("@name", modProduct.name);
-                datos.SetParameter("@price", modProduct.price);
-                datos.SetParameter("@description", modProduct.description);
-                datos.SetParameter("@size", modProduct.size);
-                datos.executeAction();
+                datos.setQuery("");
             }
             catch (Exception ex)
             {
@@ -103,7 +118,7 @@ namespace Data
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Products where id=@id");
+                datos.setQuery("delete from Clients where Id=@id"); //NO... BAJA LOGICA
                 datos.SetParameter("@id", id);
                 datos.executeAction();
             }
@@ -117,9 +132,9 @@ namespace Data
             }
         }
 
-        public List<Product> Filter(string searchBy, string when, string filter)
+        /*public List<User> Filter(string searchBy, string when, string filter)
         {
-            List<Product> list = new List<Product>();
+            List<User> list = new List<User>();
             AccessData data = new AccessData();
 
             string query = "";
@@ -127,34 +142,40 @@ namespace Data
             try
             {
                 //A CHEQUEAR...
-                if (searchBy == "Precio")
+                if (searchBy == "Category")
                 {
                     switch (when)
                     {
                         case "Mayor a":
-                            query += "P.Precio > " + filter;
+                            query += "C.Category > " + filter;
                             break;
                         case "Menor a":
-                            query += "P.Precio < " + filter;
+                            query += "C.Category < " + filter;
                             break;
                         case "Igual a":
-                            query += "P.Precio = " + filter;
+                            query += "C.Category = " + filter;
                             break;
                     }
                 }
                 else
                 {
-                    string column = "";
+                    string column;
                     switch (searchBy)
                     {
-                        case "Código":
-                            column = "P.Id";
+                        case "Name":
+                            column = "C.Name";
                             break;
-                        case "Nombre":
-                            column = "P.Name";
+                        case "Last Name":
+                            column = "C.LastName";
                             break;
-                        case "Color":
-                            column = "P.Color";
+                        case "Email":
+                            column = "C.Email";
+                            break;
+                        case "Phone":
+                            column = "C.Phone";
+                            break;
+                        default:
+                            column = "ACAIRIAELCOMPANYNAME?";
                             break;
                     }
                     switch (searchBy)
@@ -179,13 +200,16 @@ namespace Data
                 while (data.Reader.Read())
                 {
                     //Se cargan los articulos de la base
-                    Product aux = new Product();
+                    Client aux = new Client();
                     aux.id = (int)data.Reader["Id"];
                     aux.name = (string)data.Reader["Name"];
-                    aux.size = (int)data.Reader["Size"];
-                    aux.color = (string)data.Reader["Color"];
-                    aux.price = (decimal)data.Reader["Price"];
-                    aux.description = (string)data.Reader["Description"];
+                    aux.lastName = (string)data.Reader["LastName"];
+                    aux.password = (string)data.Reader["Password"];
+                    aux.idCompany = (int)data.Reader["IdCompany"];
+                    aux.email = (string)data.Reader["Email"];
+                    aux.phone = (string)data.Reader["Phone"];
+                    aux.category = (int)data.Reader["Category"];
+                    aux.state = (bool)data.Reader["Active"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
@@ -200,8 +224,8 @@ namespace Data
             finally
             {   //se cierra la conexión a DB
                 data.closeConnection();
-            }
-        }
+            
+        }*/
     }
 }
 

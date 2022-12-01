@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Xml.Linq;
 using Domain;
+using Data;
 using System.IO;
 
-namespace Data
+namespace Business
 {
     public class ClientList
     {

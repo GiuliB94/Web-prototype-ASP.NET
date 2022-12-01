@@ -4,33 +4,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data;
 
-namespace Data
+namespace Business
 {
-    public class CompanyList
+    public class MaterialList
     {
-        public List<Company> Show()
+        public List<Material> Show()
         {
-            List<Company> list = new List<Company>();
+            List<Material> list = new List<Material>();
             AccessData data = new AccessData();
 
             try
             {
-                //Se setea la query para traer los clients 
-                data.setQuery("Select * from Companies");
+                //Se setea la query para traer los Materials
+                data.setQuery("Select * from Materials");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
-                    Company aux = new Company();
+                    Material aux = new Material();
                     aux.id = (int)data.Reader["Id"];
-                    aux.cuit = (int)data.Reader["Cuit"];
-                    aux.companyName = (string)data.Reader["CompanyName"];
-                    aux.streetName = (string)data.Reader["StreetName"];
-                    aux.streetNumber = (int)data.Reader["StreetNumber"];
-                    aux.postalCode = (int)data.Reader["PostalCode"];
-                    aux.city = (string)data.Reader["City"];
+                    aux.name = (string)data.Reader["Name"];
+                    aux.amount = (int)data.Reader["Amount"];
+                    aux.cost = (int)data.Reader["Cost"];
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -47,14 +45,14 @@ namespace Data
             }
 
             finally
-            {   //se cierra la conección a DB
+            {   //se cierra la conexión a DB
                 data.closeConnection();
             }
         }
 
-        public void Add(Company newCompany)
+        public void Add(Material newMaterial)
         {
-            //Se abre la conección a DB
+            //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
@@ -66,14 +64,14 @@ namespace Data
                 throw ex;
             }
             finally
-            {   //Se abre la conección a DB
+            {   //Se abre la conexión a DB
                 datos.closeConnection();
             }
         }
 
-        public void Modify(Company modCompany)
+        public void Modify(Material modMaterial)
         {
-            //Se abre la conección a DB
+            //Se abre la conexión a DB
             AccessData datos = new AccessData();
 
             try
@@ -95,7 +93,7 @@ namespace Data
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Companies where Id=@id");
+                datos.setQuery("delete from Material where Id=@id");
                 datos.SetParameter("@id", id);
                 datos.executeAction();
             }
@@ -109,9 +107,9 @@ namespace Data
             }
         }
 
-        public List<Company> Filter(string searchBy, string when, string filter)
+        public List<Material> Filter(string searchBy, string when, string filter)
         {
-            List<Company> list = new List<Company>();
+            List<Material> list = new List<Material>();
             AccessData data = new AccessData();
 
             string query = "";
@@ -119,49 +117,53 @@ namespace Data
             try
             {
                 //A CHEQUEAR...
-                string column= "";
-                switch (searchBy)
+                string column;
+                if (searchBy == "Amount" || searchBy == "Cost")
                 {
-                    case "CUIT":
-                        column = "C.Cuit";
-                        break;
-                    case "Nombre de la empresa":
-                        column = "C.CompanyName";
-                        break;
-                    case "Ciudad":
-                        column = "C.City";
-                        break;
+                    column = searchBy == "Amount" ? "M.Amount" : "M.Cost";
+                    switch (when)
+                    {
+                        case "Mayor a":
+                            query += column + " > " + filter;
+                            break;
+                        case "Menor a":
+                            query += column + " < " + filter;
+                            break;
+                        case "Igual a":
+                            query += column + " = " + filter;
+                            break;
+                    }
                 }
-                switch (searchBy)
+                else
                 {
-                    case "Igual a":
-                        query += column + " like '" + filter + "'";
-                        break;
-                    case "Contiene":
-                        query += column + " like '%" + filter + "%'";
-                        break;
-                    case "Comienza con":
-                        query += column + " like '" + filter + "%'";
-                        break;
-                    case "Termina con":
-                        query += column + " like '%" + filter + "'";
-                        break;
+                    column = "M.Name";
+                    switch (when)
+                    {
+                        case "Igual a":
+                            query += column + " like '" + filter + "'";
+                            break;
+                        case "Contiene":
+                            query += column + " like '%" + filter + "%'";
+                            break;
+                        case "Comienza con":
+                            query += column + " like '" + filter + "%'";
+                            break;
+                        case "Termina con":
+                            query += column + " like '%" + filter + "'";
+                            break;
+                    }
                 }
-                
 
                 data.setQuery(query);
                 data.executeQuery();
                 while (data.Reader.Read())
                 {
                     //Se cargan los articulos de la base
-                    Company aux = new Company();
+                    Material aux = new Material();
                     aux.id = (int)data.Reader["Id"];
-                    aux.cuit = (int)data.Reader["Cuit"];
-                    aux.companyName = (string)data.Reader["CompanyName"];
-                    aux.streetName = (string)data.Reader["StreetName"];
-                    aux.streetNumber = (int)data.Reader["StreetNumber"];
-                    aux.postalCode = (int)data.Reader["PostalCode"];
-                    aux.city = (string)data.Reader["City"];
+                    aux.name = (string)data.Reader["Name"];
+                    aux.amount = (int)data.Reader["Amount"];
+                    aux.cost = (int)data.Reader["Cost"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
@@ -174,7 +176,7 @@ namespace Data
                 throw ex;
             }
             finally
-            {   //se cierra la conección a DB
+            {   //se cierra la conexión a DB
                 data.closeConnection();
             }
         }

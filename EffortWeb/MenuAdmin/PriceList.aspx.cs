@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace effort_ver1.MenuAdmin
         {
             if (Session["productList"] == null)
             {
-                ProductList productList = new ProductList();
+                ProductBusiness productList = new ProductBusiness();
                 Session.Add("productList", productList.Show());
             }
             dgvProducts.DataSource = Session["productList"];
