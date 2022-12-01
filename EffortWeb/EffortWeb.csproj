@@ -91,39 +91,39 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientForm.aspx" />
-    <Content Include="Clients.aspx" />
+    <Content Include="ClientForm2.aspx" />
+    <Content Include="Clients2.aspx" />
     <Content Include="CSS\CustomStyles.css" />
     <Content Include="CSS\CustomStyles1.css" />
-    <Content Include="CustomStyles.css" />
-    <Content Include="CustomStyles1.css" />
     <Content Include="Extras\Templates\DefaultEmail.html" />
     <Content Include="Global.asax" />
     <Content Include="MenuAdmin\AllOrders.aspx" />
+    <Content Include="MenuAdmin\Clients.aspx" />
     <Content Include="MenuAdmin\PriceList.aspx" />
     <Content Include="MenuAdmin\ProductForm.aspx" />
     <Content Include="MenuUser\AboutUs.aspx" />
     <Content Include="MenuUser\Catalog.aspx" />
     <Content Include="MenuUser\Contact.aspx" />
+    <Content Include="MenuUser\CreateAccount.aspx" />
     <Content Include="MenuUser\Home.aspx" />
     <Content Include="MenuUser\Login.aspx" />
     <Content Include="MenuUser\Map.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientForm.aspx.cs">
-      <DependentUpon>ClientForm.aspx</DependentUpon>
+    <Compile Include="ClientForm2.aspx.cs">
+      <DependentUpon>ClientForm2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ClientForm.aspx.designer.cs">
-      <DependentUpon>ClientForm.aspx</DependentUpon>
+    <Compile Include="ClientForm2.aspx.designer.cs">
+      <DependentUpon>ClientForm2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Clients.aspx.cs">
-      <DependentUpon>Clients.aspx</DependentUpon>
+    <Compile Include="Clients2.aspx.cs">
+      <DependentUpon>Clients2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Clients.aspx.designer.cs">
-      <DependentUpon>Clients.aspx</DependentUpon>
+    <Compile Include="Clients2.aspx.designer.cs">
+      <DependentUpon>Clients2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -155,6 +155,13 @@
     </Compile>
     <Compile Include="MenuAdmin\AllOrders.aspx.designer.cs">
       <DependentUpon>AllOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdmin\Clients.aspx.cs">
+      <DependentUpon>Clients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuAdmin\Clients.aspx.designer.cs">
+      <DependentUpon>Clients.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuAdmin\PriceList.aspx.cs">
       <DependentUpon>PriceList.aspx</DependentUpon>
@@ -190,6 +197,13 @@
     </Compile>
     <Compile Include="MenuUser\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuUser\CreateAccount.aspx.cs">
+      <DependentUpon>CreateAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuUser\CreateAccount.aspx.designer.cs">
+      <DependentUpon>CreateAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuUser\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

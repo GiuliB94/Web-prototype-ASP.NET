@@ -10,14 +10,15 @@
         <div class="col-2"></div>
         <div class="col">
             <div class="mb-3">
-                <label for="TxtMail" class="form-label">Email address</label>
-                <asp:TextBox runat="server" ID="TxtMail" CssClass="form-control" style="width:300px;" type="email"/>
+                <label for="TxtEmail" class="form-label">Email address</label>
+                <asp:TextBox runat="server" ID="TxtEmail" CssClass="form-control" Style="width: 300px;" type="email" />
             </div>
             <div class="mb-3">
                 <label for="TxtPass" class="form-label">Password</label>
-                <asp:TextBox runat="server" ID="TxtPass" CssClass="form-control" style="width:300px;" type="password"/>
+                <asp:TextBox runat="server" ID="TxtPass" CssClass="form-control" Style="width: 300px;" type="password" />
             </div>
-            <asp:Button Text="Aceptar" ID="btnAceptar" CssClass="btn btn-primary" runat="server" />
+            <asp:Button Text="Ingresar" ID="btnLogIn" CssClass="btn btn-primary" runat="server" OnClick="btnLogIn_Click" />
+             <asp:Button Text="Crear cuenta" ID="btnCreateAccount" CssClass="btn btn-primary" runat="server" OnClick="btnCreateAccount_Click" />
         </div>
         <div class="col-2"></div>
     </div>
