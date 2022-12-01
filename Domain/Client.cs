@@ -8,14 +8,16 @@ namespace Domain
     public class Client
     {
         public int id { get; set; }
+        public int idUser { get; set; }
         public string name { get; set; }
         public string lastName {get; set; }
-        public string password { get; set; }
-        public int idCompany { get; set; }
-        public string email { get; set; }   
-        public string phone { get; set; }
-        public int category { get; set; }
-        public bool active { get; set; }
+        public string phone { get; set; } 
+        public string province { get; set; }
+        public string city { get; set; }
+        public string adress { get; set; }
+        public string postalCode { get; set; }
+        public string dni { get; set; }
+        public bool state { get; set; }
 
     }
 }
