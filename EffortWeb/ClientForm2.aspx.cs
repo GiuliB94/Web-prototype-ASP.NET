@@ -36,13 +36,11 @@ namespace effort_ver1
                 }
                 txtName.Text = selected.name;
                 txtLastName.Text = selected.lastName;
-                txtIdCompany.Text = selected.idCompany.ToString();
-                txtEmail.Text = selected.email;
                 txtPhone.Text = selected.phone;
 
                 btnSendClientForm.Visible = false;
 
-                if (Convert.ToBoolean(selected.active) == false)
+                if (Convert.ToBoolean(selected.state) == false)
                 {
                     btnSignUp.Visible = true;
                 }
@@ -51,7 +49,7 @@ namespace effort_ver1
 
         protected void btnSendClientForm_Click(object sender, EventArgs e)
         {
-            Client newClient = new Client();
+            /*Client newClient = new Client();
             newClient.id = 0001; //Hacer que se genere automaticamente en la bd
             newClient.name = txtName.Text;
             newClient.lastName = txtLastName.Text;
@@ -59,7 +57,7 @@ namespace effort_ver1
             newClient.email = txtEmail.Text;
             newClient.phone = txtPhone.Text;
             newClient.category = 1; //Lo selecciona el usuario o el admin cuando le da el alta? 
-            newClient.active = false; //Llega en false, cuando el admin le da el alta pasa a true.
+            newClient.state = false; //Llega en false, cuando el admin le da el alta pasa a true.
             //Serviria de algo tenes la fecha de alta del usuario?
             
             if (Session["pendingClientList"] == null)
@@ -69,7 +67,7 @@ namespace effort_ver1
             }
             List<Client> temporalList = (List<Client>)Session["pendingClientList"];
             temporalList.Add(newClient);
-            Response.Redirect("Clients.aspx");
+            Response.Redirect("Clients.aspx");*/
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
@@ -77,7 +75,7 @@ namespace effort_ver1
             int id = int.Parse(Request.QueryString["ClientId"]); //Obtengo el ID
             List<Client> temportalList = (List<Client>)Session["pendingClientList"]; //Busco al cliente seleccionado en la lista de clientes activos
             Client selected = temportalList.Find(x => x.id == id);
-            selected.active = true;
+            selected.state = true;
 
             List<Client> clientList = (List<Client>)Session["ClientList"];
             clientList.Add(selected);
