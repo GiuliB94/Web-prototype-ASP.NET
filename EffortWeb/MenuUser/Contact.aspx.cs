@@ -37,7 +37,7 @@ namespace effort_ver1.MenuUser
                 lblError.Visible = false;
                 //toma el templade de html y reemplaza las partes que son variables por los datos del usuario
                 string body = string.Empty;
-                using (StreamReader reader = new StreamReader(Server.MapPath("/DefaultMail.html")))
+                using (StreamReader reader = new StreamReader(Server.MapPath("../Extras/Templates/DefaultEmail.html")))
                 {
                     body = reader.ReadToEnd();
                 }

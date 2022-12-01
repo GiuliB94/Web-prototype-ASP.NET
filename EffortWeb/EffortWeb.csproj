@@ -97,9 +97,8 @@
     <Content Include="CSS\CustomStyles1.css" />
     <Content Include="CustomStyles.css" />
     <Content Include="CustomStyles1.css" />
-    <Content Include="DefaultMail.html" />
+    <Content Include="Extras\Templates\DefaultEmail.html" />
     <Content Include="Global.asax" />
-    <Content Include="Login.aspx" />
     <Content Include="MenuAdmin\AllOrders.aspx" />
     <Content Include="MenuAdmin\PriceList.aspx" />
     <Content Include="MenuAdmin\ProductForm.aspx" />
@@ -107,8 +106,8 @@
     <Content Include="MenuUser\Catalog.aspx" />
     <Content Include="MenuUser\Contact.aspx" />
     <Content Include="MenuUser\Home.aspx" />
+    <Content Include="MenuUser\Login.aspx" />
     <Content Include="MenuUser\Map.aspx" />
-    <Content Include="MyOrders.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -128,13 +127,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
@@ -206,19 +198,19 @@
     <Compile Include="MenuUser\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MenuUser\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuUser\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MenuUser\Map.aspx.cs">
       <DependentUpon>Map.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MenuUser\Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MyOrders.aspx.cs">
-      <DependentUpon>MyOrders.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MyOrders.aspx.designer.cs">
-      <DependentUpon>MyOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -236,8 +228,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Extras\Fonts\" />
+    <Folder Include="Extras\Images\Products\" />
     <Folder Include="Models\" />
-    <Folder Include="Productos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

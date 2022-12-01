@@ -16,7 +16,6 @@
     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
         <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
     </asp:ContentPlaceHolder>
-
 </head>
 <body>
     <form runat="server">
@@ -46,15 +45,17 @@
                                     <li><a class="dropdown-item custom-dropdown-txt" href="../MenuUser/Contact.aspx">Contacto</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            <li >
                                 <a class="nav-link custom-navar-txt" href="../MenuAdmin/PriceList.aspx">Menus Admin</a>
+                            </li>
+                            <li >
+                                <a class="nav-link custom-navar-txt" href="../MenuUser/Login.aspx">Iniciar Sesion</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
-
         <asp:ScriptManager ID="ScriptMngr1" runat="server"></asp:ScriptManager>
         <div class="container-fluid" style="margin-top: 50px">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

@@ -28,7 +28,6 @@
             <div class="col-sm-4 mb-3" style="text-align: right">
                 <asp:TextBox runat="server" ID="txtName" CssClass="form-control" />
             </div>
-
         </div>
         <div class="row">
             <div class="col-sm-2 mb-3">
@@ -38,7 +37,6 @@
                 <asp:TextBox runat="server" ID="txtLastName" CssClass="form-control" />
             </div>
         </div>
-
         <div class="row">
             <div class="col-sm-2 mb-3">
                 <label for="txtID" class="form-label custom-font-text">ID Empresa</label>
@@ -47,7 +45,6 @@
                 <asp:TextBox runat="server" ID="txtID" CssClass="form-control" />
             </div>
         </div>
-
         <div class="row">
             <div class="col-sm-2 mb-3">
                 <label for="txtMail" class="form-label custom-font-text">Mail</label>
@@ -56,7 +53,6 @@
                 <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" TextMode="Email" />
             </div>
         </div>
-
         <div class="row">
             <div class="col-sm-2 mb-3">
                 <label for="txtPhone" class="form-label custom-font-text">Teléfono de contacto</label>
@@ -67,7 +63,6 @@
         </div>
 
         <div class="row">
-
             <div class="col-sm-2 mb-3">
                 <label for="txtMsj" class="form-label custom-font-text">Dejanos tu mensaje</label>
             </div>
@@ -83,12 +78,10 @@
         </div>
         <br />
         <p class="custom-font-text" style="font-style:italic; color:lightgrey">
-            No tenés correo electrónico? También podes contactarnos por whatsapp haciendo click en el siguiente link
+            No tenés correo electrónico? También podes contactarnos por whatsapp haciendo click en el siguiente enlace
             <a href="https://wa.me/1111111111">
-                <img src="/WhatsAppButtonGreenSmall.png" alt="whatsapp" style="height: 30px; width:100px" />
+                <img src="../Extras/Images/WhatsAppButtonGreenSmall.png" alt="whatsapp" style="height: 30px; width:100px" />
             </a>
-
         </p>
-
     </div>
 </asp:Content>

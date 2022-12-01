@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
   <%--  logo, no es rezisable--%>
     <div class="row">
         <div class="col-md" style="text-align: center; margin-top: 10px">
@@ -32,7 +31,6 @@
             </div>
         </a>
     </div>
-
     <div class="default-banner-right">
         <a href="Map.aspx" style="text-decoration: none">
             <div class="row">
@@ -49,8 +47,6 @@
             </div>
         </a>
     </div>
-
-
     <div class="default-banner-bottom">
         <a href="AboutUs.aspx" style="text-decoration: none">
             <div class="row">
@@ -60,5 +56,8 @@
             </div>
         </a>
     </div>
+    <asp:Button ID="Button1"  Text="Button" />
 </asp:Content>
+
+
 
