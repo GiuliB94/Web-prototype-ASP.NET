@@ -92,14 +92,15 @@ namespace effort_ver1.MenuAdmin
             Product newProduct = new Product();
             try
             {
-                newProduct.name = txtName.Text;
-                newProduct.description = txtDescription.Text;
-                newProduct.size = int.Parse(txtSize.Text);
-                newProduct.color = txtColor.Text;
-                newProduct.price = int.Parse(txtPrice.Text);
+                newProduct.Name = txtName.Text;
+                newProduct.Description = txtDescription.Text;
+                newProduct.Size = int.Parse(txtSize.Text);
+                newProduct.Color = txtColor.Text;
+                newProduct.Price = int.Parse(txtPrice.Text);
             }
             catch (Exception ex)
             {
+                ex.Message.ToString();
                 //TODO: Manejar excepción para campos en blanco - Lucas
                 throw;
             }
@@ -137,11 +138,11 @@ namespace effort_ver1.MenuAdmin
         {
             ProductBusiness temportalList = new ProductBusiness();
             Product ChangedProduct = new Product();
-            ChangedProduct.name = txtName.Text;
-            ChangedProduct.description = txtDescription.Text;
-            ChangedProduct.size = int.Parse(txtSize.Text);
-            ChangedProduct.color = txtColor.Text;
-            ChangedProduct.price = decimal.Parse(txtPrice.Text);
+            ChangedProduct.Name = txtName.Text;
+            ChangedProduct.Description = txtDescription.Text;
+            ChangedProduct.Size = int.Parse(txtSize.Text);
+            ChangedProduct.Color = txtColor.Text;
+            ChangedProduct.Price = decimal.Parse(txtPrice.Text);
 
 
 

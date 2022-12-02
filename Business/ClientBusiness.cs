@@ -29,17 +29,17 @@ namespace Business
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
                     Client aux = new Client();
-                    aux.id = Convert.ToInt16(data.Reader["Id"]);
-                    aux.idUser = Convert.ToInt16(data.Reader["IdUser"]);
-                    aux.name = data.Reader["Name"].ToString();
-                    aux.lastName = data.Reader["LastName"].ToString();
-                    aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Address"].ToString();
-                    aux.city = data.Reader["City"].ToString();
-                    aux.postalCode = data.Reader["PostalCode"].ToString();
-                    aux.province = data.Reader["Province"].ToString();
-                    aux.dni = data.Reader["DNI"].ToString();
-                    aux.state = Convert.ToBoolean(data.Reader["State"]);
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.LastName = data.Reader["LastName"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Adress = data.Reader["Address"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.DNI = data.Reader["DNI"].ToString();
+                    aux.State = Convert.ToBoolean(data.Reader["State"]);
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -76,16 +76,16 @@ namespace Business
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
                     Client aux = new Client();
-                    aux.id = Convert.ToInt16(data.Reader["Id"]);
-                    aux.idUser = Convert.ToInt16(data.Reader["IdUser"]);
-                    aux.name = data.Reader["Name"].ToString();
-                    aux.lastName = data.Reader["LastName"].ToString();
-                    aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Address"].ToString();
-                    aux.city = data.Reader["City"].ToString();
-                    aux.postalCode = data.Reader["PostalCode"].ToString();
-                    aux.province = data.Reader["Province"].ToString();
-                    aux.state = Convert.ToBoolean(data.Reader["State"]);
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.LastName = data.Reader["LastName"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Adress = data.Reader["Address"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.State = Convert.ToBoolean(data.Reader["State"]);
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -119,10 +119,10 @@ namespace Business
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ex; //TODO: Manejar excepción cuando se añade un cliente nuevo - Lucas
             }
             finally
-            {   //Se abre la conexión a DB
+            {   //Se cierra la conexión a DB
                 data.closeConnection();
             }
         }
@@ -134,7 +134,19 @@ namespace Business
 
             try
             {   //Se inserta en DB los data cargados en la plantilla "modificar"
-                data.setQuery("");
+                data.setQuery("Clients SET Name = @Name, LastName = @LastName, Phone = @Phone, Province = @Province, City = @City, PostalCode = @PostalCode, State = @State, IdUser = @IdUser, Address = @Address, DNI = @DNI WHERE Id = @Id");
+                data.SetParameter("@Name", modClient.Name);
+                data.SetParameter("@LastName", modClient.LastName);
+                data.SetParameter("@Phone", modClient.Phone);
+                data.SetParameter("@Province", modClient.Province);
+                data.SetParameter("@City", modClient.City);
+                data.SetParameter("@PostalCode", modClient.PostalCode);
+                data.SetParameter("@State", modClient.State);
+                data.SetParameter("@IdUser", modClient.IdUser);
+                data.SetParameter("@Address", modClient.Adress);
+                data.SetParameter("@DNI", modClient.DNI);
+                data.SetParameter("@Id", modClient.Id);
+                data.executeQuery();
             }
             catch (Exception ex)
             {
@@ -240,17 +252,17 @@ namespace Business
                 {
                     //Se cargan los articulos de la base
                     Client aux = new Client();
-                    aux.id = Convert.ToInt16(data.Reader["Id"]);
-                    aux.idUser = Convert.ToInt16(data.Reader["IdUser"]);
-                    aux.name = data.Reader["Name"].ToString();
-                    aux.lastName = data.Reader["LastName"].ToString();
-                    aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Address"].ToString();
-                    aux.city = data.Reader["City"].ToString();
-                    aux.postalCode = data.Reader["PostalCode"].ToString();
-                    aux.province = data.Reader["Province"].ToString();
-                    aux.dni = data.Reader["DNI"].ToString();
-                    aux.state = Convert.ToBoolean(data.Reader["State"]);
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.LastName = data.Reader["LastName"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Adress = data.Reader["Address"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.DNI = data.Reader["DNI"].ToString();
+                    aux.State = Convert.ToBoolean(data.Reader["State"]);
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);

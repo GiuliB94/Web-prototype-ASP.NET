@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Data;
 using Domain;
 
@@ -80,7 +81,7 @@ namespace Business
             AccessData datos = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados 
+            {   //Se inserta en DB los data cargados 
                 datos.setQuery("Insert into Users (Email, Password, Permission, State) values ('" + newUser.Email + "','" + newUser.Password + "'," + newUser.Permission + "," + newUser.State + ");");
                 datos.executeQuery();
             }
@@ -94,14 +95,20 @@ namespace Business
             }
         }
 
-        public void Modify(User modUser)
+        public void Modify(User modifiedUser)
         {
+
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("");
+            {
+                data.setQuery($"UPDATE Users u SET u.Email = @Email, u.Password = @Password, u.Permission = @Permission, u.State = @State WHERE u.Id = @Id");
+                data.SetParameter("@Email", modifiedUser.Email);
+                data.SetParameter("@Password", modifiedUser.Password);
+                data.SetParameter("@Permission", modifiedUser.Permission);
+                data.SetParameter("@State", modifiedUser.State);
+                data.executeQuery();
             }
             catch (Exception ex)
             {
@@ -109,7 +116,7 @@ namespace Business
             }
             finally
             {   //Se cierra la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 

@@ -1,5 +1,4 @@
 ﻿using Business;
-using Data;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -40,8 +39,8 @@ namespace effort_ver1.MenuUser
                     ListaProductos = (List<Product>)Session["productList"];
                 }
 
-                ListView.DataSource = ListaProductos;
-                ListView.DataBind();
+                ListView1.DataSource = ListaProductos;
+                ListView1.DataBind();
 
                 if (Session["Cart"] == null)
                 {
@@ -67,7 +66,7 @@ namespace effort_ver1.MenuUser
             Session["Cart"] = dt;
         }
 
-        protected void Events(object sender, ListViewCommandEventArgs e)
+        protected new void Events(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "AddProduct")
             {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
+using System.Net;
 
 namespace Business
 {
@@ -26,12 +27,12 @@ namespace Business
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
                     Company aux = new Company();
                     aux.id = (int)data.Reader["Id"];
-                    aux.cuit = (int)data.Reader["Cuit"];
-                    aux.companyName = (string)data.Reader["CompanyName"];
-                    aux.streetName = (string)data.Reader["StreetName"];
+                    aux.cuit = data.Reader["Cuit"].ToString();
+                    aux.companyName = data.Reader["CompanyName"].ToString();
+                    aux.streetName = (string)data.Reader["StreetName"].ToString();
                     aux.streetNumber = (int)data.Reader["StreetNumber"];
-                    aux.postalCode = (int)data.Reader["PostalCode"];
-                    aux.city = (string)data.Reader["City"];
+                    aux.postalCode = data.Reader["PostalCode"].ToString();
+                    aux.city = data.Reader["City"].ToString();
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -56,30 +57,37 @@ namespace Business
         public void Add(Company newCompany)
         {
             //Se abre la conección a DB
-            AccessData datos = new AccessData();
-
+            AccessData data = new AccessData();
             try
-            {   //Se inserta en DB los datos cargados 
-                datos.setQuery("");
+            {   //Se inserta en DB los data cargados 
+                data.setQuery($"Insert Into Companies(Cuit, CompanyName, StreetName, StreetNumber, CityName, PostalCode) Values ('{newCompany.cuit}', '{newCompany.companyName}', '{newCompany.streetName}', {newCompany.streetNumber}, '{newCompany.city}', '{newCompany.postalCode}')");
+                data.executeQuery();
             }
             catch (Exception ex)
             {
+                //TODO: Manejar excepción cuando se añade una compañia nueva - Lucas
                 throw ex;
             }
             finally
             {   //Se abre la conección a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
-
-        public void Modify(Company modCompany)
+        public void Modify(Company modifiedCompany)
         {
+
             //Se abre la conección a DB
             AccessData datos = new AccessData();
-
             try
-            {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("");
+            {   //Se inserta en DB los data cargados en la plantilla "modificar"
+                datos.setQuery("UPDATE Companies SET Cuit = @Cuit, CompanyName = @CompanyName, StreetName = @StreetName, StreetNumber = @StreetNumber, PostalCode = @PostalCode, CityName = @CityName WHERE id = @Id");
+                datos.SetParameter("@Cuit", modifiedCompany.cuit);
+                datos.SetParameter("@CompanyName", modifiedCompany.companyName);
+                datos.SetParameter("@StreetName", modifiedCompany.streetName);
+                datos.SetParameter("@StreetNumber", modifiedCompany.streetNumber);
+                datos.SetParameter("@PostalCode", modifiedCompany.postalCode);
+                datos.SetParameter("@CityName", modifiedCompany.city);
+                datos.SetParameter("@Id", modifiedCompany.id);
             }
             catch (Exception ex)
             {
@@ -90,7 +98,6 @@ namespace Business
                 datos.closeConnection();
             }
         }
-
         public void Delete(int id)
         {
             AccessData datos = new AccessData();
@@ -109,12 +116,10 @@ namespace Business
                 datos.closeConnection();
             }
         }
-
         public List<Company> Filter(string searchBy, string when, string filter)
         {
             List<Company> list = new List<Company>();
             AccessData data = new AccessData();
-
             string query = "";
 
             try
@@ -157,11 +162,11 @@ namespace Business
                     //Se cargan los articulos de la base
                     Company aux = new Company();
                     aux.id = (int)data.Reader["Id"];
-                    aux.cuit = (int)data.Reader["Cuit"];
+                    aux.cuit = data.Reader["Cuit"].ToString();
                     aux.companyName = (string)data.Reader["CompanyName"];
                     aux.streetName = (string)data.Reader["StreetName"];
                     aux.streetNumber = (int)data.Reader["StreetNumber"];
-                    aux.postalCode = (int)data.Reader["PostalCode"];
+                    aux.postalCode = data.Reader["PostalCode"].ToString();
                     aux.city = (string)data.Reader["City"];
 
                     //Se agrega el registro leído a la lista de articulos

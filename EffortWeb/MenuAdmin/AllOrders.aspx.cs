@@ -14,7 +14,7 @@ namespace effort_ver1.MenuAdmin
         {
             if (Session["OrderBusiness"] == null)
             {
-                OrderBusiness OrderList = new OrderBusiness();
+                OrderHeaderBusiness OrderList = new OrderHeaderBusiness();
                 Session.Add("OrderBusiness", OrderList.Show());
             }
 

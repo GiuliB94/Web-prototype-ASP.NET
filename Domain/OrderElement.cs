@@ -10,6 +10,6 @@ namespace Domain
         public int idOrder { get; set; }
         public int lineItem { get; set; }
         public int idProduct { get; set; }
-        public int quantity { get; set; }
+        public decimal quantity { get; set; }
     }
 }

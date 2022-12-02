@@ -53,30 +53,32 @@ namespace Business
         public void Add(OrderElement newOrderElement)
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados 
-                datos.setQuery("bueno si dsp vemos");
+            {
+                data.setQuery($"Insert Into OrderElements(LineItem, IdOrder, IdProduct, Quantity) Values ({newOrderElement.lineItem}, {newOrderElement.idOrder}, {newOrderElement.idProduct}, {newOrderElement.quantity})");
+                //TODO: setear parámetros? - Lucas
+                data.executeQuery();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
             finally
-            {   //Se abre la conexión a DB
-                datos.closeConnection();
+            {   
+                data.closeConnection();
             }
         }
 
         public void Modify(OrderElement modOrderElement) //Se deberia poder modificar un pedido? 
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("Select telacreistewexd");
+            {   //Se inserta en DB los data cargados en la plantilla "modificar"
+                data.setQuery("Select telacreistewexd");
             }
             catch (Exception ex)
             {
@@ -84,7 +86,7 @@ namespace Business
             }
             finally
             {   //Se cierra la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 

@@ -100,19 +100,19 @@ namespace Business
         public void Add(Product newProduct)
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados 
-                datos.setQuery("Insert into Products (Name, Description, Price, Stock, Size, Color, State, ImageUrl) values (@Name, @Description, @Price, @Stock, @Size, @Color, @State, @ImaegenUrl);");
-                datos.SetParameter("@Name", newProduct.Name);
-                datos.SetParameter("@Description", newProduct.Description);
-                datos.SetParameter("@Price", newProduct.Price);
-                datos.SetParameter("@Stock", newProduct.Stock);
-                datos.SetParameter("@Size", newProduct.Size);
-                datos.SetParameter("@Color", newProduct.Color);
-                datos.SetParameter("@State", newProduct.State);
-                datos.SetParameter("@ImageUrl", newProduct.ImageUrl);
+            {   //Se inserta en DB los data cargados 
+                data.setQuery("Insert into Products (Name, Description, Price, Stock, Size, Color, State, ImageUrl) values (@Name, @Description, @Price, @Stock, @Size, @Color, @State, @ImaegenUrl);");
+                data.SetParameter("@Name", newProduct.Name);
+                data.SetParameter("@Description", newProduct.Description);
+                data.SetParameter("@Price", newProduct.Price);
+                data.SetParameter("@Stock", newProduct.Stock);
+                data.SetParameter("@Size", newProduct.Size);
+                data.SetParameter("@Color", newProduct.Color);
+                data.SetParameter("@State", newProduct.State);
+                data.SetParameter("@ImageUrl", newProduct.ImageUrl);
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace Business
             AccessData datos = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados en la plantilla "modificar"
+            {   //Se inserta en DB los data cargados en la plantilla "modificar"
                 datos.setQuery("update Products set Name=@Name, Description=@Description, Price=@Price, Stock=@Stock, Size=@Size, Color=@Color, State=@State );");
                 datos.SetParameter("@Id", modProduct.Id);
                 datos.SetParameter("@Name", modProduct.Name);
