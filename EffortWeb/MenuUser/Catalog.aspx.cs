@@ -55,6 +55,7 @@ namespace effort_ver1.MenuUser
 
             Session["Cart"] = dt;
         }
+
         protected void Events(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "AddProduct")
@@ -70,7 +71,7 @@ namespace effort_ver1.MenuUser
                 dr[1] = idSelected;
                 dr[2] = product.Name;
                 dr[3] = product.Price;
-                dr[4] = "1";
+                dr[4] = 1;
 
                 table.Rows.Add(dr);
                 Session["Cart"] = table;
