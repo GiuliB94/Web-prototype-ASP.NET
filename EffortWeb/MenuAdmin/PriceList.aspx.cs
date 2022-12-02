@@ -10,28 +10,24 @@ namespace effort_ver1.MenuAdmin
 {
     public partial class PriceList : System.Web.UI.Page
     {
+        public bool FilteredPrice { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (FilterDDown.SelectedItem.ToString() == "Precio")
             {
-                try
-                {
-                    Session["addProduct"] = false;
-                    if (Session["productList"] == null)
-                    {
-                        ProductBusiness productList = new ProductBusiness();
-                        Session.Add("productList", productList.Show());
-                    }
-                    dgvProducts.DataSource = Session["productList"];
-                    dgvProducts.DataBind();
-                }
-                catch (Exception ex)
-                {
-                    Session.Add("Error", ex);
-                    //TODO: manejar la excepción PriceList - Lucas
-                    throw;
-                }
+                FilteredPrice = true;
             }
+            else
+            {
+                FilteredPrice = false;
+            }
+            if (Session["productList"] == null)
+            {
+                ProductBusiness productList = new ProductBusiness();
+                Session.Add("productList", productList.Show());
+            }
+            dgvProducts.DataSource = Session["productList"];
+            dgvProducts.DataBind();
         }
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
@@ -46,6 +42,32 @@ namespace effort_ver1.MenuAdmin
             Response.Redirect("../MenuAdmin/ProductForm.aspx?productID=" + idSelected);
         }
 
+        protected void FilterDDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (FilterDDown.SelectedItem.ToString() == "Precio" && IsPostBack)
+            {
+                FilteredPrice = true;
+            }
+            else
+            {
+                FilteredPrice = false;
+            }
+        }
+
+        protected void BtnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductBusiness list = new ProductBusiness();
+                dgvProducts.DataSource = list.Filter(FilterDDown.SelectedItem.ToString(), FilterPrice.SelectedItem.ToString(), filter.Text, StateDDL.SelectedItem.ToString());
+                dgvProducts.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+        }
 
         /*public void dgvProducts_RowCommand(object sender, GridViewCommandEventArgs e)
         {

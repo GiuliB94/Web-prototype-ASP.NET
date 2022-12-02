@@ -51,8 +51,25 @@ namespace effort_ver1.MenuAdmin
 
         protected void dgvPendingClients_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* var idSelected = dgvPendingClients.SelectedDataKey.Value.ToString();
-            Response.Redirect("ClientForm.aspx?ClientID=" + idSelected);*/
+            /* var idSelected = dgvPendingClients.SelectedDataKey.Value.ToString();
+             Response.Redirect("ClientForm.aspx?ClientID=" + idSelected);*/
+        }
+
+        protected void BtnSearch_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                ClientBusiness clientList = new ClientBusiness();
+                dgvClients.DataSource = clientList.Filter(FilterDDown.SelectedItem.ToString(), StateDDL.SelectedItem.ToString(), filter.Text);
+                dgvClients.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MySqlConnector;
 using Domain;
 using Data;
+using System.Data.Common;
 
 namespace Business
 {
@@ -127,62 +128,80 @@ namespace Business
             }
         }
 
-        public List<Product> Filter(string searchBy, string when, string filter)
+        public List<Product> Filter(string searchBy, string when, string filter, string state="3")
         {
             List<Product> list = new List<Product>();
             AccessData data = new AccessData();
 
-            string query = "";
+            string query = "Select * from Products where ";
 
             try
             {
-                //A CHEQUEAR...
+                //Filtro de precio por separado para controlar números
                 if (searchBy == "Precio")
                 {
                     switch (when)
                     {
-                        case "Mayor a":
-                            query += "P.Precio > " + filter;
+                        case "Mayor o igual que":
+                            query += "Price >= " + filter;
                             break;
-                        case "Menor a":
-                            query += "P.Precio < " + filter;
+                        case "Menor o igual que":
+                            query += "Price <= " + filter;
                             break;
-                        case "Igual a":
-                            query += "P.Precio = " + filter;
-                            break;
+                        //case "Igual a":
+                        //    query += "P.Precio = " + filter;
+                        //    break;
                     }
                 }
+
+                //filtro simplificado para la busqueda de nombres y/o
                 else
                 {
                     string column = "";
                     switch (searchBy)
                     {
                         case "Código":
-                            column = "P.Id";
+                            column = "Id like '%" + filter + "%'";
                             break;
                         case "Nombre":
-                            column = "P.Name";
+                            column = "Name like '%" + filter +"%'";
                             break;
                         case "Color":
-                            column = "P.Color";
+                            column = "Color like '%" + filter + "%'";
+                            break;
+                        case "Talle":
+                            column = "Size like '%" + filter + "%'";
                             break;
                     }
-                    switch (searchBy)
-                    {
-                        case "Igual a":
-                            query += column + " like '" + filter + "'";
-                            break;
-                        case "Contiene":
-                            query += column + " like '%" + filter + "%'";
-                            break;
-                        case "Comienza con":
-                            query += column + " like '" + filter + "%'";
-                            break;
-                        case "Termina con":
-                            query += column + " like '%" + filter + "'";
-                            break;
-                    }
+                    //switch (searchBy)
+                    //{
+                    //    case "Igual a":
+                    //        query += column + " like '" + filter + "'";
+                    //        break;
+                    //    case "Contiene":
+                    //        query += column + " like '%" + filter + "%'";
+                    //        break;
+                    //    case "Comienza con":
+                    //        query += column + " like '" + filter + "%'";
+                    //        break;
+                    //    case "Termina con":
+                    //        query += column + " like '%" + filter + "'";
+                    //        break;
+                    //
+                    query += column;
                 }
+
+                if (state == "Activo")
+                {
+                    query += " and State= 1";
+                }
+
+                else if(state == "Inactivo")
+                {
+                    query += " and State= 0";
+                }
+
+                
 
                 data.setQuery(query);
                 data.executeQuery();

@@ -1,25 +1,24 @@
 ﻿@font-face {
     font-family: 'Tillium Web Extra Light'; /*a name to be used later*/
-    src: url('TitilliumWeb-ExtraLight.ttf')format('truetype');
+    src: url('../Extras/Fonts/TitilliumWeb-ExtraLight.ttf')format('truetype');
     ; /*URL to font*/
-    
 }
 
 @font-face {
     font-family: 'Tillium Web Bold'; /*a name to be used later*/
-    src: url('TitilliumWeb-SemiBold.ttf')format('truetype');
+    src: url('../Extras/Fonts/TitilliumWeb-SemiBold.ttf')format('truetype');
     ; /*URL to font*/
 }
 
 @font-face {
     font-family: 'Tillium Web Regular'; /*a name to be used later*/
-    src: url('TitilliumWeb-Regular.ttf')format('truetype');
+    src: url('../Extras/Fonts/TitilliumWeb-Regular.ttf')format('truetype');
     ; /*URL to font*/
 }
 
 @font-face {
     font-family: 'Tillium Web Semi Bold'; /*a name to be used later*/
-    src: url('TitilliumWeb-Regular.ttf')format('truetype');
+    src: url('../Extras/Fonts/TitilliumWeb-Regular.ttf')format('truetype');
     ; /*URL to font*/
 }
 

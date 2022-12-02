@@ -34,7 +34,7 @@ namespace Business
                     aux.name = data.Reader["Name"].ToString();
                     aux.lastName = data.Reader["LastName"].ToString();
                     aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Adress"].ToString();
+                    aux.adress = data.Reader["Address"].ToString();
                     aux.city = data.Reader["City"].ToString();
                     aux.postalCode = data.Reader["PostalCode"].ToString();
                     aux.province = data.Reader["Province"].ToString();
@@ -81,7 +81,7 @@ namespace Business
                     aux.name = data.Reader["Name"].ToString();
                     aux.lastName = data.Reader["LastName"].ToString();
                     aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Adress"].ToString();
+                    aux.adress = data.Reader["Address"].ToString();
                     aux.city = data.Reader["City"].ToString();
                     aux.postalCode = data.Reader["PostalCode"].ToString();
                     aux.province = data.Reader["Province"].ToString();
@@ -164,68 +164,74 @@ namespace Business
             }
         }
 
-        public List<Client> Filter(string searchBy, string when, string filter)
+        public List<Client> Filter(string searchBy, string state="3", string filter="")
         {
             List<Client> list = new List<Client>();
             AccessData data = new AccessData();
 
-            string query = "";
+            string query = "Select * from Clients where ";
 
             try
             {
                 //A CHEQUEAR...
-                if (searchBy == "Category")
+                //if (searchBy == "Category")
+                //{
+                //    switch (when)
+                //    {
+                //        case "Mayor a":
+                //            query += "C.Category > " + filter;
+                //            break;
+                //        case "Menor a":
+                //            query += "C.Category < " + filter;
+                //            break;
+                //        case "Igual a":
+                //            query += "C.Category = " + filter;
+                //            break;
+                //    }
+                //}
+
+                string column="";
+                switch (searchBy)
                 {
-                    switch (when)
-                    {
-                        case "Mayor a":
-                            query += "C.Category > " + filter;
-                            break;
-                        case "Menor a":
-                            query += "C.Category < " + filter;
-                            break;
-                        case "Igual a":
-                            query += "C.Category = " + filter;
-                            break;
-                    }
+                    case "Nombre":
+                        column = "Name like '%" + filter + "%'";
+                        break;
+                    case "Apellido":
+                        column = "LastName like '%" + filter + "%'";
+                        break;
+                    case "DNI":
+                        column = "DNI like '" + filter + "'";
+                        break;
                 }
-                else
+                query+=column;
+
+
+                //switch (searchBy)
+                //{
+                //    case "Igual a":
+                //        query += column + " like '" + filter + "'";
+                //        break;
+                //    case "Contiene":
+                //        query += column + " like '%" + filter + "%'";
+                //        break;
+                //    case "Comienza con":
+                //        query += column + " like '" + filter + "%'";
+                //        break;
+                //    case "Termina con":
+                //        query += column + " like '%" + filter + "'";
+                //        break;
+                //}
+
+                if (state == "Activo")
                 {
-                    string column;
-                    switch (searchBy)
-                    {
-                        case "Name":
-                            column = "C.Name";
-                            break;
-                        case "Last Name":
-                            column = "C.LastName";
-                            break;
-                        case "Email":
-                            column = "C.Email";
-                            break;
-                        case "Phone":
-                            column = "C.Phone";
-                            break;
-                        default:
-                            column = "ACAIRIAELCOMPANYNAME?";
-                            break;
-                    }
-                    switch (searchBy)
-                    {
-                        case "Igual a":
-                            query += column + " like '" + filter + "'";
-                            break;
-                        case "Contiene":
-                            query += column + " like '%" + filter + "%'";
-                            break;
-                        case "Comienza con":
-                            query += column + " like '" + filter + "%'";
-                            break;
-                        case "Termina con":
-                            query += column + " like '%" + filter + "'";
-                            break;
-                    }
+                    query += " and State= 1";
                 }
+
+                else if (state == "Inactivo")
+                {
+                    query += " and State= 0";
+                }
+
 
                 data.setQuery(query);
                 data.executeQuery();
@@ -238,7 +244,7 @@ namespace Business
                     aux.name = data.Reader["Name"].ToString();
                     aux.lastName = data.Reader["LastName"].ToString();
                     aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Adress"].ToString();
+                    aux.adress = data.Reader["Address"].ToString();
                     aux.city = data.Reader["City"].ToString();
                     aux.postalCode = data.Reader["PostalCode"].ToString();
                     aux.province = data.Reader["Province"].ToString();
