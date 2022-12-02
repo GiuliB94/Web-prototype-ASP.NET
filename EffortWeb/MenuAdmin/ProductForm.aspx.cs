@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
@@ -17,14 +18,27 @@ namespace effort_ver1.MenuAdmin
             btnModProduct.Visible = false;
             btnDeleteProduct.Visible = false;
             lblProducto.Text = "Nuevo producto";
+            if (!(bool)Session["addProduct"])
+            {
+                txtName.ReadOnly = true;
+                txtDescription.ReadOnly = true;
+                txtSize.ReadOnly = true;
+                txtColor.ReadOnly = true;
+                txtPrice.ReadOnly = true;
 
-            txtName.ReadOnly = true;
-            txtDescription.ReadOnly = true;
-            txtSize.ReadOnly = true;
-            txtColor.ReadOnly = true;
-            txtPrice.ReadOnly = true;
-
-            BtnAccept.Visible = false;
+                BtnAccept.Visible = false;
+               
+            }
+            else
+            {
+                txtName.ReadOnly = false;
+                txtDescription.ReadOnly = false;
+                txtSize.ReadOnly = false;
+                txtColor.ReadOnly = false;
+                txtPrice.ReadOnly = false;
+                BtnAccept.Visible = true;
+            }
+           
 
             //Verifica que haya ID de producto en la URL    
             if (Request.QueryString["productID"] != null)
@@ -76,15 +90,26 @@ namespace effort_ver1.MenuAdmin
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
             Product newProduct = new Product();
-            newProduct.id = 0001; //Hacer que se genere automaticamente en la bd
-            newProduct.name = txtName.Text;
-            newProduct.description = txtDescription.Text;
-            newProduct.size = int.Parse(txtSize.Text);
-            newProduct.color = txtColor.Text;
-            newProduct.price = int.Parse(txtPrice.Text);
-
-            List<Product> temportalList = (List<Product>)Session["productList"];
-            temportalList.Add(newProduct);
+            try
+            {
+                newProduct.name = txtName.Text;
+                newProduct.description = txtDescription.Text;
+                newProduct.size = int.Parse(txtSize.Text);
+                newProduct.color = txtColor.Text;
+                newProduct.price = int.Parse(txtPrice.Text);
+            }
+            catch (Exception ex)
+            {
+                //TODO: Manejar excepción para campos en blanco - Lucas
+                throw;
+            }
+            finally
+            {
+                List<Product> temportalList = (List<Product>)Session["productList"];
+                temportalList.Add(newProduct);
+                Session["addProduct"] = false;
+                Response.Redirect("PriceList.aspx");
+            }
 
             //Si se viene desde el agregar, oculto los botones.
 
@@ -112,7 +137,6 @@ namespace effort_ver1.MenuAdmin
         {
             ProductBusiness temportalList = new ProductBusiness();
             Product ChangedProduct = new Product();
-            ChangedProduct.id = int.Parse(txtId.Text); //Hacer que se genere automaticamente en la bd
             ChangedProduct.name = txtName.Text;
             ChangedProduct.description = txtDescription.Text;
             ChangedProduct.size = int.Parse(txtSize.Text);

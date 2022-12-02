@@ -12,23 +12,36 @@ namespace effort_ver1.MenuAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["productList"] == null)
+            if (!IsPostBack)
             {
-                ProductBusiness productList = new ProductBusiness();
-                Session.Add("productList", productList.Show());
+                try
+                {
+                    Session["addProduct"] = false;
+                    if (Session["productList"] == null)
+                    {
+                        ProductBusiness productList = new ProductBusiness();
+                        Session.Add("productList", productList.Show());
+                    }
+                    dgvProducts.DataSource = Session["productList"];
+                    dgvProducts.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("Error", ex);
+                    //TODO: manejar la excepción PriceList - Lucas
+                    throw;
+                }
             }
-            dgvProducts.DataSource = Session["productList"];
-            dgvProducts.DataBind();
         }
 
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
+            Session.Add("addProduct", true);
             Response.Redirect("../MenuAdmin/ProductForm.aspx");
         }
 
         protected void dgvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             var idSelected = dgvProducts.SelectedDataKey.Value.ToString();
             Response.Redirect("../MenuAdmin/ProductForm.aspx?productID=" + idSelected);
         }

@@ -15,7 +15,7 @@ namespace Business
 
             try
             {
-                //Se setea la query para traer los productos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
+                //Se setea la query para traer los productos //TODO: JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE. - Juli
                 data.setQuery("Select * from Products"); //-> Despues cambiar esto por un StoredProcedure
                 //string sp = ""; 
                 //data.setProcedure(sp);
@@ -56,11 +56,20 @@ namespace Business
         public void Add(Product newProduct)
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
-
+            AccessData data = new AccessData();
+            data.setQuery("");
             try
-            {   //Se inserta en DB los datos cargados 
-                datos.setQuery("");
+            {
+                data.executeQuery();
+                //newProduct.price = decimal.Parse() 
+                //newProduct.color =
+                //newProduct.description =
+                //newProduct.id = 
+                //newProduct.name =
+                //newProduct.size =
+
+                //Se inserta en DB los datos cargados 
+               
             }
             catch (Exception ex)
             {
@@ -68,7 +77,7 @@ namespace Business
             }
             finally
             {   //Se abre la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 
