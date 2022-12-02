@@ -31,7 +31,7 @@ namespace effort_ver1.MenuAdmin
         protected void dgvClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             /*var idSelected = dgvClients.SelectedDataKey.Value.ToString();
-            Response.Redirect("ClientForm.aspx?id=" + idSelected);*/
+            Response.Redirect("ClientForm.aspx?Id=" + idSelected);*/
         }
 
         protected void btnPendings_Click(object sender, EventArgs e)

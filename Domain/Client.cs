@@ -7,17 +7,17 @@ namespace Domain
 {
     public class Client
     {
-        public int id { get; set; }
-        public int idUser { get; set; }
-        public string name { get; set; }
-        public string lastName {get; set; }
-        public string phone { get; set; } 
-        public string province { get; set; }
-        public string city { get; set; }
-        public string adress { get; set; }
-        public string postalCode { get; set; }
-        public string dni { get; set; }
-        public bool state { get; set; }
+        public int Id { get; set; }
+        public int IdUser { get; set; }
+        public string Name { get; set; }
+        public string LastName {get; set; }
+        public string Phone { get; set; } 
+        public string Province { get; set; }
+        public string City { get; set; }
+        public string Adress { get; set; }
+        public string PostalCode { get; set; }
+        public string DNI { get; set; }
+        public bool State { get; set; }
 
     }
 }

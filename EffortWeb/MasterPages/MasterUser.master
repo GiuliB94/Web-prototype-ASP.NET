@@ -48,12 +48,25 @@
                             <li>
                                 <a class="nav-link custom-navar-txt" href="../MenuAdmin/PriceList.aspx">Menus Admin</a>
                             </li>
+                        </ul>
+                    </div>
+                    <nav class="navbar navbar-expand-lg custom-navbar">
+                        <ul class="navbar-nav" id="MenuCart">
+                            <li>                     
+                                <a class="nav-link custom-navar-txt">
+                                    <center>
+                                        <asp:ImageButton ID="CartButtom" runat="server" ImageUrl="../Extras/Images/Cart.png" Height="25%" Width="25%" ImageAlign="AbsMiddle" ForeColor="White" OnClick="CartButtom_Click" />
+                                        <asp:Label ID="CartProductsCount" runat="server" Text="0"></asp:Label>
+                                    </center>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav" id="MenuLogIn">
                             <li>
-                                <%--                       <asp:LinkButton Text="Iniciar Sesión" runat="server" ID="LogLink" class="nav-link custom-navar-txt"> </asp:LinkButton>--%>
                                 <a class="nav-link custom-navar-txt" href="../MenuUser/Login.aspx">Iniciar Sesion</a>
                             </li>
                         </ul>
-                    </div>
+                    </nav>
                 </div>
             </nav>
         </div>
@@ -93,10 +106,6 @@
                     </tr>
                 </table>
             </div>
-
-
-
-
         </asp:Panel>
         <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="LogLink" PopupControlID="LogPanel" BackgroundCssClass="background.login-popup" DropShadow="true" OkControlID="Logbtn" CancelControlID="Button1"></ajaxToolkit:ModalPopupExtender>--%>
         <div class="container-fluid" style="margin-top: 50px">

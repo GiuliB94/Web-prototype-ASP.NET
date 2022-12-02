@@ -11,7 +11,7 @@ namespace Business
 {
     public class UserBusiness
     {
-        public User CheckLogIn(string email, string pw)
+        public User GetUser(string email, string pw)
         {
             User aux = new User();
             AccessData data = new AccessData();
@@ -41,7 +41,7 @@ namespace Business
             try
             {
                 //Se setea la query para traer los users 
-                data.setQuery("Select * from Users where state = true");
+                data.setQuery("Select * from Users where State = true");
                 data.executeQuery();
 
                 while (data.Reader.Read())
@@ -118,8 +118,8 @@ namespace Business
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Clients where Id=@id"); //NO... BAJA LOGICA
-                datos.SetParameter("@id", id);
+                datos.setQuery("delete from Clients where Id=@Id"); //NO... BAJA LOGICA
+                datos.SetParameter("@Id", id);
                 datos.executeAction();
             }
             catch (Exception ex)
@@ -201,15 +201,15 @@ namespace Business
                 {
                     //Se cargan los articulos de la base
                     Client aux = new Client();
-                    aux.id = (int)data.Reader["Id"];
-                    aux.name = (string)data.Reader["Name"];
-                    aux.lastName = (string)data.Reader["LastName"];
+                    aux.Id = (int)data.Reader["Id"];
+                    aux.Name = (string)data.Reader["Name"];
+                    aux.LastName = (string)data.Reader["LastName"];
                     aux.password = (string)data.Reader["Password"];
                     aux.idCompany = (int)data.Reader["IdCompany"];
                     aux.email = (string)data.Reader["Email"];
-                    aux.phone = (string)data.Reader["Phone"];
+                    aux.Phone = (string)data.Reader["Phone"];
                     aux.category = (int)data.Reader["Category"];
-                    aux.state = (bool)data.Reader["Active"];
+                    aux.State = (bool)data.Reader["Active"];
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);

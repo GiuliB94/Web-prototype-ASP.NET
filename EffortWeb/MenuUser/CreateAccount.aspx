@@ -34,11 +34,11 @@
                 <table>
                     <tr>
                         <td><label for="TxtAdress" class="form-label">Calle y numero</label></td>
-                        <td><label for="TxtCP" class="form-label">Codigo Postal</label></td>
+                        <td><label for="TxtPostalCode" class="form-label">Codigo Postal</label></td>
                     </tr>
                     <tr>
                         <td><asp:TextBox runat="server" ID="TxtAdress" CssClass="form-control" style="width:250px;" type="text"/></td>
-                        <td><asp:TextBox runat="server" ID="TxtCP" CssClass="form-control" style="width:90px;" type="text"/></td>
+                        <td><asp:TextBox runat="server" ID="TxtPostalCode" CssClass="form-control" style="width:90px;" type="text"/></td>
                     </tr>
                     <tr>
                         <td><label for="TxtCity" class="form-label">Ciudad</label></td>

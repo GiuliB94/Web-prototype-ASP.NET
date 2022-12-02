@@ -54,17 +54,17 @@ namespace effort_ver1.MenuAdmin
                 }
 
                 List<Product> temporalList = (List<Product>)Session["productList"];
-                Product selected = temporalList.Find(x => x.id == id);
+                Product selected = temporalList.Find(x => x.Id == id);
                 //Carga los campos 
                 if (!IsPostBack)
                 {
                     txtId.Text = id.ToString();
                     txtId.ReadOnly = true;
-                    txtName.Text = selected.name;
-                    txtDescription.Text = selected.description;
-                    txtSize.Text = selected.size.ToString();
-                    txtColor.Text = selected.color;
-                    txtPrice.Text = selected.price.ToString();
+                    txtName.Text = selected.Name;
+                    txtDescription.Text = selected.Description;
+                    txtSize.Text = selected.Size.ToString();
+                    txtColor.Text = selected.Color;
+                    txtPrice.Text = selected.Price.ToString();
                 }
 
                 //Visibilidad de botones

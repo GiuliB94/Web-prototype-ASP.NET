@@ -29,7 +29,7 @@ namespace effort_ver1.MenuUser
             UserBusiness aux = new UserBusiness();
             User user = new User();
 
-            user = aux.CheckLogIn(email, password);
+            user = aux.GetUser(email, password);
             if (user.State == true)
             {
                 this.Session["UserId"] = user.Id;

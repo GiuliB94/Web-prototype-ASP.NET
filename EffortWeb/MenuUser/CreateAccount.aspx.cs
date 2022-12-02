@@ -18,13 +18,29 @@ namespace effort_ver1.MenuUser
 
         protected void btnCreateUser_Click(object sender, EventArgs e)
         {
-            UserBusiness aux = new UserBusiness();
             User newUser = new User();
+            Client newClient = new Client();
+            UserBusiness auxUser = new UserBusiness();
+            ClientBusiness auxClient = new ClientBusiness();
+
             newUser.Email = TxtEmail.Text;
             newUser.Password = TxtPass.Text;
             newUser.Permission = 0;
             newUser.State = true;
-            aux.Add(newUser);
+            auxUser.Add(newUser);
+
+            newClient.IdUser = auxUser.GetUser(newUser.Email, newUser.Password).Id; //TODO: Validar ID
+            newClient.Name = TxtFirstName.Text;
+            newClient.LastName = TxtLastName.Text;
+            newClient.Phone = TxtPhone.Text;   
+            newClient.DNI = TxtDNI.Text;
+            newClient.Adress = TxtAdress.Text;
+            newClient.City = TxtCity.Text;
+            newClient.Province = TxtProvince.Text;
+            newClient.PostalCode = TxtPostalCode.Text;
+            newClient.State = true;
+            auxClient.Add(newClient);
+
         }
     }
 }
