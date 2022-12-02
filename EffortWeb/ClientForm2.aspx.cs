@@ -27,19 +27,19 @@ namespace effort_ver1
                 int id = int.Parse(Request.QueryString["ClientID"]); //Obtengo el ID
 
                 List<Client> temportalList = (List<Client>)Session["clientList"]; //Busco al cliente seleccionado en la lista de clientes activos
-                Client selected = temportalList.Find(x => x.id == id);
+                Client selected = temportalList.Find(x => x.Id == id);
                 if (selected == null) //Si no lo encuentro, lo busco en la lista de pendientes.
                 {
                     temportalList = (List<Client>)Session["pendingClientList"];
-                    selected = temportalList.Find(x => x.id == id);
+                    selected = temportalList.Find(x => x.Id == id);
                 }
-                txtName.Text = selected.name;
-                txtLastName.Text = selected.lastName;
-                txtPhone.Text = selected.phone;
+                txtName.Text = selected.Name;
+                txtLastName.Text = selected.LastName;
+                txtPhone.Text = selected.Phone;
 
                 btnSendClientForm.Visible = false;
 
-                if (Convert.ToBoolean(selected.state) == false)
+                if (Convert.ToBoolean(selected.State) == false)
                 {
                     btnSignUp.Visible = true;
                 }
@@ -49,14 +49,14 @@ namespace effort_ver1
         protected void btnSendClientForm_Click(object sender, EventArgs e)
         {
             /*Client newClient = new Client();
-            newClient.id = 0001; //Hacer que se genere automaticamente en la bd
-            newClient.name = txtName.Text;
-            newClient.lastName = txtLastName.Text;
+            newClient.Id = 0001; //Hacer que se genere automaticamente en la bd
+            newClient.Name = txtName.Text;
+            newClient.LastName = txtLastName.Text;
             newClient.idCompany = Convert.ToInt16(txtIdCompany.Text);
             newClient.email = txtEmail.Text;
-            newClient.phone = txtPhone.Text;
+            newClient.Phone = txtPhone.Text;
             newClient.category = 1; //Lo selecciona el usuario o el admin cuando le da el alta? 
-            newClient.state = false; //Llega en false, cuando el admin le da el alta pasa a true.
+            newClient.State = false; //Llega en false, cuando el admin le da el alta pasa a true.
             //Serviria de algo tenes la fecha de alta del usuario?
             
             if (Session["pendingClientList"] == null)
@@ -73,8 +73,8 @@ namespace effort_ver1
         {
             int id = int.Parse(Request.QueryString["ClientId"]); //Obtengo el ID
             List<Client> temportalList = (List<Client>)Session["pendingClientList"]; //Busco al cliente seleccionado en la lista de clientes activos
-            Client selected = temportalList.Find(x => x.id == id);
-            selected.state = true;
+            Client selected = temportalList.Find(x => x.Id == id);
+            selected.State = true;
 
             List<Client> clientList = (List<Client>)Session["ClientBusiness"];
             clientList.Add(selected);

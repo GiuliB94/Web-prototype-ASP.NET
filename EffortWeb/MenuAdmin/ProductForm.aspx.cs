@@ -40,17 +40,17 @@ namespace effort_ver1.MenuAdmin
                 }
 
                 List<Product> temporalList = (List<Product>)Session["productList"];
-                Product selected = temporalList.Find(x => x.id == id);
+                Product selected = temporalList.Find(x => x.Id == id);
                 //Carga los campos 
                 if (!IsPostBack)
                 {
                     txtId.Text = id.ToString();
                     txtId.ReadOnly = true;
-                    txtName.Text = selected.name;
-                    txtDescription.Text = selected.description;
-                    txtSize.Text = selected.size.ToString();
-                    txtColor.Text = selected.color;
-                    txtPrice.Text = selected.price.ToString();
+                    txtName.Text = selected.Name;
+                    txtDescription.Text = selected.Description;
+                    txtSize.Text = selected.Size.ToString();
+                    txtColor.Text = selected.Color;
+                    txtPrice.Text = selected.Price.ToString();
                 }
 
                 //Visibilidad de botones
@@ -76,12 +76,12 @@ namespace effort_ver1.MenuAdmin
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
             Product newProduct = new Product();
-            newProduct.id = 0001; //Hacer que se genere automaticamente en la bd
-            newProduct.name = txtName.Text;
-            newProduct.description = txtDescription.Text;
-            newProduct.size = int.Parse(txtSize.Text);
-            newProduct.color = txtColor.Text;
-            newProduct.price = int.Parse(txtPrice.Text);
+            newProduct.Id = 0001; //Hacer que se genere automaticamente en la bd
+            newProduct.Name = txtName.Text;
+            newProduct.Description = txtDescription.Text;
+            newProduct.Size = int.Parse(txtSize.Text);
+            newProduct.Color = txtColor.Text;
+            newProduct.Price = int.Parse(txtPrice.Text);
 
             List<Product> temportalList = (List<Product>)Session["productList"];
             temportalList.Add(newProduct);
@@ -112,12 +112,12 @@ namespace effort_ver1.MenuAdmin
         {
             ProductBusiness temportalList = new ProductBusiness();
             Product ChangedProduct = new Product();
-            ChangedProduct.id = int.Parse(txtId.Text); //Hacer que se genere automaticamente en la bd
-            ChangedProduct.name = txtName.Text;
-            ChangedProduct.description = txtDescription.Text;
-            ChangedProduct.size = int.Parse(txtSize.Text);
-            ChangedProduct.color = txtColor.Text;
-            ChangedProduct.price = decimal.Parse(txtPrice.Text);
+            ChangedProduct.Id = int.Parse(txtId.Text); //Hacer que se genere automaticamente en la bd
+            ChangedProduct.Name = txtName.Text;
+            ChangedProduct.Description = txtDescription.Text;
+            ChangedProduct.Size = int.Parse(txtSize.Text);
+            ChangedProduct.Color = txtColor.Text;
+            ChangedProduct.Price = decimal.Parse(txtPrice.Text);
 
 
 

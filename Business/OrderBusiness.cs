@@ -96,8 +96,8 @@ namespace Business
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from  where id=@id");
-                datos.SetParameter("@id", id);
+                datos.setQuery("delete from  where Id=@Id");
+                datos.SetParameter("@Id", id);
                 datos.executeAction();
             }
             catch (Exception ex)

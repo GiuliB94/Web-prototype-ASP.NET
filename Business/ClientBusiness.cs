@@ -22,24 +22,24 @@ namespace Business
             try
             {
                 //Se setea la query para traer los clients //JOIN CON COMPANIES...
-                data.setQuery("Select * from Clients where state = true");
+                data.setQuery("Select * from Clients where State = true");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
                     Client aux = new Client();
-                    aux.id = Convert.ToInt16(data.Reader["Id"]);
-                    aux.idUser = Convert.ToInt16(data.Reader["IdUser"]);
-                    aux.name = data.Reader["Name"].ToString();
-                    aux.lastName = data.Reader["LastName"].ToString();
-                    aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Adress"].ToString();
-                    aux.city = data.Reader["City"].ToString();
-                    aux.postalCode = data.Reader["PostalCode"].ToString();
-                    aux.province = data.Reader["Province"].ToString();
-                    aux.dni = data.Reader["DNI"].ToString();
-                    aux.state = Convert.ToBoolean(data.Reader["State"]);
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.LastName = data.Reader["LastName"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Adress = data.Reader["Adress"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.DNI = data.Reader["DNI"].ToString();
+                    aux.State = Convert.ToBoolean(data.Reader["State"]);
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -69,23 +69,23 @@ namespace Business
             try
             {
                 //Se setea la query para traer los clients //JOIN CON COMPANIES...
-                data.setQuery("Select * from Clients where state = false");
+                data.setQuery("Select * from Clients where State = false");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
                     Client aux = new Client();
-                    aux.id = Convert.ToInt16(data.Reader["Id"]);
-                    aux.idUser = Convert.ToInt16(data.Reader["IdUser"]);
-                    aux.name = data.Reader["Name"].ToString();
-                    aux.lastName = data.Reader["LastName"].ToString();
-                    aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Adress"].ToString();
-                    aux.city = data.Reader["City"].ToString();
-                    aux.postalCode = data.Reader["PostalCode"].ToString();
-                    aux.province = data.Reader["Province"].ToString();
-                    aux.state = Convert.ToBoolean(data.Reader["State"]);
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.LastName = data.Reader["LastName"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Adress = data.Reader["Adress"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.State = Convert.ToBoolean(data.Reader["State"]);
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -110,11 +110,12 @@ namespace Business
         public void Add(Client newClient)
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados 
-                datos.setQuery("");
+            {   //Se inserta en DB los data cargados 
+                data.setQuery("Insert into Clients (Name, LastName, Phone, Province, City, PostalCode, IdUser, Adress, DNI, State) values " + "('" + newClient.Name + "','" + newClient.LastName + "','" + newClient.Phone + "','" + newClient.Province + "','" + newClient.City + "','" + newClient.PostalCode + "'," + newClient.IdUser + ",'" + newClient.Adress + "','" + newClient.DNI + "'," + newClient.State + " );");
+                data.executeQuery();
             }
             catch (Exception ex)
             {
@@ -122,18 +123,18 @@ namespace Business
             }
             finally
             {   //Se abre la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 
         public void Modify(Client modClient)
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("");
+            {   //Se inserta en DB los data cargados en la plantilla "modificar"
+                data.setQuery("");
             }
             catch (Exception ex)
             {
@@ -141,18 +142,18 @@ namespace Business
             }
             finally
             {   //Se cierra la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 
         public void Delete(int id)
         {
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Clients where Id=@id");
-                datos.SetParameter("@id", id);
-                datos.executeAction();
+                data.setQuery("delete from Clients where Id=@Id");
+                data.SetParameter("@Id", id);
+                data.executeAction();
             }
             catch (Exception ex)
             {
@@ -160,7 +161,7 @@ namespace Business
             }
             finally
             {   //Se abre la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 
@@ -233,17 +234,17 @@ namespace Business
                 {
                     //Se cargan los articulos de la base
                     Client aux = new Client();
-                    aux.id = Convert.ToInt16(data.Reader["Id"]);
-                    aux.idUser = Convert.ToInt16(data.Reader["IdUser"]);
-                    aux.name = data.Reader["Name"].ToString();
-                    aux.lastName = data.Reader["LastName"].ToString();
-                    aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Adress"].ToString();
-                    aux.city = data.Reader["City"].ToString();
-                    aux.postalCode = data.Reader["PostalCode"].ToString();
-                    aux.province = data.Reader["Province"].ToString();
-                    aux.dni = data.Reader["DNI"].ToString();
-                    aux.state = Convert.ToBoolean(data.Reader["State"]);
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.LastName = data.Reader["LastName"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Adress = data.Reader["Adress"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.DNI = data.Reader["DNI"].ToString();
+                    aux.State = Convert.ToBoolean(data.Reader["State"]);
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);

@@ -48,9 +48,11 @@
                             <li>
                                 <a class="nav-link custom-navar-txt" href="../MenuAdmin/PriceList.aspx">Menus Admin</a>
                             </li>
-                            <li>
-                                <%--                       <asp:LinkButton Text="Iniciar Sesión" runat="server" ID="LogLink" class="nav-link custom-navar-txt"> </asp:LinkButton>--%>
+                            <li>                     
                                 <a class="nav-link custom-navar-txt" href="../MenuUser/Login.aspx">Iniciar Sesion</a>
+                            </li>
+                            <li>                     
+                                <a class="nav-link custom-navar-txt" href="../MenuUser/Cart.aspx">Carrito</a>
                             </li>
                         </ul>
                     </div>

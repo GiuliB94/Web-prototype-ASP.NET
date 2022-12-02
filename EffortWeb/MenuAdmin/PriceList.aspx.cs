@@ -42,7 +42,7 @@ namespace effort_ver1.MenuAdmin
                 int selectedId = 3;
 
                 List<Product> temporalList = (List<Product>)Session["productList"];
-                Product selected = temporalList.Find(x => x.id == selectedId);
+                Product selected = temporalList.Find(x => x.Id == selectedId);
 
 
                 if (Session["newOrder"] != null)

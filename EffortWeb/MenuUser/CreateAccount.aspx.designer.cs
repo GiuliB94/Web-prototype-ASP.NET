@@ -78,13 +78,13 @@ namespace effort_ver1.MenuUser
         protected global::System.Web.UI.WebControls.TextBox TxtAdress;
 
         /// <summary>
-        /// Control TxtCP.
+        /// Control TxtPostalCode.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtCP;
+        protected global::System.Web.UI.WebControls.TextBox TxtPostalCode;
 
         /// <summary>
         /// Control TxtCity.
