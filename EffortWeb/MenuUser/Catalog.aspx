@@ -14,10 +14,15 @@
                         <div class="card" style="width: 25rem; top: 13px; left: 13px; text-align: left;">
                             <div class="card-body">
                                 <center>
-                                    <asp:ImageButton ID="ImageButton" runat="server" style="margin-top: 3%;" ImageUrl=<%#Eval("ImageUrl")%> backColor="Blue" height="80%" width="80%" />
+                                    <asp:ImageButton ID="ImageButton" runat="server" style="margin-top: 3%;" ImageUrl='<%#Eval("ImageUrl")%>' backColor="Blue" height="80%" width="80%" />
                                     <h5 class="card-title" style="text-align: center; margin-top: 2%;"><%#Eval("Name")%></h5>
                                     <h5 class="card-title" style="text-align: center;">$<%#Eval("Price")%></h5>
-                                    <asp:Button ID="btn_AddProduct" CommandArgument=<%#Eval("Id")%> CommandName="AddProduct" runat="server" CssClass="btn btn-primary" Text="Agregar al carrito" />
+                                    <table runat="server">
+                                        <tr runat="server">
+                                            <td><asp:TextBox ID="txtQuantity" runat="server" TextMode="Number" max='<%#Eval("Stock")%>' min="1" Width="50px">1</asp:TextBox></td>
+                                            <td><asp:Button ID="btn_AddProduct" CommandArgument='<%#Eval("Id")%>' CommandName="AddProduct" runat="server" CssClass="btn btn-primary" Text="Agregar al carrito" /></td>
+                                        </tr>
+                                    </table>
                                 </center>
                             </div>
                         </div>
