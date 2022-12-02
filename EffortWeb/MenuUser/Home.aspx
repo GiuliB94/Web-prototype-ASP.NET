@@ -10,7 +10,7 @@
   <%--  logo, no es rezisable--%>
     <div class="row">
         <div class="col-md" style="text-align: center; margin-top: 10px">
-            <img src="effort-logo.jpg">
+            <img src="../Extras/Images/effort-logo.jpg">
         </div>
     </div>
 
@@ -48,7 +48,7 @@
         </a>
     </div>
     <div class="default-banner-bottom">
-        <a href="AboutUs.aspx" style="text-decoration: none">
+        <a href="CreateAccount.aspx" style="text-decoration: none">
             <div class="row">
                 <div class="col-md">
                     <h2 class="custom-font-white" style="text-align: center; margin-top: 100px">Registrate como usuario y accede a precios especiales</h2>
