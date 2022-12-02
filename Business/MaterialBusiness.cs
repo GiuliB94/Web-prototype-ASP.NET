@@ -64,7 +64,7 @@ namespace Business
                 throw ex;
             }
             finally
-            {   //Se abre la conexión a DB
+            {   
                 datos.closeConnection();
             }
         }

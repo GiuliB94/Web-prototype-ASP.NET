@@ -57,18 +57,12 @@ namespace Business
         {
             //Se abre la conexión a DB
             AccessData data = new AccessData();
-            data.setQuery("");
+
             try
             {
+                data.setQuery($"INSERT INTO effort_db.Products (Name, Description, Price, Stock, Size, Color, State, ImageUrl) VALUES ('{newProduct.name}', '{newProduct.description}', {newProduct.price}, {newProduct.stock}, {newProduct.size}, '{newProduct.color}', 1, '{newProduct.imageURL}')");
+                //TODO: setear parámetros? - Lucas
                 data.executeQuery();
-                //newProduct.price = decimal.Parse() 
-                //newProduct.color =
-                //newProduct.description =
-                //newProduct.id = 
-                //newProduct.name =
-                //newProduct.size =
-
-                //Se inserta en DB los datos cargados 
                
             }
             catch (Exception ex)

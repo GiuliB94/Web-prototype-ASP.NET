@@ -69,7 +69,7 @@
     <Compile Include="CompanyBusiness.cs" />
     <Compile Include="MaterialBusiness.cs" />
     <Compile Include="OrderElementBusiness.cs" />
-    <Compile Include="OrderBusiness.cs" />
+    <Compile Include="OrderHeaderBusiness.cs" />
     <Compile Include="ProductBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserBusiness.cs" />

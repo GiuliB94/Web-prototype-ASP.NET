@@ -9,7 +9,7 @@ using Data;
 
 namespace Business
 {
-    public class OrderBusiness
+    public class OrderHeaderBusiness
     {
         public List<OrderHeader> Show()
         {
@@ -56,11 +56,12 @@ namespace Business
         public void Add(OrderHeader newOrderHeader)
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
-
+            AccessData data = new AccessData();
             try
-            {   //Se inserta en DB los datos cargados 
-                datos.setQuery("bueno si dsp vemos");
+            {
+                data.setQuery($"Insert Into OrderHeaders(IdClient, Amount, Date, Status) Values ({newOrderHeader.idClient}, {newOrderHeader.amount}, {newOrderHeader.deliveryDate}, '{newOrderHeader.status}')");
+                //TODO: setear parámetros? - Lucas
+                data.executeQuery();
             }
             catch (Exception ex)
             {
@@ -68,7 +69,7 @@ namespace Business
             }
             finally
             {   //Se abre la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 
@@ -79,7 +80,7 @@ namespace Business
 
             try
             {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("Select telacreistewexd");
+                datos.setQuery("Update OrderHeader telacreistewexd");
             }
             catch (Exception ex)
             {

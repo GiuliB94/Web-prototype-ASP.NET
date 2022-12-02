@@ -34,7 +34,7 @@ namespace Business
                     aux.name = data.Reader["Name"].ToString();
                     aux.lastName = data.Reader["LastName"].ToString();
                     aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Adress"].ToString();
+                    aux.address = data.Reader["Adress"].ToString();
                     aux.city = data.Reader["City"].ToString();
                     aux.postalCode = data.Reader["PostalCode"].ToString();
                     aux.province = data.Reader["Province"].ToString();
@@ -81,7 +81,7 @@ namespace Business
                     aux.name = data.Reader["Name"].ToString();
                     aux.lastName = data.Reader["LastName"].ToString();
                     aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Adress"].ToString();
+                    aux.address = data.Reader["Adress"].ToString();
                     aux.city = data.Reader["City"].ToString();
                     aux.postalCode = data.Reader["PostalCode"].ToString();
                     aux.province = data.Reader["Province"].ToString();
@@ -110,30 +110,44 @@ namespace Business
         public void Add(Client newClient)
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados 
-                datos.setQuery("");
+            {   //Se inserta en DB los data cargados 
+                data.setQuery($"Insert Into Clients(Name, LastName, Phone, Province, City, PostalCode, Address, DNI) Values ('{newClient.name}', '{newClient.lastName}', '{newClient.phone}', '{newClient.province}', '{newClient.city}', '{newClient.postalCode}', '{newClient.address}', '{newClient.dni}')");
+                //TODO: setear parámetros? - Lucas
+                data.executeQuery();
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ex; //TODO: Manejar excepción cuando se añade un cliente nuevo - Lucas
             }
             finally
-            {   //Se abre la conexión a DB
-                datos.closeConnection();
+            {   //Se cierra la conexión a DB
+                data.closeConnection();
             }
         }
 
         public void Modify(Client modClient)
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
 
             try
-            {   //Se inserta en DB los datos cargados en la plantilla "modificar"
-                datos.setQuery("");
+            {   //Se inserta en DB los data cargados en la plantilla "modificar"
+                data.setQuery("Clients SET Name = @Name, LastName = @LastName, Phone = @Phone, Province = @Province, City = @City, PostalCode = @PostalCode, State = @State, IdUser = @IdUser, Address = @Address, DNI = @DNI WHERE Id = @Id");
+                data.SetParameter("@Name", modClient.name);
+                data.SetParameter("@LastName", modClient.lastName);
+                data.SetParameter("@Phone", modClient.phone);
+                data.SetParameter("@Province", modClient.province);
+                data.SetParameter("@City", modClient.city);
+                data.SetParameter("@PostalCode", modClient.postalCode);
+                data.SetParameter("@State", modClient.state);
+                data.SetParameter("@IdUser", modClient.idUser);
+                data.SetParameter("@Address", modClient.address);
+                data.SetParameter("@DNI", modClient.dni);
+                data.SetParameter("@Id", modClient.id);
+                data.executeQuery();
             }
             catch (Exception ex)
             {
@@ -141,7 +155,7 @@ namespace Business
             }
             finally
             {   //Se cierra la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 
@@ -238,7 +252,7 @@ namespace Business
                     aux.name = data.Reader["Name"].ToString();
                     aux.lastName = data.Reader["LastName"].ToString();
                     aux.phone = data.Reader["Phone"].ToString();
-                    aux.adress = data.Reader["Adress"].ToString();
+                    aux.address = data.Reader["Adress"].ToString();
                     aux.city = data.Reader["City"].ToString();
                     aux.postalCode = data.Reader["PostalCode"].ToString();
                     aux.province = data.Reader["Province"].ToString();
