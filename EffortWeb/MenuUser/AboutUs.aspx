@@ -10,7 +10,7 @@
         <p class="custom-font-blue" style="font-size:30px;">
             Algún slogan copado
             <span class="custom-font-red" style="font-size:30px;">iría acá</span>
-        </p>
+        </p>        
         <h4 class="custom-font-text" style="margin-top: 30px">No sé que podría poner como historia de esta empresa porque no conozco mucho sobre ella, pero los tíos de Lucas parecen buena gente, a demás mandan buenos stickers dios los bendiga.</h4>
     </div>
     <div style="text-align:center; margin-top: 30px;">

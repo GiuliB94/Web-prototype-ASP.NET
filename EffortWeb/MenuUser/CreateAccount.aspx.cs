@@ -40,7 +40,6 @@ namespace effort_ver1.MenuUser
             newClient.PostalCode = TxtPostalCode.Text;
             newClient.State = true;
             auxClient.Add(newClient);
-
         }
     }
 }

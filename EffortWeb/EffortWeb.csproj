@@ -129,11 +129,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Master.Master.cs">
+    <Compile Include="MasterPages\Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Master.Master.designer.cs">
+    <Compile Include="MasterPages\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
     <Compile Include="MasterPages\MasterAdmin.Master.cs">
@@ -237,7 +237,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Master.Master" />
+    <Content Include="MasterPages\Master.Master" />
     <Content Include="MasterPages\MasterUser.Master" />
     <Content Include="MasterPages\MasterAdmin.Master" />
     <None Include="packages.config" />

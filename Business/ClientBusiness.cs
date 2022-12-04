@@ -43,7 +43,6 @@ namespace Business
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
-
                 }
 
                 //devuelvo listado de productos
@@ -281,4 +280,8 @@ namespace Business
         }
     }
 }
+
+
+
+
 
