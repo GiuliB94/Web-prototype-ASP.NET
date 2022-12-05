@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterUser.master.cs" Inherits="effort_ver1.MasterPages.MasterUser" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterUser.master.cs" Inherits="EffortWeb.MasterPages.MasterUser" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -7,213 +7,111 @@
 <html>
 <head runat="server">
     <title>Effort</title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
+    <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
-        <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
+    <link href="../CSS/CustomStyles.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="SylesheetsPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form runat="server">
-        
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg custom-navbar">
-    <!-- Container wrapper -->
-    <div class="container-fluid">
-        <!-- Toggle button -->
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
+    <form id="formMasterPageUser" runat="server">
+        <!-- Navbar -->
+        <nav id="navbar-effort" class="navbar navbar-expand-lg">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!-- Toggle button -->
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
 
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Navbar brand -->
-            <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuUk0qvIxe0V2ZLDMaEmAeZWp6nPUYRFQdYnhOkvMdmHPJiRcBEuuIwUl9143L96X9CRk&usqp=CAU"
-                    height="15"
-                    alt="MDB Logo"
-                    loading="lazy" />
-            </a>
-            <!-- Left links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkButton2" PostBackUrl="~/MenuUser/Home.aspx" runat="server">Inicio</asp:LinkButton>
-                </li>
-                <li class="nav-item">
-                    <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkButton3" PostBackUrl="~/MenuUser/Catalog.aspx" runat="server">Catálogo</asp:LinkButton>
-                </li>
-                <li class="nav-item">
-                    <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkButton4" PostBackUrl="~/MenuUser/CreateAccount.aspx" runat="server">Quiero ser cliente</asp:LinkButton>
-                </li>
-                <li class="nav-item">
-                    <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkButton5" PostBackUrl="~/MenuUser/AboutUs.aspx" runat="server">Sobre Effort</asp:LinkButton>
-                </li>
-            </ul>
-            <!-- Left links -->
-        </div>
-        <!-- Collapsible wrapper -->
-
-        <!-- Right elements -->
-        <div class="d-flex align-items-center">
-            <!-- Icon -->
-            <a class="text-reset me-3" href="#">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
-
-            <!-- Notifications -->
-            <div class="dropdown">
-                <a
-                    class="text-reset me-3 dropdown-toggle hidden-arrow"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-mdb-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="fas fa-bell"></i>
-                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                </a>
-                <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuLink">
-                    <li>
-                        <a class="dropdown-item" href="#">Some news</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Another news</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Avatar -->
-            <nav class="navbar navbar-expand-lg custom-navbar">
-                <ul class="navbar-nav" id="MenuCart">
-                    <li>
-                        <a class="nav-link custom-navar-txt">
-                            <center>
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="../Extras/Images/Cart.png" Height="25%" Width="25%" ImageAlign="AbsMiddle" ForeColor="White" OnClick="CartButtom_Click" />
-                                <asp:Label ID="Label1" runat="server" Text="0"></asp:Label>
-                            </center>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav" id="MenuLogIn">
-                    <li>
-                        <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkLogIn" PostBackUrl="~/MenuUser/Login.aspx" runat="server">¿Ya sos cliente?</asp:LinkButton>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <!-- Right elements -->
-    </div>
-    <!-- Container wrapper -->
-</nav>
-<!-- Navbar -->
-        <%-- Disposición vieja --%>
-        <div>
-            <nav class="navbar navbar-expand-lg custom-navbar">
-                <div class="container-fluid">
-
-                    <a class="navbar-brand custom-navar-txt" href="#">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuUk0qvIxe0V2ZLDMaEmAeZWp6nPUYRFQdYnhOkvMdmHPJiRcBEuuIwUl9143L96X9CRk&usqp=CAU" width="50" height="50" alt="">
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbar-effort-list">
+                    <!-- Navbar brand -->
+                    <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuUk0qvIxe0V2ZLDMaEmAeZWp6nPUYRFQdYnhOkvMdmHPJiRcBEuuIwUl9143L96X9CRk&usqp=CAU"
+                            height="15"
+                            alt="Effort Logo"
+                            loading="lazy" />
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkHome" PostBackUrl="~/MenuUser/Home.aspx" runat="server">Home</asp:LinkButton>
-                            </li>
-                            <li>
-                                <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkCatalogue" PostBackUrl="~/MenuUser/Catalog.aspx" runat="server">Catálogo</asp:LinkButton>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkRegister" PostBackUrl="~/MenuUser/CreateAccount.aspx" runat="server">Quiero ser cliente</asp:LinkButton>
-                            </li>
-                            <li>
-                                 <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkAboutUs" PostBackUrl="~/MenuUser/AboutUs.aspx" runat="server">Sobre Effort</asp:LinkButton>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <nav class="navbar navbar-expand-lg custom-navbar">
-                        <ul class="navbar-nav" id="MenuCart">
-                            <li>
-                                <a class="nav-link custom-navar-txt">
-                                    <center>
-                                        <asp:ImageButton ID="CartButtom" runat="server" ImageUrl="../Extras/Images/Cart.png" Height="25%" Width="25%" ImageAlign="AbsMiddle" ForeColor="White" OnClick="CartButtom_Click" />
-                                        <asp:Label ID="CartProductsCount" runat="server" Text="0"></asp:Label>
-                                    </center>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav" id="MenuLogIn">
-                            <li>
-                                <asp:LinkButton CssClass="nav-link custom-navar-txt" ID="LinkButton1" PostBackUrl="~/MenuUser/Login.aspx" runat="server">¿Ya sos cliente?</asp:LinkButton>
-                            </li>
-                        </ul>
-                    </nav>
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Menu/Home.aspx">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Menu/Catalog.aspx">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Lista de precios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Menu/Catalog.aspx">Realizar pedido</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Menu/AboutUs.aspx">Sobre Effort</a>
+                        </li>
+                    </ul>
+                    <!-- Left links -->
                 </div>
-            </nav>
-        </div>
-        <asp:ScriptManager ID="ScriptMngr1" runat="server"></asp:ScriptManager>
-        <%-- TODO: Modal para el login pendiente (por ahora se loguea desde la página Login) - Lucas --%>
-        <%--<asp:Panel class="login-popup" ID="LogPanel" Style="display: none" runat="server">
-            <div>
-                <table>
-                    <tr>
-                        <td>
-                            <asp:Label ID="LabelUser" runat="server" Text="Usuario"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="TxtUser" Style="width: 150px; border-radius: 3px 4px; margin: 4px;" CssClass="password" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label ID="LabelPassword" runat="server" Text="Contraseña"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="TxtPassword" Style="width: 150px; border-radius: 3px 4px; margin: 4px 4px 1px;" TextMode="Password" PasswordChar="*" CssClass="password" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><a style="font-size: smaller" href="#">Olvidé mi contraseña</a></td>
+                <!-- Collapsible wrapper -->
 
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <asp:Button Text="Aceptar" ID="Logbtn" class="btn btn-outline-light" Style="margin-top: 10px; font-size: smaller" runat="server" />
-                            <asp:Button Text="Cancelar" ID="Button1" class="btn btn-outline-light" Style="margin-top: 10px; font-size: smaller" runat="server" />
-                        </td>
-
-                    </tr>
-                </table>
+                <!-- Right elements -->
+                <div class="nav-item dropdown">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"
+                                href="#"
+                                id="dropdownUser"
+                                role="button"
+                                data-mdb-toggle="dropdown"
+                                aria-expanded="false">Menu cliente
+                            </a>
+                            <!-- Dropdown menu Admin-->
+                            <ul class="dropdown-menu" aria-labelledby="dropdownAdmin">
+                                <li>
+                                    <a class="dropdown-item" href="#">Mi perfil</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Pedidos</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Facturas</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Ayuda</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Cerrar sesión</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Right elements -->
             </div>
-        </asp:Panel>
-        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="LogLink" PopupControlID="LogPanel" BackgroundCssClass="background.login-popup" DropShadow="true" OkControlID="Logbtn" CancelControlID="Button1"></ajaxToolkit:ModalPopupExtender>--%>
-        <div class="container-fluid" style="margin-top: 50px">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+        <asp:ScriptManager ID="ScriptMngr1" runat="server"></asp:ScriptManager>
+        <div class="container-fluid" id="div-container-margin">
+            <asp:ContentPlaceHolder ID="MainBodyPlaceHolder" runat="server">
             </asp:ContentPlaceHolder>
         </div>
         <hr />
         <footer>Pie de página</footer>
     </form>
+    <!-- MDB -->
+    <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
 </body>
 </html>

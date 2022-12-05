@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace effort_ver1.MenuUser
+namespace EffortWeb.Menu
 {
 
 
@@ -51,12 +51,12 @@ namespace effort_ver1.MenuUser
         protected global::System.Web.UI.WebControls.Button BtnSearch;
 
         /// <summary>
-        /// ListView1 control.
+        /// ListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.ListView ListView;
     }
 }

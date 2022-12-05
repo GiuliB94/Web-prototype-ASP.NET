@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Domain;
 using Business;
 
-namespace effort_ver1.MenuUser
+namespace EffortWeb.Menu
 {
     public partial class CreateAccount : System.Web.UI.Page
     {
@@ -32,7 +32,7 @@ namespace effort_ver1.MenuUser
             newClient.IdUser = auxUser.GetUser(newUser.Email, newUser.Password).Id; //TODO: Validar ID
             newClient.Name = TxtFirstName.Text;
             newClient.LastName = TxtLastName.Text;
-            newClient.Phone = TxtPhone.Text;   
+            newClient.Phone = TxtPhone.Text;
             newClient.DNI = TxtDNI.Text;
             newClient.Adress = TxtAdress.Text;
             newClient.City = TxtCity.Text;

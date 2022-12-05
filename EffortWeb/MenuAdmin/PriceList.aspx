@@ -1,11 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="PriceList.aspx.cs" Inherits="effort_ver1.MenuAdmin.PriceList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="PriceList.aspx.cs" Inherits="EffortWeb.MenuAdmin.PriceList" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
-    <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="PriceListBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
     <style>
         .oculto {
             display: none;

@@ -1,11 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="AllOrders.aspx.cs" Inherits="effort_ver1.MenuAdmin.AllOrders" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="AllOrders.aspx.cs" Inherits="EffortWeb.MenuAdmin.AllOrders" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
-    <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="AllOrdersBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
     <div style="margin-left: 25px">
         <p class="custom-font-red" style="font-size: 30px;">Mis Pedidos</p>
     </div>

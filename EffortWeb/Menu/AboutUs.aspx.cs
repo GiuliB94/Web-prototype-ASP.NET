@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace effort_ver1.MenuUser
+namespace EffortWeb.Menu
 {
     public partial class AboutUs : System.Web.UI.Page
     {

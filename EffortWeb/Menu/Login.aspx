@@ -1,11 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterUser.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="effort_ver1.MenuUser.Login" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
-    <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Master.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="EffortWeb.Menu.Login" %>
+<asp:Content ID="HomeBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
     <div class="row">
         <div class="col-2"></div>
         <div class="col">

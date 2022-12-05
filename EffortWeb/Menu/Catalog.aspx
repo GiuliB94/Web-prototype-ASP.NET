@@ -1,12 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="../MasterPages/MasterUser.Master" AutoEventWireup="true" CodeBehind="Catalog.aspx.cs" Inherits="effort_ver1.MenuUser.Catalog" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
-    <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="custom-font-red" style="font-size: 30px;">Productos</h1>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Master.Master" AutoEventWireup="true" CodeBehind="Catalog.aspx.cs" Inherits="EffortWeb.Menu.Catalog" %>
+<asp:Content ID="CatalogBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
+     <h1 class="custom-font-red" style="font-size: 30px;">Productos</h1>
     <div class="row">
         <div class="col-3">
             <div class="mb-3">
@@ -57,7 +51,7 @@
                         <div class="card" style="width: 25rem; top: 13px; left: 13px; text-align: left;">
                             <div class="card-body">
                                 <center>
-                                    <asp:ImageButton ID="ImageButton" runat="server" style="margin-top: 3%;" ImageUrl='<%#Eval("ImageUrl")%>' backColor="Blue" height="80%" width="80%" />
+                                    <asp:ImageButton ID="ImageButton"  style="margin-top: 3%;" ImageUrl='<%#Eval("ImageUrl")%>' backColor="Blue" height="80%" width="80%" runat="server" />
                                     <h5 class="card-title" style="text-align: center; margin-top: 2%;"><%#Eval("Name")%></h5>
                                     <h5 class="card-title" style="text-align: center;">$<%#Eval("Price")%></h5>
                                     <table runat="server">
@@ -89,4 +83,3 @@
         </div>
     </center>
 </asp:Content>
-

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace effort_ver1.MenuAdmin
+namespace EffortWeb.MenuAdmin
 {
 
 

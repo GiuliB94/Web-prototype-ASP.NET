@@ -9,7 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
-namespace effort_ver1.MenuAdmin
+namespace EffortWeb.MenuAdmin
 {
     public partial class ProductForm : System.Web.UI.Page
     {

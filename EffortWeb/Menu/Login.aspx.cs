@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using Business;
 using Domain;
 
-namespace effort_ver1.MenuUser
+namespace EffortWeb.Menu
 {
     public partial class Login : System.Web.UI.Page
     {
@@ -26,10 +26,9 @@ namespace effort_ver1.MenuUser
             string email = TxtEmail.Text;
             string password = TxtPass.Text;
 
-            UserBusiness aux = new UserBusiness();
+            UserBusiness userBusiness = new UserBusiness();
             User user = new User();
-
-            user = aux.GetUser(email, password);
+            user = userBusiness.GetUser(email, password);
             if (user.State == true)
             {
                 this.Session["UserId"] = user.Id;
@@ -37,7 +36,7 @@ namespace effort_ver1.MenuUser
                 {
                     Response.Redirect("../MenuAdmin/PriceList.aspx");
                 }
-                else 
+                else
                 {
                     Response.Redirect("../MenuUser/Home.aspx");
                 }

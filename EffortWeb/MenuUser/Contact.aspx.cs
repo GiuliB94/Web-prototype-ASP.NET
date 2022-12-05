@@ -10,7 +10,7 @@ using System.Text;
 using System.IO;
 using System.Security.Policy;
 
-namespace effort_ver1.MenuUser
+namespace EffortWeb.MenuUser
 {
     public partial class Contact : System.Web.UI.Page
     {

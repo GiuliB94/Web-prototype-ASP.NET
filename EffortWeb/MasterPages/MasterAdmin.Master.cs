@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace effort_ver1.MasterPages
+namespace EffortWeb.MasterPages
 {
     public partial class MasterAdmin : System.Web.UI.MasterPage
     {

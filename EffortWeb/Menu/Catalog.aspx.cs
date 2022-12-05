@@ -1,22 +1,22 @@
-﻿using Business;
-using Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Domain;
+using Business;
 
-namespace effort_ver1.MenuUser
+namespace EffortWeb.Menu
 {
     public partial class Catalog : System.Web.UI.Page
     {
         public List<Product> ListaProductos { get; set; }
         public bool FilteredPrice { get; set; }
         protected void Page_Load(object sender, EventArgs e)
-        {   
-            if(FilterDDown.SelectedItem.ToString() == "Precio")
+        {
+            if (FilterDDown.SelectedItem.ToString() == "Precio")
             {
                 FilteredPrice = true;
             }
@@ -26,7 +26,7 @@ namespace effort_ver1.MenuUser
             }
             if (!IsPostBack)
             {
-                
+
                 if (Session["productList"] == null)
                 {
                     ProductBusiness list = new ProductBusiness();
@@ -39,8 +39,8 @@ namespace effort_ver1.MenuUser
                     ListaProductos = (List<Product>)Session["productList"];
                 }
 
-                ListView1.DataSource = ListaProductos;
-                ListView1.DataBind();
+                //ListView1.DataSource = ListaProductos;
+                //ListView1.DataBind();
 
                 if (Session["Cart"] == null)
                 {
@@ -100,7 +100,7 @@ namespace effort_ver1.MenuUser
         {
             if (FilterDDown.SelectedItem.ToString() == "Precio" && IsPostBack)
             {
-                FilteredPrice=true;
+                FilteredPrice = true;
             }
             else
             {
@@ -113,8 +113,8 @@ namespace effort_ver1.MenuUser
             try
             {
                 ProductBusiness list = new ProductBusiness();
-                ListView1.DataSource = list.Filter(FilterDDown.SelectedItem.ToString(), FilterPrice.SelectedItem.ToString(), filter.Text);
-                ListView1.DataBind();
+                //ListView1.DataSource = list.Filter(FilterDDown.SelectedItem.ToString(), FilterPrice.SelectedItem.ToString(), filter.Text);
+                //ListView1.DataBind();
             }
             catch (Exception ex)
             {

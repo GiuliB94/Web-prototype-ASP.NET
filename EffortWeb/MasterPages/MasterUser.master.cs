@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace effort_ver1.MasterPages
+namespace EffortWeb.MasterPages
 {
     public partial class MasterUser : System.Web.UI.MasterPage
     {
@@ -15,7 +15,7 @@ namespace effort_ver1.MasterPages
             if (Session["Cart"] != null)
             {
                 DataTable table = (DataTable)Session["Cart"];
-                CartProductsCount.Text = (table.Rows.Count).ToString();
+               // CartProductsCount.Text = (table.Rows.Count).ToString();
             }
         }
         protected void CartButtom_Click(object sender, ImageClickEventArgs e)

@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace effort_ver1.MenuAdmin
+namespace EffortWeb.MenuAdmin
 {
     public partial class AllOrders : System.Web.UI.Page
     {

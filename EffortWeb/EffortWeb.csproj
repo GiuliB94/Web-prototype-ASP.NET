@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>effort_ver1</RootNamespace>
-    <AssemblyName>effort_ver1</AssemblyName>
+    <RootNamespace>EffortWeb</RootNamespace>
+    <AssemblyName>EffortWeb</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -91,34 +91,24 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientForm2.aspx" />
     <Content Include="Clients2.aspx" />
     <Content Include="CSS\CustomStyles.css" />
-    <Content Include="CSS\CustomStyles1.css" />
     <Content Include="Extras\Templates\DefaultEmail.html" />
     <Content Include="Global.asax" />
     <Content Include="MenuAdmin\AllOrders.aspx" />
     <Content Include="MenuAdmin\Clients.aspx" />
     <Content Include="MenuAdmin\PriceList.aspx" />
     <Content Include="MenuAdmin\ProductForm.aspx" />
-    <Content Include="MenuUser\AboutUs.aspx" />
+    <Content Include="Menu\AboutUs.aspx" />
     <Content Include="MenuUser\Cart.aspx" />
-    <Content Include="MenuUser\Catalog.aspx" />
+    <Content Include="Menu\Catalog.aspx" />
     <Content Include="MenuUser\Contact.aspx" />
-    <Content Include="MenuUser\CreateAccount.aspx" />
-    <Content Include="MenuUser\Home.aspx" />
-    <Content Include="MenuUser\Login.aspx" />
-    <Content Include="MenuUser\Map.aspx" />
+    <Content Include="Menu\CreateAccount.aspx" />
+    <Content Include="Menu\Home.aspx" />
+    <Content Include="Menu\Login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientForm2.aspx.cs">
-      <DependentUpon>ClientForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ClientForm2.aspx.designer.cs">
-      <DependentUpon>ClientForm2.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Clients2.aspx.cs">
       <DependentUpon>Clients2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,11 +168,11 @@
     <Compile Include="MenuAdmin\ProductForm.aspx.designer.cs">
       <DependentUpon>ProductForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuUser\AboutUs.aspx.cs">
+    <Compile Include="Menu\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuUser\AboutUs.aspx.designer.cs">
+    <Compile Include="Menu\AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuUser\Cart.aspx.cs">
@@ -192,11 +182,11 @@
     <Compile Include="MenuUser\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuUser\Catalog.aspx.cs">
+    <Compile Include="Menu\Catalog.aspx.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuUser\Catalog.aspx.designer.cs">
+    <Compile Include="Menu\Catalog.aspx.designer.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuUser\Contact.aspx.cs">
@@ -206,40 +196,33 @@
     <Compile Include="MenuUser\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuUser\CreateAccount.aspx.cs">
+    <Compile Include="Menu\CreateAccount.aspx.cs">
       <DependentUpon>CreateAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuUser\CreateAccount.aspx.designer.cs">
+    <Compile Include="Menu\CreateAccount.aspx.designer.cs">
       <DependentUpon>CreateAccount.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuUser\Home.aspx.cs">
+    <Compile Include="Menu\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuUser\Home.aspx.designer.cs">
+    <Compile Include="Menu\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuUser\Login.aspx.cs">
+    <Compile Include="Menu\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuUser\Login.aspx.designer.cs">
+    <Compile Include="Menu\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MenuUser\Map.aspx.cs">
-      <DependentUpon>Map.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MenuUser\Map.aspx.designer.cs">
-      <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MasterPages\Master.Master" />
     <Content Include="MasterPages\MasterUser.Master" />
     <Content Include="MasterPages\MasterAdmin.Master" />
+    <Content Include="MasterPages\Master.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

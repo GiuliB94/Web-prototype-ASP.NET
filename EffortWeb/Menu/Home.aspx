@@ -1,13 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="../MasterPages/MasterUser.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="effort_ver1.MenuUser.Home" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="EffortWeb.Menu.Home" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="HomeBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
 
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Stylesheets" runat="server">
-    <link rel="stylesheet" href="../CSS/CustomStyles1.css" type="text/css" />
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  <%--  logo, no es rezisable--%>
+     <%--  logo, no es rezisable--%>
     <div class="row">
         <div class="col-md" style="text-align: center; margin-top: 10px">
             <img src="../Extras/Images/effort-logo.jpg">
@@ -58,6 +53,3 @@
     </div>
     <asp:Button ID="Button1"  Text="Button" />
 </asp:Content>
-
-
-
