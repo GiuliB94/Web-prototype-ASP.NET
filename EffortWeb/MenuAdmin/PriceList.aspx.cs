@@ -59,7 +59,8 @@ namespace EffortWeb.MenuAdmin
             try
             {
                 ProductBusiness list = new ProductBusiness();
-                dgvProducts.DataSource = list.Filter(FilterDDown.SelectedItem.ToString(), FilterPrice.SelectedItem.ToString(), filter.Text, StateDDL.SelectedItem.ToString());
+                //TODO: Ver qué hacer con el método Filter de ProductBusiness con Juli - Lucas
+               // dgvProducts.DataSource = list.Filter(FilterDDown.SelectedItem.ToString(), FilterPrice.SelectedItem.ToString(), filter.Text, StateDDL.SelectedItem.ToString());
                 dgvProducts.DataBind();
             }
             catch (Exception ex)

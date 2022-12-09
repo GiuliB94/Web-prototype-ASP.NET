@@ -5,7 +5,9 @@
     --bg-color-effort-red-hover: #CB5558;
     --font-color-effort: #C2C2C2
 }
-
+.oculto {
+    display: none;
+}
 #login-hover{
     cursor: pointer;
 }

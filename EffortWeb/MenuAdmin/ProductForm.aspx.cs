@@ -62,8 +62,8 @@ namespace EffortWeb.MenuAdmin
                     txtId.ReadOnly = true;
                     txtName.Text = selected.Name;
                     txtDescription.Text = selected.Description;
-                    txtSize.Text = selected.Size.ToString();
-                    txtColor.Text = selected.Color;
+                    txtSize.Text = selected.IdSize.ToString();
+                    txtColor.Text = selected.IdColor.ToString();
                     txtPrice.Text = selected.Price.ToString();
                 }
 
@@ -94,8 +94,8 @@ namespace EffortWeb.MenuAdmin
             {
                 newProduct.Name = txtName.Text;
                 newProduct.Description = txtDescription.Text;
-                newProduct.Size = int.Parse(txtSize.Text);
-                newProduct.Color = txtColor.Text;
+                newProduct.IdSize = int.Parse(txtSize.Text);
+                newProduct.IdColor = int.Parse(txtColor.Text);
                 newProduct.Price = int.Parse(txtPrice.Text);
             }
             catch (Exception ex)
@@ -140,8 +140,8 @@ namespace EffortWeb.MenuAdmin
             Product ChangedProduct = new Product();
             ChangedProduct.Name = txtName.Text;
             ChangedProduct.Description = txtDescription.Text;
-            ChangedProduct.Size = int.Parse(txtSize.Text);
-            ChangedProduct.Color = txtColor.Text;
+            ChangedProduct.IdSize = int.Parse(txtSize.Text);
+            ChangedProduct.IdColor = int.Parse(txtColor.Text);
             ChangedProduct.Price = decimal.Parse(txtPrice.Text);
 
 

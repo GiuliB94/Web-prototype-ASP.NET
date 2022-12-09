@@ -7,13 +7,16 @@ namespace Domain
 {
     public class Company
     {
-        public int id { get; set; }
-        public string cuit { get; set; }
-        public string companyName {get; set; }
-        public string streetName {get; set; }
-        public int streetNumber { get; set; }
-        public string postalCode { get; set; }
-        public string city { get; set; }
-
+        public int Id { get; set; }
+        public int IdUser { get; set; }
+        public string CUIT { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string AddressExtra { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string PostalCode { get; set; }
+        public bool IsActive { get; set; }
     }
 }

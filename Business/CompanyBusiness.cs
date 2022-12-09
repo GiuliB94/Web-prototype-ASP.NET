@@ -18,21 +18,71 @@ namespace Business
 
             try
             {
-                //Se setea la query para traer los clients 
-                data.setQuery("Select * from Companies");
+                //Se setea la query para traer los Companys //JOIN CON COMPANIES...
+                data.setQuery("Select * from Companies where IsActive = 1");
                 data.executeQuery();
 
                 while (data.Reader.Read())
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
                     Company aux = new Company();
-                    aux.id = (int)data.Reader["Id"];
-                    aux.cuit = data.Reader["Cuit"].ToString();
-                    aux.companyName = data.Reader["CompanyName"].ToString();
-                    aux.streetName = (string)data.Reader["StreetName"].ToString();
-                    aux.streetNumber = (int)data.Reader["StreetNumber"];
-                    aux.postalCode = data.Reader["PostalCode"].ToString();
-                    aux.city = data.Reader["City"].ToString();
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Address = data.Reader["Address"].ToString();
+                    aux.AddressExtra = data.Reader["AddressExtra"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.CUIT = data.Reader["CUIT"].ToString();
+                    aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
+
+                    //Se agrega el registro leído a la lista de productos
+                    list.Add(aux);
+                }
+
+                //devuelvo listado de productos
+                return list;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {   //se cierra la conexión a DB
+                data.closeConnection();
+            }
+        }
+
+        public List<Company> ShowPendings() //TODO: Debería haber un cruce con los states de User?
+        {
+            List<Company> list = new List<Company>();
+            AccessData data = new AccessData();
+
+            try
+            {
+                //Se setea la query para traer los Companys //JOIN CON COMPANIES...
+                data.setQuery("Select * from Companies where IsActive = 0");
+                data.executeQuery();
+
+                while (data.Reader.Read())
+                {
+                    //Se cargan los productos de la base // Se deberian verificar nulls? 
+                    Company aux = new Company();
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Address = data.Reader["Address"].ToString();
+                    aux.AddressExtra = data.Reader["AddressExtra"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
+                    aux.CUIT = data.Reader["CUIT"].ToString();
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -49,45 +99,51 @@ namespace Business
             }
 
             finally
-            {   //se cierra la conección a DB
+            {   //se cierra la conexión a DB
                 data.closeConnection();
             }
         }
 
         public void Add(Company newCompany)
         {
-            //Se abre la conección a DB
+            //Se abre la conexión a DB
             AccessData data = new AccessData();
+
             try
             {   //Se inserta en DB los data cargados 
-                data.setQuery($"Insert Into Companies(Cuit, CompanyName, StreetName, StreetNumber, CityName, PostalCode) Values ('{newCompany.cuit}', '{newCompany.companyName}', '{newCompany.streetName}', {newCompany.streetNumber}, '{newCompany.city}', '{newCompany.postalCode}')");
+                data.setQuery("Insert into Companies (Name, Phone, Province, City, PostalCode, IdUser, Address, AddressExtra, CUIT, IsActive) values " + "('" + newCompany.Name + "','" + newCompany.Phone + "','" + newCompany.Province + "','" + newCompany.City + "','" + newCompany.PostalCode + "'," + newCompany.IdUser + ",'" + newCompany.Address + "','" + newCompany.AddressExtra + "','" + newCompany.CUIT + "'," + newCompany.IsActive + " );");
                 data.executeQuery();
             }
             catch (Exception ex)
             {
-                //TODO: Manejar excepción cuando se añade una compañia nueva - Lucas
-                throw ex;
+                throw ex; //TODO: Manejar excepción cuando se añade una compañia nueva - Lucas
             }
             finally
-            {   //Se abre la conección a DB
+            {   //Se cierra la conexión a DB
                 data.closeConnection();
             }
         }
-        public void Modify(Company modifiedCompany)
-        {
 
-            //Se abre la conección a DB
-            AccessData datos = new AccessData();
+        public void Modify(Company modCompany) //TODO: debería estar el IDUser como opción para modificar??
+        {
+            //Se abre la conexión a DB
+            AccessData data = new AccessData();
+
             try
             {   //Se inserta en DB los data cargados en la plantilla "modificar"
-                datos.setQuery("UPDATE Companies SET Cuit = @Cuit, CompanyName = @CompanyName, StreetName = @StreetName, StreetNumber = @StreetNumber, PostalCode = @PostalCode, CityName = @CityName WHERE id = @Id");
-                datos.SetParameter("@Cuit", modifiedCompany.cuit);
-                datos.SetParameter("@CompanyName", modifiedCompany.companyName);
-                datos.SetParameter("@StreetName", modifiedCompany.streetName);
-                datos.SetParameter("@StreetNumber", modifiedCompany.streetNumber);
-                datos.SetParameter("@PostalCode", modifiedCompany.postalCode);
-                datos.SetParameter("@CityName", modifiedCompany.city);
-                datos.SetParameter("@Id", modifiedCompany.id);
+                data.setQuery("Companys SET Name = @Name, Phone = @Phone, Province = @Province, City = @City, PostalCode = @PostalCode, State = @State, IdUser = @IdUser, Address = @Address, AddressExtra = @AddressExtra, CUIT = @CUIT WHERE Id = @Id");
+                data.SetParameter("@Name", modCompany.Name);
+                data.SetParameter("@Phone", modCompany.Phone);
+                data.SetParameter("@Province", modCompany.Province);
+                data.SetParameter("@City", modCompany.City);
+                data.SetParameter("@PostalCode", modCompany.PostalCode);
+                data.SetParameter("@State", modCompany.IsActive);
+                data.SetParameter("@IdUser", modCompany.IdUser);
+                data.SetParameter("@Address", modCompany.Address);
+                data.SetParameter("@AddressExtra", modCompany.AddressExtra);
+                data.SetParameter("@CUIT", modCompany.CUIT);
+                data.SetParameter("@Id", modCompany.Id);
+                data.executeQuery();
             }
             catch (Exception ex)
             {
@@ -95,17 +151,18 @@ namespace Business
             }
             finally
             {   //Se cierra la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
+
         public void Delete(int id)
         {
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Companies where Id=@Id");
-                datos.SetParameter("@Id", id);
-                datos.executeAction();
+                data.setQuery("delete from Companies where Id=@Id");
+                data.SetParameter("@Id", id);
+                data.executeAction();
             }
             catch (Exception ex)
             {
@@ -113,47 +170,76 @@ namespace Business
             }
             finally
             {   //Se abre la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
-        public List<Company> Filter(string searchBy, string when, string filter)
+
+        public List<Company> Filter(string searchBy, string state = "3", string filter = "")
         {
             List<Company> list = new List<Company>();
             AccessData data = new AccessData();
-            string query = "";
+
+            string query = "Select * from Companies where ";
 
             try
             {
                 //A CHEQUEAR...
-                string column= "";
+                //if (searchBy == "Category")
+                //{
+                //    switch (when)
+                //    {
+                //        case "Mayor a":
+                //            query += "C.Category > " + filter;
+                //            break;
+                //        case "Menor a":
+                //            query += "C.Category < " + filter;
+                //            break;
+                //        case "Igual a":
+                //            query += "C.Category = " + filter;
+                //            break;
+                //    }
+                //}
+
+                string column = "";
                 switch (searchBy)
                 {
+                    case "Nombre":
+                        column = "Name like '%" + filter + "%'";
+                        break;
+
                     case "CUIT":
-                        column = "C.Cuit";
-                        break;
-                    case "Nombre de la empresa":
-                        column = "C.CompanyName";
-                        break;
-                    case "Ciudad":
-                        column = "C.City";
+                        column = "CUIT like '" + filter + "'";
                         break;
                 }
-                switch (searchBy)
+                query += column;
+
+
+                //switch (searchBy)
+                //{
+                //    case "Igual a":
+                //        query += column + " like '" + filter + "'";
+                //        break;
+                //    case "Contiene":
+                //        query += column + " like '%" + filter + "%'";
+                //        break;
+                //    case "Comienza con":
+                //        query += column + " like '" + filter + "%'";
+                //        break;
+                //    case "Termina con":
+                //        query += column + " like '%" + filter + "'";
+                //        break;
+                //}
+
+                if (state == "Activo")
                 {
-                    case "Igual a":
-                        query += column + " like '" + filter + "'";
-                        break;
-                    case "Contiene":
-                        query += column + " like '%" + filter + "%'";
-                        break;
-                    case "Comienza con":
-                        query += column + " like '" + filter + "%'";
-                        break;
-                    case "Termina con":
-                        query += column + " like '%" + filter + "'";
-                        break;
+                    query += " and IsActive= 1";
                 }
-                
+
+                else if (state == "Inactivo")
+                {
+                    query += " and IsActive= 0";
+                }
+
 
                 data.setQuery(query);
                 data.executeQuery();
@@ -161,13 +247,17 @@ namespace Business
                 {
                     //Se cargan los articulos de la base
                     Company aux = new Company();
-                    aux.id = (int)data.Reader["Id"];
-                    aux.cuit = data.Reader["Cuit"].ToString();
-                    aux.companyName = (string)data.Reader["CompanyName"];
-                    aux.streetName = (string)data.Reader["StreetName"];
-                    aux.streetNumber = (int)data.Reader["StreetNumber"];
-                    aux.postalCode = data.Reader["PostalCode"].ToString();
-                    aux.city = (string)data.Reader["City"];
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Address = data.Reader["Address"].ToString();
+                    aux.AddressExtra = data.Reader["Address Extra"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.CUIT = data.Reader["CUIT"].ToString();
+                    aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);
@@ -180,7 +270,7 @@ namespace Business
                 throw ex;
             }
             finally
-            {   //se cierra la conección a DB
+            {   //se cierra la conexión a DB
                 data.closeConnection();
             }
         }

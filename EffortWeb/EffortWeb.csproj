@@ -91,7 +91,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Clients2.aspx" />
     <Content Include="CSS\CustomStyles.css" />
     <Content Include="Extras\Templates\DefaultEmail.html" />
     <Content Include="Global.asax" />
@@ -109,13 +108,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients2.aspx.cs">
-      <DependentUpon>Clients2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Clients2.aspx.designer.cs">
-      <DependentUpon>Clients2.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,10 +138,6 @@
     </Compile>
     <Compile Include="MenuAdmin\AllOrders.aspx.designer.cs">
       <DependentUpon>AllOrders.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MenuAdmin\Clients.aspx.cs">
-      <DependentUpon>Clients.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MenuAdmin\Clients.aspx.designer.cs">
       <DependentUpon>Clients.aspx</DependentUpon>

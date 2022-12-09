@@ -65,9 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientBusiness.cs" />
     <Compile Include="CompanyBusiness.cs" />
     <Compile Include="MaterialBusiness.cs" />
+    <Compile Include="OrderDetailsBusiness.cs" />
     <Compile Include="OrderElementBusiness.cs" />
     <Compile Include="OrderHeaderBusiness.cs" />
     <Compile Include="ProductBusiness.cs" />

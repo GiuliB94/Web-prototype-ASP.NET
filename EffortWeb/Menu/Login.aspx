@@ -11,11 +11,7 @@
                 <label for="TxtPass" class="form-label">Contraseña</label>
                 <asp:TextBox placeholder="contraseña" runat="server" ID="TxtPass" CssClass="form-control" Style="width: 300px;" type="password" />
             </div>
-            <div>
-                <asp:Label ID="ValidationText" Text="Usuario o contraseña incorrecta" CssClass="alert alert-warning" role="alert" runat="server" />
-                <asp:Timer ID="ValidationTimer"  runat="server" OnTick="ValidationTimer_Tick" Interval="3000" >
-    </asp:Timer>
-            </div>
+
             <br/>
             <div>
                 <asp:Button Text="Ingresar" ID="btnLogIn" CssClass="btn btn-primary" runat="server" OnClick="btnLogIn_Click" />

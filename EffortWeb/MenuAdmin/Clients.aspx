@@ -1,12 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="Clients.aspx.cs" Inherits="EffortWeb.MenuAdmin.Clients" %>
 
 <asp:Content ID="ClientsBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
-    <link rel="stylesheet" href="../CSS/CustomStyles.css" type="text/css" />
-    <style>
-        .oculto {
-            display: none;
-        }
-    </style>
     <div style="margin-left: 25px">
         <asp:Label Text="" ID="lblClients" runat="server" class="custom-font-red" Style="font-size: 30px;" />
         <div class="col-sm-9 mb-5">
@@ -18,8 +12,7 @@
                 <asp:Label CssClass="form-label custom-font-text" Text="Filtrar por" runat="server" />
                 <asp:DropDownList CssClass="form-control" runat="server" ID="FilterDDown" AutoPostBack="true">
                     <asp:ListItem Text="Nombre" />
-                    <asp:ListItem Text="Apellido" />
-                    <asp:ListItem Text="DNI" />
+                    <asp:ListItem Text="CUIT" />
                 </asp:DropDownList>
             </div>
         </div>
@@ -49,16 +42,14 @@
         </div>
     </div>
     </div>
-    </div>
     <div class="row">
         <div class="col-6">
             <asp:GridView ID="dgvClients" OnSelectedIndexChanged="dgvClients_SelectedIndexChanged" DataKeyNames="id" CssClass="table table-light table-bordered" AutoGenerateColumns="false" runat="server">
                 <Columns>
                     <asp:BoundField HeaderText="IdUser" DataField="idUser" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                     <asp:BoundField HeaderText="Nombre" DataField="name" />
-                    <asp:BoundField HeaderText="Apellido" DataField="lastName" />
                     <asp:BoundField HeaderText="Teléfono" DataField="phone" />
-                    <asp:BoundField HeaderText="DNI" DataField="dni" />
+                    <asp:BoundField HeaderText="CUIT/CUIL" DataField="CUIT" />
                     <asp:CheckBoxField HeaderText="Alta" DataField="state" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                     <asp:CommandField ShowSelectButton="true" SelectText="Ver" />
                 </Columns>
@@ -67,9 +58,8 @@
                 <Columns>
                     <asp:BoundField HeaderText="IdUser" DataField="idUser" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                     <asp:BoundField HeaderText="Nombre" DataField="name" />
-                    <asp:BoundField HeaderText="Apellido" DataField="lastName" />
                     <asp:BoundField HeaderText="Teléfono" DataField="phone" />
-                    <asp:BoundField HeaderText="DNI" DataField="dni" />
+                    <asp:BoundField HeaderText="CUIT/CUIL" DataField="CUIT" />
                     <asp:CheckBoxField HeaderText="Alta" DataField="state" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                     <asp:CommandField ShowSelectButton="true" SelectText="Ver" />
                 </Columns>

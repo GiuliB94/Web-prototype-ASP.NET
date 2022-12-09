@@ -33,15 +33,6 @@ namespace EffortWeb.Menu
         protected global::System.Web.UI.WebControls.TextBox TxtFirstName;
 
         /// <summary>
-        /// TxtLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtLastName;
-
-        /// <summary>
         /// TxtPhone control.
         /// </summary>
         /// <remarks>
@@ -51,13 +42,31 @@ namespace EffortWeb.Menu
         protected global::System.Web.UI.WebControls.TextBox TxtPhone;
 
         /// <summary>
-        /// TxtDNI control.
+        /// revPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtDNI;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPhone;
+
+        /// <summary>
+        /// TxtCUIT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtCUIT;
+
+        /// <summary>
+        /// revCUIT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revCUIT;
 
         /// <summary>
         /// Panel_AdressInfo control.
@@ -69,13 +78,22 @@ namespace EffortWeb.Menu
         protected global::System.Web.UI.WebControls.Panel Panel_AdressInfo;
 
         /// <summary>
-        /// TxtAdress control.
+        /// TxtAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtAdress;
+        protected global::System.Web.UI.WebControls.TextBox TxtAddress;
+
+        /// <summary>
+        /// TxtAddressExtra control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtAddressExtra;
 
         /// <summary>
         /// TxtPostalCode control.
@@ -85,6 +103,15 @@ namespace EffortWeb.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtPostalCode;
+
+        /// <summary>
+        /// revCP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revCP;
 
         /// <summary>
         /// TxtCity control.
@@ -148,6 +175,15 @@ namespace EffortWeb.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel_Buttons;
+
+        /// <summary>
+        /// lblErrorMSG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMSG;
 
         /// <summary>
         /// btnCreateUser control.

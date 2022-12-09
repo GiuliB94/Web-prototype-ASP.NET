@@ -17,7 +17,7 @@ namespace Business
 
             try
             {
-                //Se setea la query para traer los los pedidos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
+                //Se setea la query para traer los los pedidos 
                 data.setQuery("Select P.Name, P.Size, P.Color, P.Price, O.Quantity\r\nfrom Products as P, OrderElements as O, OrderHeader as H \r\nwhere P.Id = O.IdProduct and\r\nH.Id = O.IdOrder and \r\nH.Id = " + id);
                 data.executeQuery();
 
@@ -25,10 +25,11 @@ namespace Business
                 {
                     //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
                     OrderElement aux = new OrderElement();
-                    aux.idOrder = Convert.ToInt16(data.Reader["IdOrder"]);
+                    aux.IdOrder = Convert.ToInt16(data.Reader["IdOrder"]);
                     aux.lineItem = Convert.ToInt16(data.Reader["LineItem"]);
-                    aux.idProduct = Convert.ToInt16(data.Reader["IdProduct"]);
-                    aux.quantity = (int)data.Reader["Quantity"];
+                    aux.IdProduct = Convert.ToInt16(data.Reader["IdProduct"]);
+                    aux.Quantity = (int)data.Reader["Quantity"];
+                    aux.Comment = data.Reader["Comment"].ToString();
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -57,7 +58,7 @@ namespace Business
 
             try
             {
-                data.setQuery($"Insert Into OrderElements(LineItem, IdOrder, IdProduct, Quantity) Values ({newOrderElement.lineItem}, {newOrderElement.idOrder}, {newOrderElement.idProduct}, {newOrderElement.quantity})");
+                data.setQuery($"Insert Into OrderElements(LineItem, IdOrder, IdProduct, Quantity) Values ({newOrderElement.lineItem}, {newOrderElement.IdOrder}, {newOrderElement.IdProduct}, {newOrderElement.Quantity}, {newOrderElement.Comment} );");
                 //TODO: setear parámetros? - Lucas
                 data.executeQuery();
             }
@@ -66,7 +67,7 @@ namespace Business
                 throw ex;
             }
             finally
-            {   
+            {
                 data.closeConnection();
             }
         }
@@ -172,10 +173,11 @@ namespace Business
                 {
                     //Se cargan los articulos de la base
                     OrderElement aux = new OrderElement();
-                    aux.idOrder = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdOrder = Convert.ToInt16(data.Reader["Id"]);
                     aux.lineItem = Convert.ToInt16(data.Reader["OrderDate"]);
-                    aux.idProduct = Convert.ToInt16(data.Reader["DeliveryDate"]);
-                    aux.quantity = (int)data.Reader["IdClient"];
+                    aux.IdProduct = Convert.ToInt16(data.Reader["DeliveryDate"]);
+                    aux.Quantity = (int)data.Reader["IdClient"];
+                    aux.Comment = data.Reader["Comment"].ToString();
 
                     //Se agrega el registro leído a la lista de articulos
                     list.Add(aux);

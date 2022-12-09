@@ -13,11 +13,11 @@ namespace Domain
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int Stock { get; set; }
-        public int Size { get; set; }
-        public string Color { get; set; }
-        public bool State { get; set; }
+        public int IdSize { get; set; }
+        public int IdColor { get; set; }
         public string ImageUrl { get; set; }
-        
-        
+        public bool IsActive { get; set; }
+
     }
 }
+

@@ -17,18 +17,18 @@ namespace Business
             User aux = new User();
             AccessData data = new AccessData();
 
-            data.setQuery("Select * from Users where Email = '" + email + "' and Password = '" + pw + "';" );
+            data.setQuery("Select * from Users where Email = '" + email + "' and Password = '" + pw + "';");
             data.executeQuery();
 
             while (data.Reader.Read())
             {
                 //Se cargan los productos de la base // Se deberian verificar nulls? 
-                
-                aux.Id = Convert.ToInt16(data.Reader["Id"]);
+
+                aux.Id = Convert.ToInt16(data.Reader["ID"]);
                 aux.Email = data.Reader["Email"].ToString();
                 aux.Password = data.Reader["Password"].ToString();
                 aux.Permission = Convert.ToInt16(data.Reader["Permission"]);
-                aux.State = Convert.ToBoolean(data.Reader["State"]);
+                aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
 
             }
 
@@ -42,7 +42,7 @@ namespace Business
             try
             {
                 //Se setea la query para traer los users 
-                data.setQuery("Select * from Users where State = true");
+                data.setQuery("Select * from Users where IsActive = true");
                 data.executeQuery();
 
                 while (data.Reader.Read())
@@ -53,7 +53,7 @@ namespace Business
                     aux.Email = data.Reader["Email"].ToString();
                     aux.Password = data.Reader["Password"].ToString();
                     aux.Permission = Convert.ToInt16(data.Reader["Permission"]);
-                    aux.State = Convert.ToBoolean(data.Reader["State"]);
+                    aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
@@ -82,7 +82,7 @@ namespace Business
 
             try
             {   //Se inserta en DB los data cargados 
-                datos.setQuery("Insert into Users (Email, Password, Permission, State) values ('" + newUser.Email + "','" + newUser.Password + "'," + newUser.Permission + "," + newUser.State + ");");
+                datos.setQuery("Insert into Users (Email, Password, Permission, IsActive) values ('" + newUser.Email + "','" + newUser.Password + "'," + newUser.Permission + "," + newUser.IsActive + ");");
                 datos.executeQuery();
             }
             catch (Exception ex)
@@ -103,11 +103,11 @@ namespace Business
 
             try
             {
-                data.setQuery($"UPDATE Users u SET u.Email = @Email, u.Password = @Password, u.Permission = @Permission, u.State = @State WHERE u.Id = @Id");
+                data.setQuery($"UPDATE Users u SET u.Email = @Email, u.Password = @Password, u.Permission = @Permission, u.IsActive = @State WHERE u.Id = @Id");
                 data.SetParameter("@Email", modifiedUser.Email);
                 data.SetParameter("@Password", modifiedUser.Password);
                 data.SetParameter("@Permission", modifiedUser.Permission);
-                data.SetParameter("@State", modifiedUser.State);
+                data.SetParameter("@State", modifiedUser.IsActive);
                 data.executeQuery();
             }
             catch (Exception ex)
@@ -120,12 +120,12 @@ namespace Business
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int id) //TODO: verificar si es necesaria baja logica del User también
         {
             AccessData datos = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("delete from Clients where Id=@Id"); //NO... BAJA LOGICA
+                datos.setQuery($"UPDATE Companies c SET c.IsActive=0 WHERE IdUser=@Id"); //NO... BAJA LOGICA
                 datos.SetParameter("@Id", id);
                 datos.executeAction();
             }
@@ -137,6 +137,29 @@ namespace Business
             {   //Se abre la conexión a DB
                 datos.closeConnection();
             }
+        }
+
+        public User GetUser(int idsearch)
+        {
+            User aux = new User();
+            AccessData data = new AccessData();
+
+            data.setQuery("Select * from Users where Id = '" + idsearch + "';");
+            data.executeQuery();
+
+            while (data.Reader.Read())
+            {
+                //Se cargan los productos de la base // Se deberian verificar nulls? 
+
+                aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                aux.Email = data.Reader["Email"].ToString();
+                aux.Password = data.Reader["Password"].ToString();
+                aux.Permission = Convert.ToInt16(data.Reader["Permission"]);
+                aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
+
+            }
+
+            return aux;
         }
 
         /*public List<User> Filter(string searchBy, string when, string filter)
@@ -235,4 +258,3 @@ namespace Business
         }*/
     }
 }
-

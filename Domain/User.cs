@@ -12,6 +12,7 @@ namespace Domain
         public string Email { get; set; }
         public string Password { get; set; }
         public int Permission { get; set; }
-        public bool State { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

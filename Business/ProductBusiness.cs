@@ -12,10 +12,9 @@ namespace Business
         {
             List<Product> list = new List<Product>();
             AccessData data = new AccessData();
-
             try
             {
-                //Se setea la query para traer los productos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
+                //Se setea la query para traer los productos 
                 data.setQuery("Select * from Products"); //-> Despues cambiar esto por un StoredProcedure
                 //string sp = ""; 
                 //data.setProcedure(sp);
@@ -25,30 +24,25 @@ namespace Business
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
                     Product aux = new Product();
-                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.Id = Convert.ToInt16(data.Reader["ID"]);
                     aux.Name = data.Reader["Name"].ToString();
                     aux.Description = data.Reader["Description"].ToString();
                     aux.Price = Convert.ToDecimal(data.Reader["Price"]);
                     aux.Stock = Convert.ToInt16(data.Reader["Stock"]);
-                    aux.Size = (int)data.Reader["Size"];
-                    aux.Color = data.Reader["Color"].ToString();
-                    aux.State = Convert.ToBoolean(data.Reader["State"]);
+                    aux.IdSize = (int)data.Reader["IdSize"];
+                    aux.IdColor = (int)data.Reader["IdColor"];
                     aux.ImageUrl = data.Reader["ImageUrl"].ToString();
-
+                    aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
-
                 }
-
                 //devuelvo listado de productos
                 return list;
             }
-
             catch (Exception ex)
             {
                 throw ex;
             }
-
             finally
             {   //se cierra la conexión a DB
                 data.closeConnection();
@@ -57,13 +51,11 @@ namespace Business
 
         public Product GetProduct(int id)
         {
-            Product product = new Product();
             AccessData data = new AccessData();
-
             try
             {
                 //Se setea la query para traer los productos 
-                data.setQuery("Select * from Products where Id = " + id + ";"); 
+                data.setQuery("Select * from Products where ID = " + id + ";");
                 //string sp = ""; 
                 //data.setProcedure(sp);
                 data.executeQuery();
@@ -72,15 +64,15 @@ namespace Business
                 while (data.Reader.Read())
                 {
                     //Se cargan los productos de la base // Se deberian verificar nulls? 
-                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.Id = Convert.ToInt16(data.Reader["ID"]);
                     aux.Name = data.Reader["Name"].ToString();
                     aux.Description = data.Reader["Description"].ToString();
                     aux.Price = Convert.ToDecimal(data.Reader["Price"]);
                     aux.Stock = Convert.ToInt16(data.Reader["Stock"]);
-                    aux.Size = (int)data.Reader["Size"];
-                    aux.Color = data.Reader["Color"].ToString();
-                    aux.State = Convert.ToBoolean(data.Reader["State"]);
+                    aux.IdSize = (int)data.Reader["IdSize"];
+                    aux.IdColor = (int)data.Reader["IdColor"];
                     aux.ImageUrl = data.Reader["ImageUrl"].ToString();
+                    aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
                 }
 
                 //devuelvo listado de productos
@@ -104,15 +96,16 @@ namespace Business
 
             try
             {   //Se inserta en DB los data cargados 
-                data.setQuery("Insert into Products (Name, Description, Price, Stock, Size, Color, State, ImageUrl) values (@Name, @Description, @Price, @Stock, @Size, @Color, @State, @ImaegenUrl);");
                 data.SetParameter("@Name", newProduct.Name);
                 data.SetParameter("@Description", newProduct.Description);
                 data.SetParameter("@Price", newProduct.Price);
                 data.SetParameter("@Stock", newProduct.Stock);
-                data.SetParameter("@Size", newProduct.Size);
-                data.SetParameter("@Color", newProduct.Color);
-                data.SetParameter("@State", newProduct.State);
+                data.SetParameter("@IdSize", newProduct.IdSize);
+                data.SetParameter("@IdColor", newProduct.IdColor);
+                data.SetParameter("@IsActive", newProduct.IsActive);
                 data.SetParameter("@ImageUrl", newProduct.ImageUrl);
+                data.setQuery("Insert into Products (Name, Description, Price, Stock, IdSize, IdColor, IsActive, ImageUrl) values (@Name, @Description, @Price, @Stock, @IdSize, @IdColor, @IsActive, @ImaegenUrl);");
+                data.executeQuery();
             }
             catch (Exception ex)
             {
@@ -127,20 +120,21 @@ namespace Business
         public void Modify(Product modProduct)
         {
             //Se abre la conexión a DB
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
 
             try
             {   //Se inserta en DB los data cargados en la plantilla "modificar"
-                datos.setQuery("update Products set Name=@Name, Description=@Description, Price=@Price, Stock=@Stock, Size=@Size, Color=@Color, State=@State );");
-                datos.SetParameter("@Id", modProduct.Id);
-                datos.SetParameter("@Name", modProduct.Name);
-                datos.SetParameter("@Description", modProduct.Description);
-                datos.SetParameter("@Price", modProduct.Price);
-                datos.SetParameter("@Stock", modProduct.Stock);
-                datos.SetParameter("@Size", modProduct.Size);
-                datos.SetParameter("@Color", modProduct.Color);
-                datos.SetParameter("@State", modProduct.State);
-                datos.SetParameter("@ImageUrl", modProduct.ImageUrl);
+                data.SetParameter("@Id", modProduct.Id);
+                data.SetParameter("@Name", modProduct.Name);
+                data.SetParameter("@Description", modProduct.Description);
+                data.SetParameter("@Price", modProduct.Price);
+                data.SetParameter("@Stock", modProduct.Stock);
+                data.SetParameter("@IdSize", modProduct.IdSize);
+                data.SetParameter("@IdColor", modProduct.IdColor);
+                data.SetParameter("@IsActive", modProduct.IsActive);
+                data.SetParameter("@ImageUrl", modProduct.ImageUrl);
+                data.setQuery("update Products set Name=@Name, Description=@Description, Price=@Price, Stock=@Stock, IdSize=@IdSize, IdColor=@IdColor, IsActive=@IsActive) WHERE ID = @Id;");
+                data.executeQuery();
             }
             catch (Exception ex)
             {
@@ -148,18 +142,18 @@ namespace Business
             }
             finally
             {   //Se cierra la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 
-        public void Delete(int id) 
+        public void Delete(int id)
         {
-            AccessData datos = new AccessData();
+            AccessData data = new AccessData();
             try
             {   //Se elimina el registro
-                datos.setQuery("Update from Products set State = 0 where Id=@Id");
-                datos.SetParameter("@Id", id);
-                datos.executeAction();
+                data.SetParameter("@Id", id);
+                data.setQuery("Update from Products set IsActive = 0 where Id=@Id");
+                data.executeQuery();
             }
             catch (Exception ex)
             {
@@ -167,11 +161,11 @@ namespace Business
             }
             finally
             {   //Se abre la conexión a DB
-                datos.closeConnection();
+                data.closeConnection();
             }
         }
 
-        public List<Product> Filter(string searchBy, string when, string filter, string state="3")
+        /*public List<Product> Filter(string searchBy, string when, string filter, string state="3")
         {
             List<Product> list = new List<Product>();
             AccessData data = new AccessData();
@@ -275,7 +269,7 @@ namespace Business
             {   //se cierra la conexión a DB
                 data.closeConnection();
             }
-        }
+        }*/
     }
 }
 

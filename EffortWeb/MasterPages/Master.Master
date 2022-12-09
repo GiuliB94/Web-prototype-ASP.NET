@@ -16,8 +16,9 @@
     <!-- Scripts -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    </script>
     <asp:ContentPlaceHolder ID="SylesheetsPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -73,7 +74,7 @@
                     <%--<asp:LinkButton ID="LinkModalLogIn" Text="¿Ya sos cliente?" CssClass="nav-link active" data-bs-toggle="modal" target="#PopupLogin" runat="server"/>--%>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href=# data-bs-toggle="modal" data-bs-target="#PopupLogin">¿Ya sos cliente?</a>
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#PopupLogin">¿Ya sos cliente?</a>
                         </li>
                     </ul>
                     <%--<a class="nav-link" href="../Menu/Login.aspx">¿Ya sos cliente?</a>--%>
@@ -88,6 +89,7 @@
             <asp:ContentPlaceHolder ID="MainBodyPlaceHolder" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+
         <!-- PopLogIn -->
         <div class="modal fade" id="PopupLogin" tabindex="-1" aria-labelledby="PopupLoginLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -106,8 +108,13 @@
                             <asp:TextBox ID="TxtPass" runat="server" class="form-control" type="password" placeholder="contraseña" />
                         </div>
                     </div>
+                    <div>
+                        <asp:Label ID="ValidationText" Text="Usuario o contraseña incorrecta" CssClass="alert alert-warning" role="alert" runat="server" />
+                        <asp:Timer ID="ValidationTimer" runat="server" OnTick="ValidationTimer_Tick" Interval="3000">
+                        </asp:Timer>
+                    </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnLogIn" runat="server" class="btn btn-primary" OnClick="btnLogIn_Click" Text="Ingresar" />
+                        <asp:Button ID="btnLogIn" runat="server" class="btn btn-primary" OnClick="btnLogIn_Click" Text="Ingresar"  />
                     </div>
                 </div>
             </div>

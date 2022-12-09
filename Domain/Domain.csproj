@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="ItemAux.cs" />
     <Compile Include="Material.cs" />
+    <Compile Include="MessageSender.cs" />
+    <Compile Include="OrderDetails.cs" />
     <Compile Include="OrderElement.cs" />
     <Compile Include="OrderHeader.cs" />
     <Compile Include="Product.cs" />

@@ -7,9 +7,10 @@ namespace Domain
 {
     public class OrderElement
     {
-        public int idOrder { get; set; }
+        public int IdOrder { get; set; }
         public int lineItem { get; set; }
-        public int idProduct { get; set; }
-        public decimal quantity { get; set; }
+        public int IdProduct { get; set; }
+        public decimal Quantity { get; set; }
+        public string Comment { get; set; }
     }
 }
