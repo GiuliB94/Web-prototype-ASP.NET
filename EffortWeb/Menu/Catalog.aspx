@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Master.Master" AutoEventWireup="true" CodeBehind="Catalog.aspx.cs" Inherits="EffortWeb.Menu.Catalog" %>
+
 <asp:Content ID="CatalogBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
      <h1 class="custom-font-red" style="font-size: 30px;">Productos</h1>
     <div class="row">

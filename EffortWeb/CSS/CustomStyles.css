@@ -1,37 +1,20 @@
-﻿/*@font-face {
-    font-family: 'Tillium Web Extra Light'; a name to be used later
-    src: url('../Extras/Fonts/TitilliumWeb-ExtraLight.ttf')format('truetype');
-    ; URL to font
-}
-
-@font-face {
-    font-family: 'Tillium Web Bold'; a name to be used later
-    src: url('../Extras/Fonts/TitilliumWeb-SemiBold.ttf')format('truetype');
-    ; URL to font
-}
-
-@font-face {
-    font-family: 'Tillium Web Regular'; a name to be used later
-    src: url('../Extras/Fonts/TitilliumWeb-Regular.ttf')format('truetype');
-    ; URL to font
-}
-
-@font-face {
-    font-family: 'Tillium Web Semi Bold'; a name to be used later
-    src: url('../Extras/Fonts/TitilliumWeb-Regular.ttf')format('truetype');
-    ; URL to font
-}*/
-:root {
+﻿:root {
     --bg-color-effort-blue: #020F60;
     --bg-color-effort-blue-hover: #0016A2;
     --bg-color-effort-red: #C23337;
     --bg-color-effort-red-hover: #CB5558;
     --font-color-effort: #C2C2C2
 }
+
+#login-hover{
+    cursor: pointer;
+}
+
 body {
     font-family: var(--mdb-body-font-family);
     color: var(--mdb-body-font-family);
 }
+
 #navbar-effort {
     position: fixed;
     top:0; 
@@ -39,6 +22,7 @@ body {
     height: 8vh;
     background-color: var(--bg-color-effort-blue);
 }
+
 #div-container-margin{
     margin-top: 8vh;
 }
@@ -56,6 +40,7 @@ body {
     background-color: var(--bg-color-effort-blue-hover);
     color: white;
     border-radius: 5px;
+    cursor: pointer;
 }
 
     #navbar-effort > div > div > ul .dropdown-menu {
@@ -74,85 +59,7 @@ body {
         background-color: var(--bg-color-effort-red-hover);
     }
 
-
-
-
-/*.custom-navbar {
-    background-color: rgb(29, 5, 110);
-    height: 100px;
-}
-
-.custom-navar-txt {
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    font-family: 'Tillium Web Extra Light';
-    margin: 20px;
-    letter-spacing: 2px;
-    !important
-}
-
-.custom-font {
-    font-size: 23px;
-    color: rgb(255, 255, 255);
-    font-family: 'Tillium Web Extra Light';
-    margin-top: 100px;
-}
-
-.dropdown-custom {
-    background-color: rgb(29, 5, 110);
-}
-
-.custom-dropdown-txt {
-    font-size: 15px;
-    color: rgb(255, 255, 255);
-    font-family: 'Tillium Web Extra Light';
-    !important
-}
-
-.custom-carousel {
-    color: white;
-    background-color: black;
-    text-align: center;
-    height: 40px;
-    font-size: 10px;
-    font-family: 'Times New Roman', Times, serif;
-    text
-}
-
-.custom-carousel-txt {
-    text-align: center;
-    font-size: 15px;
-    font-family: sans-serif;
-    margin-top: 10px;
-}
-
-.nav-link:hover {
-    color: rgb(255, 255, 255);
-    background-color: rgba(255, 255, 255, 0.37);
-    border-radius: 4px 4px;
-}
-
-.dropdown-item:hover {
-    color: rgb(255, 255, 255);
-    background-color: rgba(255, 255, 255, 0.37);
-    border-radius: 4px 4px;
-}
-
-.nav-link:visited {
-    color: rgb(255, 255, 255);
-    background-color: rgba(255, 255, 255, 0.37);
-    border-radius: 4px 4px;
-}*/
-
-/*.rounding {
-    font-size: 15px;
-    margin: 10px, 10px, 10px, 10px;
-    padding: 3px, 3px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-}*/
-
-.login-popup {
+/*.login-popup {
     background-color: rgb(29, 5, 110);
     padding: 10px, 10px;
     width: 400px;
@@ -256,4 +163,4 @@ body {
 
 .a:active {
     text-decoration: none;
-}
+}*/

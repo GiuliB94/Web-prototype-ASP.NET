@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="EffortWeb.Menu.Home" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Master.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="EffortWeb.Menu.Home" %>
 
 <asp:Content ID="HomeBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
 
