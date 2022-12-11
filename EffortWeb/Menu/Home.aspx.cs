@@ -9,6 +9,15 @@ namespace EffortWeb.Menu
 {
     public partial class Home : System.Web.UI.Page
     {
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            int test = 0;
+            if(test == 0)
+            {
+                this.MasterPageFile = "~/MasterPages/MasterAdmin.Master";
+            }
+            
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
