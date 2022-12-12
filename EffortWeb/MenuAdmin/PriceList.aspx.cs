@@ -33,13 +33,13 @@ namespace EffortWeb.MenuAdmin
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
             Session.Add("addProduct", true);
-            Response.Redirect("../MenuAdmin/ProductForm.aspx");
+            Response.Redirect("../MenuAdmin/ProductForm.aspx", false);
         }
 
         protected void dgvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idSelected = dgvProducts.SelectedDataKey.Value.ToString();
-            Response.Redirect("../MenuAdmin/ProductForm.aspx?productID=" + idSelected);
+            Response.Redirect($"../MenuAdmin/ProductForm.aspx?productID={idSelected}", false);
         }
 
         protected void FilterDDown_SelectedIndexChanged(object sender, EventArgs e)

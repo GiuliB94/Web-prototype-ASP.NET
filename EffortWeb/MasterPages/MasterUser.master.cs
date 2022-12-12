@@ -20,7 +20,7 @@ namespace EffortWeb.MasterPages
         }
         protected void CartButtom_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("../MenuUser/Cart.aspx");
+            Response.Redirect("../MenuUser/Cart.aspx", false);
         }
     }
 }

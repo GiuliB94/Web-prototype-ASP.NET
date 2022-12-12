@@ -109,12 +109,12 @@ namespace EffortWeb.MenuAdmin
                 List<Product> temportalList = (List<Product>)Session["productList"];
                 temportalList.Add(newProduct);
                 Session["addProduct"] = false;
-                Response.Redirect("PriceList.aspx");
+                Response.Redirect("PriceList.aspx", false);
             }
 
             //Si se viene desde el agregar, oculto los botones.
 
-            Response.Redirect("../MenuAdmin/PriceList.aspx");
+            Response.Redirect("../MenuAdmin/PriceList.aspx", false);
         }
 
         protected void btnModProduct_Click(object sender, EventArgs e)

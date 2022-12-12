@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,14 +10,25 @@ namespace EffortWeb.Menu
 {
     public partial class Home : System.Web.UI.Page
     {
+        private Dictionary<int, string> PermissionMasterPages = new Dictionary<int, string>();
+        private Home()
+        {
+            PermissionMasterPages.Add(-1, "~/MasterPages/Master.Master");
+            PermissionMasterPages.Add(0, "~/MasterPages/MasterAdmin.Master");
+            PermissionMasterPages.Add(1, "~/MasterPages/MasterUser.Master");
+            PermissionMasterPages.Add(2, "~/MasterPages/MasterUser.Master");
+            PermissionMasterPages.Add(3, "~/MasterPages/MasterUser.Master");
+        }
         void Page_PreInit(Object sender, EventArgs e)
         {
-            int test = 0;
-            if(test == 0)
+            if (Session["User"]!=null)
             {
-                this.MasterPageFile = "~/MasterPages/MasterAdmin.Master";
+                this.MasterPageFile = PermissionMasterPages[(int)Session["UserPermission"]];
             }
-            
+            else
+            {
+                this.MasterPageFile = "~/MasterPages/Master.Master";
+            }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
