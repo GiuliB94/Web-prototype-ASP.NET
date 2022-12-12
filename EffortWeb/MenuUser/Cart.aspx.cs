@@ -12,6 +12,10 @@ namespace EffortWeb.MenuUser
 {
     public partial class Cart : System.Web.UI.Page
     {
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["UserPermission"] == null || (int)Session["UserPermission"] < 1) Response.Redirect("~/Menu/Home.aspx", false);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             gdr_Cart.DataSource = Session["Cart"];

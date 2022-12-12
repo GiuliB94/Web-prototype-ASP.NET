@@ -90,7 +90,8 @@
                                     <a class="dropdown-item" href="#">Ayuda</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Cerrar sesión</a>
+                                    <asp:Button ID="LogoutButton" class="dropdown-item" Text="Cerrar sesión" runat="server" OnClick="LogoutButton_Click"/>
+<%--                                    <a class="dropdown-item" href="#">Cerrar sesión</a>--%>
                                 </li>
                             </ul>
                         </li>

@@ -12,6 +12,11 @@ namespace EffortWeb.Menu
 {
     public partial class CreateAccount : System.Web.UI.Page
     {
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["UserPermission"] == null) Session["UserPermission"] = -1;
+            else if ((int)Session["UserPermission"] != -1) Response.Redirect("~/Menu/Home.aspx");
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;

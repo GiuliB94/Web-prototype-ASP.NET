@@ -9,6 +9,10 @@ namespace EffortWeb.Menu
 {
     public partial class AboutUs : System.Web.UI.Page
     {
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["MasterPageString"] != null) this.MasterPageFile = Session["MasterPageString"].ToString();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 

@@ -14,6 +14,10 @@ namespace EffortWeb.Menu
     {
         public List<Product> ListaProductos { get; set; }
         public bool FilteredPrice { get; set; }
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["MasterPageString"] != null) this.MasterPageFile = Session["MasterPageString"].ToString();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (FilterDDown.SelectedItem.ToString() == "Precio")

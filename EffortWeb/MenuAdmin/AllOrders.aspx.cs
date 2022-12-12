@@ -10,6 +10,10 @@ namespace EffortWeb.MenuAdmin
 {
     public partial class AllOrders : System.Web.UI.Page
     {
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if ((int)Session["UserPermission"] != 0) Response.Redirect("~/Menu/Home.aspx");
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["OrderBusiness"] == null)

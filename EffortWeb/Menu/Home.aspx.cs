@@ -10,26 +10,24 @@ namespace EffortWeb.Menu
 {
     public partial class Home : System.Web.UI.Page
     {
-        private Dictionary<int, string> PermissionMasterPages = new Dictionary<int, string>();
-        private Home()
-        {
-            PermissionMasterPages.Add(-1, "~/MasterPages/Master.Master");
-            PermissionMasterPages.Add(0, "~/MasterPages/MasterAdmin.Master");
-            PermissionMasterPages.Add(1, "~/MasterPages/MasterUser.Master");
-            PermissionMasterPages.Add(2, "~/MasterPages/MasterUser.Master");
-            PermissionMasterPages.Add(3, "~/MasterPages/MasterUser.Master");
-        }
+        private static Dictionary<int, string> PermissionMasterPages = new Dictionary<int, string>();
+
         void Page_PreInit(Object sender, EventArgs e)
         {
-            if (Session["User"]!=null)
+            if (!IsPostBack)
             {
-                this.MasterPageFile = PermissionMasterPages[(int)Session["UserPermission"]];
-            }
-            else
-            {
-                this.MasterPageFile = "~/MasterPages/Master.Master";
-            }
+                PermissionMasterPages = new Dictionary<int, string>();
+                PermissionMasterPages.Add(-1, "~/MasterPages/Master.Master");
+                PermissionMasterPages.Add(0, "~/MasterPages/MasterAdmin.Master");
+                PermissionMasterPages.Add(1, "~/MasterPages/MasterUser.Master");
+                PermissionMasterPages.Add(2, "~/MasterPages/MasterUser.Master");
+                PermissionMasterPages.Add(3, "~/MasterPages/MasterUser.Master");
+                if (Session["UserPermission"] == null) Session["UserPermission"] = -1;
+                Session["MasterPageString"] = PermissionMasterPages[(int)Session["UserPermission"]];
+            }   
+            this.MasterPageFile = Session["MasterPageString"].ToString();
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

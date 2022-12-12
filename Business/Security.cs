@@ -9,10 +9,11 @@ namespace Business
 {
     public static class Security
     {
+        public static User User { get; set; }
         public static bool ActiveSession(object userActive)
         {
-            User user = userActive != null ? (User)userActive : null;
-            if(!(user != null && user.Permission != 0)){
+            //User user = userActive != null ? (User)userActive : null;
+            if(!(User != null && User.Permission != 0)){
                 return true;
             }
             else

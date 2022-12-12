@@ -27,10 +27,6 @@ namespace EffortWeb.MasterPages
             
             if (!IsPostBack)
             {
-                if (Session["User"] == null)
-                {
-                    Session["UserPermission"] = 0;
-                }
                 ValidationText.Visible = false;
                 ValidationTimer.Enabled = false;
             }
@@ -44,11 +40,11 @@ namespace EffortWeb.MasterPages
             UserBusiness userBusiness = new UserBusiness();
             User user = new User();
             user = userBusiness.GetUser(email, password);
-            if (user.Email != null)
+            if (user != null)
             {
                 this.Session["User"] = user;
                 this.Session["UserPermission"] = user.Permission;
-                Response.Redirect("../MenuUser/Home.aspx", false);
+                Response.Redirect("../Menu/Home.aspx", false);
             }
             else
             {
