@@ -27,44 +27,48 @@ namespace EffortWeb.MenuUser
 
             if (e.CommandName == "EliminarElementoInd" || e.CommandName == "EliminarElemento")
             {
-                /* int pos = int.Parse(e.CommandArgument.ToString());
-                string titulo = gdr_Carrito2.Rows[pos].Cells[3].Text;
-                for (int i = 0; i < gdr_Carrito.Rows.Count; i++)
-                {
-                    string tituloToCompare = gdr_Carrito.Rows[i].Cells[3].Text;
-                    if (tituloToCompare.Trim() == titulo.Trim())
-                    {
-                        DataTable dt = (DataTable)Session["Carrito"];
-                        dt.Rows.RemoveAt(i);
-                        gdr_Carrito.DataSource = dt;
-                        gdr_Carrito.DataBind();
-                        i = -1;
-                        totalCompra = 0;
-                        txt_TotalCompra.Text = totalCompra.ToString();
-                        gdr_Carrito2.DataSource = null;
-                        gdr_Carrito2.DataBind();
-                        crearcarrito();
-                        bindearCarrito();
 
-                        if (e.CommandName == "EliminarElementoInd")
-                        {
-                            return;
-                        }
-                    }
-                }*/
             }
         }
 
         protected void BtnToOrder_Click(object sender, EventArgs e)
         {
             OrderDetails newOrder = new OrderDetails();
-            newOrder.CreateOrder();   
+            //Total Amount
             List<ItemAux> itemsList = (List<ItemAux>)Session["Cart"];
             foreach (ItemAux x in itemsList)
             {
-                newOrder.TotalAmount += x.TotalAmount;
+                newOrder.TotalAmount += x.TotalAmount; //Suma total del pedido
             }
+            //IdCompany
+            CompanyBusiness auxCompany = new CompanyBusiness();
+            User user = (User)Session["User"];
+            int idUser = user.Id;
+            Company company = auxCompany.GetCompany(idUser);
+            newOrder.IdCompany = company.Id;
 
+            OrderDetailsBusiness auxOrderDetails = new OrderDetailsBusiness();
+            auxOrderDetails.Add(newOrder);
+            int idOrder = auxOrderDetails.GetLastId();
+            LoadItems(itemsList, idOrder);
+            Session["Cart"] = null;
+        }
+
+        protected void LoadItems(List<ItemAux> list, int IdOrder)
+        {
+            OrderElementBusiness auxOrderElement = new OrderElementBusiness();
+            var count = 0;
+            foreach (ItemAux x in list)
+            {
+                count++;
+                OrderElement newLine = new OrderElement();
+                newLine.IdOrder = IdOrder;
+                newLine.LineItem = count;
+                newLine.IdProduct = x.IdProduct;
+                newLine.Quantity = x.Quantity;
+                newLine.Comment = x.Comment;
+                auxOrderElement.Add(newLine);
+            }
         }
     }
 }

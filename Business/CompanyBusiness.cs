@@ -19,7 +19,7 @@ namespace Business
             try
             {
                 //Se setea la query para traer los Companys //JOIN CON COMPANIES...
-                data.setQuery("Select * from Companies where IsActive = 1");
+                data.setQuery("Select * from Companies where IsActive = 1;");
                 data.executeQuery();
 
                 while (data.Reader.Read())
@@ -57,6 +57,47 @@ namespace Business
             }
         }
 
+        public Company GetCompany(int idUser)
+        {
+            Company aux = new Company();
+            AccessData data = new AccessData();
+
+            try
+            {
+                data.setQuery("Select * from Companies where IdUser = " + idUser + ";");
+                data.executeQuery();
+
+                while (data.Reader.Read())
+                {
+                    //Se cargan la empresa de la base 
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Address = data.Reader["Address"].ToString();
+                    aux.AddressExtra = data.Reader["AddressExtra"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.CUIT = data.Reader["CUIT"].ToString();
+                    aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
+                }
+
+                //devuelvo listado de productos
+                return aux;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {   //se cierra la conexión a DB
+                data.closeConnection();
+            }
+        }
+
         public List<Company> ShowPendings() //TODO: Debería haber un cruce con los states de User?
         {
             List<Company> list = new List<Company>();
@@ -65,7 +106,7 @@ namespace Business
             try
             {
                 //Se setea la query para traer los Companys //JOIN CON COMPANIES...
-                data.setQuery("Select * from Companies where IsActive = 0");
+                data.setQuery("Select * from Companies where IsActive = 0;");
                 data.executeQuery();
 
                 while (data.Reader.Read())
@@ -131,7 +172,7 @@ namespace Business
 
             try
             {   //Se inserta en DB los data cargados en la plantilla "modificar"
-                data.setQuery("Companys SET Name = @Name, Phone = @Phone, Province = @Province, City = @City, PostalCode = @PostalCode, State = @State, IdUser = @IdUser, Address = @Address, AddressExtra = @AddressExtra, CUIT = @CUIT WHERE Id = @Id");
+                data.setQuery("Companys SET Name = @Name, Phone = @Phone, Province = @Province, City = @City, PostalCode = @PostalCode, State = @State, IdUser = @IdUser, Address = @Address, AddressExtra = @AddressExtra, CUIT = @CUIT WHERE Id = @Id;");
                 data.SetParameter("@Name", modCompany.Name);
                 data.SetParameter("@Phone", modCompany.Phone);
                 data.SetParameter("@Province", modCompany.Province);

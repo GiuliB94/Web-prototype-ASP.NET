@@ -26,7 +26,7 @@ namespace Business
                     //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
                     OrderElement aux = new OrderElement();
                     aux.IdOrder = Convert.ToInt16(data.Reader["IdOrder"]);
-                    aux.lineItem = Convert.ToInt16(data.Reader["LineItem"]);
+                    aux.LineItem = Convert.ToInt16(data.Reader["LineItem"]);
                     aux.IdProduct = Convert.ToInt16(data.Reader["IdProduct"]);
                     aux.Quantity = (int)data.Reader["Quantity"];
                     aux.Comment = data.Reader["Comment"].ToString();
@@ -58,7 +58,7 @@ namespace Business
 
             try
             {
-                data.setQuery($"Insert Into OrderElements(LineItem, IdOrder, IdProduct, Quantity) Values ({newOrderElement.lineItem}, {newOrderElement.IdOrder}, {newOrderElement.IdProduct}, {newOrderElement.Quantity}, {newOrderElement.Comment} );");
+                data.setQuery($"Insert Into OrderElements(LineItem, IdOrder, IdProduct, Quantity, Comment) Values ({newOrderElement.LineItem}, {newOrderElement.IdOrder}, {newOrderElement.IdProduct}, {newOrderElement.Quantity}, '{newOrderElement.Comment}' );");
                 //TODO: setear parámetros? - Lucas
                 data.executeQuery();
             }
@@ -174,7 +174,7 @@ namespace Business
                     //Se cargan los articulos de la base
                     OrderElement aux = new OrderElement();
                     aux.IdOrder = Convert.ToInt16(data.Reader["Id"]);
-                    aux.lineItem = Convert.ToInt16(data.Reader["OrderDate"]);
+                    aux.LineItem = Convert.ToInt16(data.Reader["OrderDate"]);
                     aux.IdProduct = Convert.ToInt16(data.Reader["DeliveryDate"]);
                     aux.Quantity = (int)data.Reader["IdClient"];
                     aux.Comment = data.Reader["Comment"].ToString();
