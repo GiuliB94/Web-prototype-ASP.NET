@@ -18,7 +18,7 @@ namespace EffortWeb.MenuAdmin
         {
             if (Session["OrderBusiness"] == null)
             {
-                OrderHeaderBusiness OrderList = new OrderHeaderBusiness();
+                OrderDetailsBusiness OrderList = new OrderDetailsBusiness();
                 Session.Add("OrderBusiness", OrderList.Show());
             }
 
