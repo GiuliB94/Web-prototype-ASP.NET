@@ -43,6 +43,7 @@ namespace EffortWeb.MasterPages
             if (user != null)
             {
                 this.Session["User"] = user;
+                this.Session["UserEmail"] = user.Email;
                 this.Session["UserPermission"] = user.Permission;
                 Response.Redirect("../Menu/Home.aspx", false);
             }
