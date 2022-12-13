@@ -14,8 +14,8 @@ namespace EffortWeb.MasterPages
         {
             if (Session["Cart"] != null)
             {
-                DataTable table = (DataTable)Session["Cart"];
-               // CartProductsCount.Text = (table.Rows.Count).ToString();
+                //DataTable table = (DataTable)Session["Cart"];
+                //CartProductsCount.Text = (table.Rows.Count).ToString();
             }
         }
         protected void CartButtom_Click(object sender, ImageClickEventArgs e)

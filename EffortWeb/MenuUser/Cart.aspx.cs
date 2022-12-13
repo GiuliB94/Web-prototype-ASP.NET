@@ -18,25 +18,8 @@ namespace EffortWeb.MenuUser
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            gdr_Cart.DataSource = Session["Cart"];
-            gdr_Cart.DataBind();
-
-            /*for (int i = 0; i < gdr_Cart.Rows.Count; i++)
-            {
-                string idProduct = gdr_Cart.Rows[i].Cells[3].Text;
-                int quantity = Convert.ToInt16(gdr_Cart.Rows[i].Cells[6].Text);
-
-                for (int j = 1; j < gdr_Cart.Rows.Count; j++)
-                {
-                    string idProductToCompare = gdr_Cart.Rows[j].Cells[3].Text;
-                    if (idProduct == idProductToCompare)
-                    {
-                        quantity += Convert.ToInt16(gdr_Cart.Rows[j].Cells[6].Text);
-                    }
-                }
-                gdr_Cart.Rows[i].Cells[6].Text = quantity.ToString();
-            }*/
-
+            dgvCart.DataSource = (List<ItemAux>)Session["Cart"];
+            dgvCart.DataBind();
         }
 
         protected void gdr_Cart_OnRowCommand(object sender, GridViewCommandEventArgs e)
@@ -70,6 +53,18 @@ namespace EffortWeb.MenuUser
                     }
                 }*/
             }
+        }
+
+        protected void BtnToOrder_Click(object sender, EventArgs e)
+        {
+            OrderDetails newOrder = new OrderDetails();
+            newOrder.CreateOrder();   
+            List<ItemAux> itemsList = (List<ItemAux>)Session["Cart"];
+            foreach (ItemAux x in itemsList)
+            {
+                newOrder.TotalAmount += x.TotalAmount;
+            }
+
         }
     }
 }

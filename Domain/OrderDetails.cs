@@ -23,7 +23,7 @@ namespace Domain
             OrderDetails aux = new OrderDetails();
 
             aux.ID = 0; //Aca podria nacer en 0 y despues cuando se acepta la orden se pone el numero real del pedido?
-            aux.OrderDate = new DateTime();
+            aux.OrderDate = new DateTime().Date; 
             aux.DeliveryDate = new DateTime(); //Fecha indicada por el cliente?
             aux.StatusUpdateDate = new DateTime();
             aux.IdCompany = 0; //Tomar el ID de la sesion iniciada
