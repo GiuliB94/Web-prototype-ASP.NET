@@ -31,7 +31,7 @@ namespace Business
                     aux.Stock = Convert.ToInt16(data.Reader["Stock"]);
                     aux.IdSize = (int)data.Reader["IdSize"];
                     aux.IdColor = (int)data.Reader["IdColor"];
-                    aux.ImageUrl = data.Reader["ImageUrl"].ToString();
+                    aux.ImageUrl = data.Reader["ImageUrl"].ToString() == "" ? "../Extras/Images/Products/NoImage.png" : data.Reader["ImageUrl"].ToString();
                     aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
