@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompanyBusiness.cs" />
+    <Compile Include="CostBusiness.cs" />
     <Compile Include="MaterialBusiness.cs" />
     <Compile Include="OrderDetailsBusiness.cs" />
     <Compile Include="OrderElementBusiness.cs" />

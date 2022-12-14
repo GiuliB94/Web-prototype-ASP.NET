@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
+using System.Reflection;
+using System.Security.Policy;
 
 namespace Business
 {
@@ -18,7 +20,7 @@ namespace Business
             try
             {
                 //Se setea la query para traer los los pedidos 
-                data.setQuery("Select P.Name, P.Size, P.Color, P.Price, O.Quantity\r\nfrom Products as P, OrderElements as O, OrderHeader as H \r\nwhere P.Id = O.IdProduct and\r\nH.Id = O.IdOrder and \r\nH.Id = " + id);
+                data.setQuery("Select OE.IdOrder, OE.LineItem, OE.IdProduct, P.Name, P.Price, S.Description as Talle, C.Description as Color, OE.Quantity, OE.Comment  from OrderElements OE inner join Products P Inner join Sizes S inner join Colors C where OE.IdProduct = P.ID  and P.IdSize = S.ID and P.IdColor =  C.ID and OE.IdOrder = " + id + ";");
                 data.executeQuery();
 
                 while (data.Reader.Read())
@@ -28,8 +30,13 @@ namespace Business
                     aux.IdOrder = Convert.ToInt16(data.Reader["IdOrder"]);
                     aux.LineItem = Convert.ToInt16(data.Reader["LineItem"]);
                     aux.IdProduct = Convert.ToInt16(data.Reader["IdProduct"]);
+                    aux.ProductName = data.Reader["Name"].ToString();
+                    aux.UnitPrice = (decimal)data.Reader["Price"];
+                    aux.Size = data.Reader["Talle"].ToString();
+                    aux.Color = data.Reader["Color"].ToString();
                     aux.Quantity = (int)data.Reader["Quantity"];
                     aux.Comment = data.Reader["Comment"].ToString();
+                    aux.TotalAmount = aux.UnitPrice * aux.Quantity;
 
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);

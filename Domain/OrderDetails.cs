@@ -15,8 +15,11 @@ namespace Domain
         public DateTime DeliveryDate { get; set; }
         public DateTime StatusUpdateDate { get; set; }
         public int IdCompany { get; set; }
+        public string CompanyName { get; set; }
         public decimal TotalAmount { get; set; }
         public int Status { get; set; } // Cuales serian los estados?  -> Deberian nacer con un estado fijo. Ej: En proceso? / En espera de aprobación? -> Se aprueban? 
+        public string StatusDescription { get; set; }
+        public decimal TotalCost { get; set; }
 
         public OrderDetails()
         {
@@ -27,6 +30,7 @@ namespace Domain
             IdCompany = 0; //Tomar el ID de la sesion iniciada
             TotalAmount = 0;
             Status = 0;
+            TotalCost = 0;
         }
     }
 }

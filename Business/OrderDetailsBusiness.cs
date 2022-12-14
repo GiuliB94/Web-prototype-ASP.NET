@@ -18,7 +18,7 @@ namespace Business
             try
             {
                 //Se setea la query para traer los los pedidos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
-                data.setQuery("Select * from OrderDetails;");
+                data.setQuery("Select OD.ID, OD.IdCompany, C.Name, OD.TotalAmount, OD.OrderDate, OD.DeliveryDate, OD.StatusUpdateDate, OD.Status, OD.TotalCost from OrderDetails OD\r\ninner join Companies C\r\nwhere C.ID = OD.IdCompany;");
                 data.executeQuery();
                 while (data.Reader.Read())
                 {
@@ -28,8 +28,27 @@ namespace Business
                     aux.OrderDate = Convert.ToDateTime(data.Reader["OrderDate"]);
                     aux.DeliveryDate = Convert.ToDateTime(data.Reader["DeliveryDate"]);
                     aux.IdCompany = Convert.ToInt16(data.Reader["IdCompany"]);
+                    aux.CompanyName = data.Reader["Name"].ToString();
                     aux.TotalAmount = Convert.ToDecimal(data.Reader["TotalAmount"]);
+                    aux.TotalCost = Convert.ToDecimal(data.Reader["TotalCost"]);
                     aux.Status = (int)data.Reader["Status"];
+
+                    switch (aux.Status)
+                    {
+                        case 0: aux.StatusDescription = "En espera de aprobación";
+                            break;
+                        case 1: aux.StatusDescription = "Aprobado";
+                            break;
+                        case 2: aux.StatusDescription = "En proceso de fabricación";
+                            break;
+                        case 3: aux.StatusDescription = "Listo para entrega";
+                            break;
+                        case 4: aux.StatusDescription = "Entregado";
+                            break;
+                        case 5: aux.StatusDescription = "Rechazado";
+                            break;
+                    }
+
                     //Se agrega el registro leído a la lista de productos
                     list.Add(aux);
                 }
@@ -142,9 +161,9 @@ namespace Business
             AccessData data = new AccessData();
             try
             {
-                data.SetParameter("@ID", IdOrder); //No deberia poder cambiar de cliente la orden
-                data.SetParameter("@Status", Status); //No deberia poder cambiar de cliente la orden
-                data.SetParameter("@StatusUpdateDate", new DateTime()); //No deberia poder cambiar de cliente la orden
+                data.SetParameter("@ID", IdOrder); 
+                data.SetParameter("@Status", Status); 
+                data.SetParameter("@StatusUpdateDate", DateTime.Today); 
                 data.setQuery("update OrderDetails set StatusUpdateDate=@StatusUpdateDate, Status=@Status WHERE ID = @ID;");
                 data.executeQuery();
             }

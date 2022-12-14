@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Company.cs" />
+    <Compile Include="CostXProduct.cs" />
     <Compile Include="ItemAux.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="MessageSender.cs" />

@@ -84,7 +84,7 @@
                             <a class="nav-link" href="#">Lista de precios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pedidos</a>
+                            <a class="nav-link" href="../MenuAdmin/AllOrders.aspx">Pedidos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Facturas</a>
@@ -127,9 +127,6 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownAdmin">
                                 <li>
                                     <a class="dropdown-item" href="../MenuAdmin/Clients.aspx">Administrar usuarios</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="../MenuAdmin/AllOrders.aspx">Administrar pedidos</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">Asistencia técnica</a>
