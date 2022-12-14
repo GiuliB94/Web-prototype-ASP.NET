@@ -3,6 +3,24 @@
 <asp:Content ID="AllOrdersBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
     <div style="margin-left: 25px">
         <p class="custom-font-red" style="font-size: 30px;">Pedidos</p>
+        <div class="row" Visible="false">
+            <div class="col-2" width="200">
+                <asp:Label Text="Actualizar estado" runat="server" CssClass="form-label" ID="lblChangeStatus" For="DDLChangeStatus"/>
+            </div>
+            <div class="col-3">
+                <asp:DropDownList runat="server" ID="DDLChangeStatus" CssClass="form-control" Width="300">
+                    <asp:ListItem Text="En espera de aprobación" />
+                    <asp:ListItem Text="Aprobado" />
+                    <asp:ListItem Text="En proceso de fabricación" />
+                    <asp:ListItem Text="Listo para entrega" />
+                    <asp:ListItem Text="Entregado" />
+                    <asp:ListItem Text="Rechazado" />
+                </asp:DropDownList>
+            </div>
+            <div class="col-3">
+                <asp:Button Text="Enviar cambios" CssClass="btn btn-outline-light custom-btns rounding" ID="BtnChangeStatus" BackColor="navy" Width="200" Height="40" runat="server" OnClick="BtnChangeStatus_Click"/>
+            </div>
+        </div>
     </div>
     <asp:GridView ID="dgvAllOrders" DataKeyNames="ID" OnSelectedIndexChanged="dgvAllOrders_SelectedIndexChanged" CssClass="table table-light table-bordered" AutoGenerateColumns="false" runat="server">
         <Columns>
@@ -14,7 +32,9 @@
             <asp:BoundField HeaderText="Costo de fabricación" DataField="TotalCost" />
             <asp:CommandField ShowSelectButton="true" SelectText="Ver" />
         </Columns>
+
     </asp:GridView>
+
     <asp:GridView ID="dgvOrderElements" DataKeyNames="IdProduct" CssClass="table table-light table-bordered" OnSelectedIndexChanged="dgvOrderElements_SelectedIndexChanged" AutoGenerateColumns="false" runat="server">
         <Columns>
             <asp:BoundField HeaderText="Número de línea" DataField="LineItem" />
@@ -26,6 +46,7 @@
             <asp:BoundField HeaderText="Total" DataField="TotalAmount" />
             <asp:CommandField ShowSelectButton="true" SelectText="Ver detalle del costo" />
         </Columns>
+
     </asp:GridView>
     <asp:GridView ID="dgvCostDetails" DataKeyNames="IdProduct" CssClass="table table-light table-bordered" AutoGenerateColumns="false" runat="server">
         <Columns>
@@ -34,7 +55,8 @@
             <asp:BoundField HeaderText="Color" DataField="Color" />
             <asp:BoundField HeaderText="Bag" DataField="Bag" />
             <asp:BoundField HeaderText="Mano de obra" DataField="Handwork" />
-            <asp:BoundField HeaderText="Costo por producto" DataField="TotalCostxProduct" />
+
+
         </Columns>
     </asp:GridView>
 </asp:Content>

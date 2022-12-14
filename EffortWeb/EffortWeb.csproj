@@ -93,6 +93,8 @@
   <ItemGroup>
     <Content Include="CSS\CustomStyles.css" />
     <Content Include="Extras\Templates\DefaultEmail.html" />
+    <Content Include="Extras\Templates\UpdateEmail.html" />
+    <Content Include="Extras\Templates\WelcomeEmail.html" />
     <Content Include="Global.asax" />
     <Content Include="MenuAdmin\AllOrders.aspx" />
     <Content Include="MenuAdmin\Clients.aspx" />

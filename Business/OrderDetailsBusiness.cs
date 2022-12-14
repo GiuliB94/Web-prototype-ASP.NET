@@ -112,12 +112,13 @@ namespace Business
                 {
                     //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
 
+
                     aux.ID = Convert.ToInt16(data.Reader["ID"]);
                     aux.OrderDate = Convert.ToDateTime(data.Reader["OrderDate"]);
                     aux.DeliveryDate = Convert.ToDateTime(data.Reader["DeliveryDate"]);
                     aux.IdCompany = Convert.ToInt16(data.Reader["IdCompany"]);
-                    aux.CompanyName = data.Reader["Name"].ToString();
-                    aux.TotalAmount = Convert.ToDecimal(data.Reader["TotalAmount"]);
+                    //aux.CompanyName = data.Reader["Name"].ToString();
+                    //aux.TotalAmount = Convert.ToDecimal(data.Reader["TotalAmount"]);
                     aux.TotalCost = Convert.ToDecimal(data.Reader["TotalCost"]);
                     aux.Status = (int)data.Reader["Status"];
 
