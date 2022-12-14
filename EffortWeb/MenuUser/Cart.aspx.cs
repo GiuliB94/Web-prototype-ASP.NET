@@ -33,12 +33,16 @@ namespace EffortWeb.MenuUser
 
         protected void BtnToOrder_Click(object sender, EventArgs e)
         {
+            CostBusiness costBusinessAux = new CostBusiness();
             OrderDetails newOrder = new OrderDetails();
             //Total Amount
             List<ItemAux> itemsList = (List<ItemAux>)Session["Cart"];
             foreach (ItemAux x in itemsList)
             {
                 newOrder.TotalAmount += x.TotalAmount; //Suma total del pedido
+                CostXProduct productCost = costBusinessAux.GetCostForProductMoney(x.IdProduct);
+                newOrder.TotalCost += productCost.TotalCostxProduct * x.Quantity;
+
             }
             //IdCompany
             CompanyBusiness auxCompany = new CompanyBusiness();
@@ -46,7 +50,7 @@ namespace EffortWeb.MenuUser
             int idUser = user.Id;
             Company company = auxCompany.GetCompany(idUser);
             newOrder.IdCompany = company.Id;
-
+            
             OrderDetailsBusiness auxOrderDetails = new OrderDetailsBusiness();
             auxOrderDetails.Add(newOrder);
             int idOrder = auxOrderDetails.GetLastId();

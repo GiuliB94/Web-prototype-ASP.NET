@@ -20,5 +20,6 @@ namespace Domain
         public int IdColor { get; set; }
         public string Color { get; set; }
         public string Comment { get; set; }
+        public decimal LineCost { get; set; }
     }
 }

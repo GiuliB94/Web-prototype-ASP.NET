@@ -115,11 +115,33 @@ namespace Business
                     aux.ID = Convert.ToInt16(data.Reader["ID"]);
                     aux.OrderDate = Convert.ToDateTime(data.Reader["OrderDate"]);
                     aux.DeliveryDate = Convert.ToDateTime(data.Reader["DeliveryDate"]);
-                    aux.DeliveryDate = Convert.ToDateTime(data.Reader["StatusUpdateDate"]);
                     aux.IdCompany = Convert.ToInt16(data.Reader["IdCompany"]);
+                    aux.CompanyName = data.Reader["Name"].ToString();
                     aux.TotalAmount = Convert.ToDecimal(data.Reader["TotalAmount"]);
+                    aux.TotalCost = Convert.ToDecimal(data.Reader["TotalCost"]);
                     aux.Status = (int)data.Reader["Status"];
-                    //Se agrega el registro leído a la lista de productos
+
+                    switch (aux.Status)
+                    {
+                        case 0:
+                            aux.StatusDescription = "En espera de aprobación";
+                            break;
+                        case 1:
+                            aux.StatusDescription = "Aprobado";
+                            break;
+                        case 2:
+                            aux.StatusDescription = "En proceso de fabricación";
+                            break;
+                        case 3:
+                            aux.StatusDescription = "Listo para entrega";
+                            break;
+                        case 4:
+                            aux.StatusDescription = "Entregado";
+                            break;
+                        case 5:
+                            aux.StatusDescription = "Rechazado";
+                            break;
+                    }
                 }
 
                 //devuelvo listado de productos
@@ -143,7 +165,7 @@ namespace Business
             AccessData data = new AccessData();
             try
             {
-                data.setQuery($"Insert Into OrderDetails(IdCompany, TotalAmount, OrderDate, DeliveryDate, StatusUpdateDate, Status) Values ({newOrder.IdCompany}, {newOrder.TotalAmount}, '{newOrder.OrderDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}', '{newOrder.DeliveryDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}','{newOrder.StatusUpdateDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}', '{newOrder.Status}');");
+                data.setQuery($"Insert Into OrderDetails(IdCompany, TotalAmount, OrderDate, DeliveryDate, StatusUpdateDate, Status, TotalCost) Values ({newOrder.IdCompany}, {newOrder.TotalAmount}, '{newOrder.OrderDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}', '{newOrder.DeliveryDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}','{newOrder.StatusUpdateDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}', '{newOrder.Status}', '{newOrder.TotalCost}');");
                 data.executeQuery();
             }
             catch (Exception ex)

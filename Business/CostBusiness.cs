@@ -91,5 +91,43 @@ namespace Business
                 data.closeConnection();
             }
         }
+
+        public CostXProduct GetCostForProductMoney(int id)
+        {
+            AccessData data = new AccessData();
+            CostXProduct aux = new CostXProduct();
+            try
+            {
+                //Se setea la query para traer los los pedidos //JOIN CON?? DETERMINAR QUE DEBERIA MOSTRARSE.
+                data.setQuery("Select * from CostXProduct where IdProduct =" + id + ";");
+                data.executeQuery();
+                while (data.Reader.Read())
+                {
+                    //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
+                    
+                    aux.IdProduct = (int)data.Reader["IdProduct"];
+                    aux.Material = (decimal)data.Reader["Material"];
+                    aux.Box = (decimal)data.Reader["Box"];
+                    aux.Color = (decimal)data.Reader["Color"];
+                    aux.Bag = (decimal)data.Reader["Bag"];
+                    aux.Handwork = (decimal)data.Reader["Handwork"];
+                    aux.TotalCostxProduct = (decimal)data.Reader["TotalCost"];
+
+                }
+
+                //devuelvo listado de productos
+                return aux;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {   //se cierra la conexión a DB
+                data.closeConnection();
+            }
+        }
     }
 }
