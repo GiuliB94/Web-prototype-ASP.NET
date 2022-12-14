@@ -53,8 +53,6 @@ namespace EffortWeb.MenuUser
                 body = body.Replace("{UserPhone}", Phone);
                 body = body.Replace("{UserText}", UserMsg);
 
-                MessageSender messageSender = new MessageSender();
-
                 string to = "effort.fabrica.soporte@gmail.com";
                 string from = "effort.fabrica.soporte@gmail.com";
                 MailMessage message = new MailMessage(from, to);
@@ -63,7 +61,6 @@ namespace EffortWeb.MenuUser
                 message.IsBodyHtml = true;
 
                 message.Body = body;
-
 
                 try
                 {

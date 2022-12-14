@@ -69,7 +69,6 @@
     <Compile Include="MaterialBusiness.cs" />
     <Compile Include="OrderDetailsBusiness.cs" />
     <Compile Include="OrderElementBusiness.cs" />
-    <Compile Include="OrderHeaderBusiness.cs" />
     <Compile Include="ProductBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security.cs" />

@@ -49,6 +49,37 @@ namespace Business
             }
         }
 
+        public int GetLastId()
+        {
+            AccessData data = new AccessData();
+            int id = 0;
+            try
+            {
+                
+                data.setQuery("SELECT ID FROM OrderDetails ORDER by ID DESC LIMIT 1;");
+                data.executeQuery();
+                while (data.Reader.Read())
+                {
+                    //Se cargan las lineas de elemento? // Se deberian verificar nulls? 
+                    OrderDetails aux = new OrderDetails();
+                    id = Convert.ToInt16(data.Reader["ID"]);
+                }
+
+                //devuelvo listado de productos
+                return id;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {   //se cierra la conexión a DB
+                data.closeConnection();
+            }
+        }
+
         public OrderDetails GetOrder(int ID)
         {
             AccessData data = new AccessData();
@@ -93,7 +124,7 @@ namespace Business
             AccessData data = new AccessData();
             try
             {
-                data.setQuery($"Insert Into OrderDetails(IdCompany, TotalAmount, OrderDate, DeliveryDate, StatusUpdateDate, Status) Values ({newOrder.IdCompany}, {newOrder.TotalAmount}, {newOrder.OrderDate}, {newOrder.DeliveryDate},{newOrder.StatusUpdateDate}, '{newOrder.Status}');");
+                data.setQuery($"Insert Into OrderDetails(IdCompany, TotalAmount, OrderDate, DeliveryDate, StatusUpdateDate, Status) Values ({newOrder.IdCompany}, {newOrder.TotalAmount}, '{newOrder.OrderDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}', '{newOrder.DeliveryDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}','{newOrder.StatusUpdateDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}', '{newOrder.Status}');");
                 data.executeQuery();
             }
             catch (Exception ex)

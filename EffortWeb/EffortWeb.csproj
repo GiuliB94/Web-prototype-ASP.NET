@@ -98,6 +98,7 @@
     <Content Include="MenuAdmin\Clients.aspx" />
     <Content Include="MenuAdmin\PriceList.aspx" />
     <Content Include="MenuAdmin\ProductForm.aspx" />
+    <Content Include="MenuUser\NewOrder.aspx" />
     <Content Include="Menu\AboutUs.aspx" />
     <Content Include="MenuUser\Cart.aspx" />
     <Content Include="Menu\Catalog.aspx" />
@@ -159,6 +160,13 @@
     </Compile>
     <Compile Include="MenuAdmin\ProductForm.aspx.designer.cs">
       <DependentUpon>ProductForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuUser\NewOrder.aspx.cs">
+      <DependentUpon>NewOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuUser\NewOrder.aspx.designer.cs">
+      <DependentUpon>NewOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="Menu\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>

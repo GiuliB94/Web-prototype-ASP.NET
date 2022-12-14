@@ -16,6 +16,6 @@
                 <asp:BoundField HeaderText="Total" DataField="TotalAmount" />
             </Columns>
         </asp:GridView>
-        <asp:Button Text="Realizar pedido" ID="BtnToOrder" OnClick="BtnToOrder_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" Width="160" Height="50" runat="server" />
+        <asp:Button Text="Finalizar pedido" ID="BtnToOrder" OnClick="BtnToOrder_Click" CssClass="btn btn-outline-light custom-btns rounding" BackColor="navy" Width="160" Height="50" runat="server" />
     </center>
 </asp:Content>
