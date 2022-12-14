@@ -27,11 +27,11 @@ namespace EffortWeb.MenuAdmin
                 dgvClients.DataBind();
             }
         }
-
+        //TODO: Ver de borrar la solicitud pendiente cuando damos de alta el cliente - Giuli
         protected void dgvClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idSelected = dgvClients.SelectedDataKey.Value.ToString();
-            Response.Redirect("../Menu/CreateAccount.aspx?ClientID=" + idSelected);
+            Response.Redirect($"../Menu/CreateAccount.aspx?ClientID={idSelected}");
         }
 
         protected void btnPendings_Click(object sender, EventArgs e)
@@ -41,10 +41,7 @@ namespace EffortWeb.MenuAdmin
             dgvPendingClients.Visible = true;
             dgvClients.Visible = false;
             CompanyBusiness pendingClientList = new CompanyBusiness();
-            if (Session["pendingClientList"] == null)
-            {
-                Session.Add("pendingClientList", pendingClientList.ShowPendings());
-            }
+            Session["pendingClientList"] = pendingClientList.ShowPendings();
             dgvPendingClients.DataSource = Session["pendingClientList"];
             dgvPendingClients.DataBind();
         }

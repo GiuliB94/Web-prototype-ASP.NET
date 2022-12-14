@@ -19,7 +19,7 @@ namespace EffortWeb.Menu
         void Page_PreInit(Object sender, EventArgs e)
         {
             if (Session["UserPermission"] == null) Session["UserPermission"] = -1;
-            else if ((int)Session["UserPermission"] != -1) Response.Redirect("~/Menu/Home.aspx");
+            else if ((int)Session["UserPermission"] != -1 && (int)Session["UserPermission"] != 0) Response.Redirect("~/Menu/Home.aspx");
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -287,15 +287,12 @@ namespace EffortWeb.Menu
 
         protected void BtnActive_Click(object sender, EventArgs e)
         {
-            User ModUser = new User();
-            Company ModCompany = new Company();
             UserBusiness auxUser = new UserBusiness();
             CompanyBusiness auxCompany = new CompanyBusiness();
             bool mail = true;
 
-            ModUser = auxUser.GetUser(int.Parse(TxtIdUser.Text));
-            ModCompany = auxCompany.GetCompany(TxtIdCompany.Text);
-
+            User ModUser = auxUser.GetUser(int.Parse(TxtIdUser.Text));
+            Company ModCompany = auxCompany.GetCompany(TxtIdCompany.Text);
             ModCompany.IsActive = true;
             ModUser.IsActive = true;
 
