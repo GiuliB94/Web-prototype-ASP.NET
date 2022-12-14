@@ -11,15 +11,23 @@ namespace Business
 {
     public class CompanyBusiness
     {
-        public List<Company> Show()
+        public List<Company> Show(int i=0)
         {
             List<Company> list = new List<Company>();
             AccessData data = new AccessData();
 
+            //Se setea la query para traer los Companys //JOIN CON COMPANIES..., dependiendo si es listar usuarios y checkeos para altas trae solo los activos o activos/inactivos
+
+            if (i == 0) {
+                data.setQuery("Select * from Companies where IsActive = 1");
+            }
+            else
+            {
+                data.setQuery("Select * from Companies");
+            }
             try
             {
                 //Se setea la query para traer los Companys //JOIN CON COMPANIES...
-                data.setQuery("Select * from Companies where IsActive = 1");
                 data.executeQuery();
 
                 while (data.Reader.Read())
@@ -61,6 +69,8 @@ namespace Business
         {
             List<Company> list = new List<Company>();
             AccessData data = new AccessData();
+            User user = new User();
+            UserBusiness userBusiness = new UserBusiness();
 
             try
             {
@@ -84,8 +94,13 @@ namespace Business
                     aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
                     aux.CUIT = data.Reader["CUIT"].ToString();
 
-                    //Se agrega el registro leído a la lista de productos
-                    list.Add(aux);
+                    //Se agrega el registro leído a la lista de productos(solo de aquellos aún no rechazados)
+                    user = userBusiness.GetUser(aux.IdUser);
+                    if (user.IsActive)
+                    {
+                        list.Add(aux);
+                    }
+                    
 
                 }
 
@@ -131,7 +146,7 @@ namespace Business
 
             try
             {   //Se inserta en DB los data cargados en la plantilla "modificar"
-                data.setQuery("Companys SET Name = @Name, Phone = @Phone, Province = @Province, City = @City, PostalCode = @PostalCode, State = @State, IdUser = @IdUser, Address = @Address, AddressExtra = @AddressExtra, CUIT = @CUIT WHERE Id = @Id");
+                data.setQuery("Update Companies SET Name = @Name, Phone = @Phone, Province = @Province, City = @City, PostalCode = @PostalCode, IsActive = @State, IdUser = @IdUser, Address = @Address, AddressExtra = @AddressExtra, CUIT = @CUIT WHERE ID = @Id");
                 data.SetParameter("@Name", modCompany.Name);
                 data.SetParameter("@Phone", modCompany.Phone);
                 data.SetParameter("@Province", modCompany.Province);
@@ -252,7 +267,7 @@ namespace Business
                     aux.Name = data.Reader["Name"].ToString();
                     aux.Phone = data.Reader["Phone"].ToString();
                     aux.Address = data.Reader["Address"].ToString();
-                    aux.AddressExtra = data.Reader["Address Extra"].ToString();
+                    aux.AddressExtra = data.Reader["AddressExtra"].ToString();
                     aux.City = data.Reader["City"].ToString();
                     aux.PostalCode = data.Reader["PostalCode"].ToString();
                     aux.Province = data.Reader["Province"].ToString();
@@ -271,6 +286,48 @@ namespace Business
             }
             finally
             {   //se cierra la conexión a DB
+                data.closeConnection();
+            }
+        }
+
+        public Company GetCompany(string idsearch)
+        {
+            Company aux = new Company();
+            AccessData data = new AccessData();
+
+            try
+            {
+                data.setQuery("Select * from Companies where Id = '" + idsearch + "';");
+                data.executeQuery();
+
+                while (data.Reader.Read())
+                {
+                    //Se cargan los productos de la base // Se deberian verificar nulls? 
+
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.IdUser = Convert.ToInt16(data.Reader["IdUser"]);
+                    aux.Name = data.Reader["Name"].ToString();
+                    aux.Phone = data.Reader["Phone"].ToString();
+                    aux.Address = data.Reader["Address"].ToString();
+                    aux.AddressExtra = data.Reader["AddressExtra"].ToString();
+                    aux.City = data.Reader["City"].ToString();
+                    aux.PostalCode = data.Reader["PostalCode"].ToString();
+                    aux.Province = data.Reader["Province"].ToString();
+                    aux.CUIT = data.Reader["CUIT"].ToString();
+                    aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
+
+                }
+
+                return aux;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
                 data.closeConnection();
             }
         }

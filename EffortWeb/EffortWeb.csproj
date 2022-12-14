@@ -106,6 +106,7 @@
     <Content Include="Menu\Home.aspx" />
     <Content Include="Menu\Login.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WelcomeEmail.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -138,6 +139,10 @@
     </Compile>
     <Compile Include="MenuAdmin\AllOrders.aspx.designer.cs">
       <DependentUpon>AllOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdmin\Clients.aspx.cs">
+      <DependentUpon>Clients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MenuAdmin\Clients.aspx.designer.cs">
       <DependentUpon>Clients.aspx</DependentUpon>

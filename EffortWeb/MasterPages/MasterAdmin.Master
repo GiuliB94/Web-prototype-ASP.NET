@@ -126,7 +126,10 @@
                             <!-- Dropdown menu Admin-->
                             <ul class="dropdown-menu" aria-labelledby="dropdownAdmin">
                                 <li>
-                                    <a class="dropdown-item" href="#">Administrar usuarios</a>
+                                    <a class="dropdown-item" href="../MenuAdmin/Clients.aspx">Administrar usuarios</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="../MenuAdmin/AllOrders.aspx">Administrar pedidos</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">Asistencia técnica</a>

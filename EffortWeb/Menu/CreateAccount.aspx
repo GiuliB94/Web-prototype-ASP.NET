@@ -9,10 +9,16 @@
                 <tr>
                     <td>
                         <label for="TxtFirstName" class="form-label">Nombre Completo</label></td>
+                    <td>
+                        <asp:Label runat="server" for="TxtIdCompany" CssClass="form-label" Visible="false" ID="lblId">ID de la Empresa</asp:Label>
+                    </td>
                 </tr>
+
                 <tr>
                     <td>
                         <asp:TextBox runat="server" ID="TxtFirstName" CssClass="form-control" Style="width: 250px;" type="text" MaxLength="150" /></td>
+                    <td>
+                        <asp:TextBox runat="server" ID="TxtIdCompany" CssClass="form-control" Style="width: 100px;" ReadOnly="True" Visible="false" /></td>
                 </tr>
                 <tr>
                     <td>
@@ -85,10 +91,19 @@
                         <label for="TxtRetryPass" class="form-label">Repetir Password</label></td>
                 </tr>
                 <tr>
+
                     <td>
                         <asp:TextBox runat="server" ID="TxtPass" CssClass="form-control" Style="width: 200px;" type="password" MaxLength="32" /></td>
                     <td>
                         <asp:TextBox runat="server" ID="TxtRetryPass" CssClass="form-control" Style="width: 200px;" type="password" MaxLength="32" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label runat="server" for="TxtIdCompany" CssClass="form-label" Visible="false" ID="LblIdUser">ID de Usuario</asp:Label></td>
+                        <td>
+                            <asp:TextBox runat="server" ID="TxtIdUser" Visible="False" ReadOnly="True" CssClass="form-control" Style="width: 100px" /></td>
+
+                    </td>
                 </tr>
             </table>
         </asp:Panel>
@@ -101,7 +116,14 @@
                     <td>
                         <asp:Button Text="Crear Usuario" ID="btnCreateUser" CssClass="btn btn-primary" runat="server" OnClick="btnCreateUser_Click" /></td>
                     <td>
-                        <asp:Button Text="Cancelar" ID="btnBack" CssClass="btn btn-primary" runat="server" /></td>
+                        <asp:Button Text="Cancelar" ID="btnBack" CssClass="btn btn-primary" runat="server" OnClick="btnBack_Click" /></td>
+                    <td>
+                        <asp:Button Text="Modificar" runat="server" ID="btnModify" CssClass="btn btn-primary" Visible="false" OnClick="btnModify_Click" /></td>
+                    <td>
+                        <asp:Button Text="Activar" runat="server" ID="BtnActive" CssClass="btn btn-primary" Visible="false" OnClick="BtnActive_Click" /></td>
+                    <td>
+                        <asp:Button Text="Rechazar" runat="server" ID="BtnReject" CssClass="btn btn-primary" Visible="false" OnClick="BtnReject_Click" /></td>
+
                 </tr>
             </table>
         </asp:Panel>

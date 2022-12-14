@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="Clients.aspx.cs" Inherits="EffortWeb.MenuAdmin.Clients" %>
 
 <asp:Content ID="ClientsBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
+    <link rel="stylesheet" href="../CSS/CustomStyles.css" type="text/css" />
+    <style>
+        .oculto {
+            display: none;
+        }
+    </style>
     <div style="margin-left: 25px">
         <asp:Label Text="" ID="lblClients" runat="server" class="custom-font-red" Style="font-size: 30px;" />
         <div class="col-sm-9 mb-5">
@@ -50,7 +56,7 @@
                     <asp:BoundField HeaderText="Nombre" DataField="name" />
                     <asp:BoundField HeaderText="Teléfono" DataField="phone" />
                     <asp:BoundField HeaderText="CUIT/CUIL" DataField="CUIT" />
-                    <asp:CheckBoxField HeaderText="Alta" DataField="state" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
+                    <asp:CheckBoxField HeaderText="Alta" DataField="IsActive" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                     <asp:CommandField ShowSelectButton="true" SelectText="Ver" />
                 </Columns>
             </asp:GridView>
@@ -60,7 +66,7 @@
                     <asp:BoundField HeaderText="Nombre" DataField="name" />
                     <asp:BoundField HeaderText="Teléfono" DataField="phone" />
                     <asp:BoundField HeaderText="CUIT/CUIL" DataField="CUIT" />
-                    <asp:CheckBoxField HeaderText="Alta" DataField="state" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
+                    <asp:CheckBoxField HeaderText="Alta" DataField="IsActive" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                     <asp:CommandField ShowSelectButton="true" SelectText="Ver" />
                 </Columns>
             </asp:GridView>

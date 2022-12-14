@@ -24,6 +24,15 @@ namespace EffortWeb.Menu
         protected global::System.Web.UI.WebControls.Panel Panel_ClientInfo;
 
         /// <summary>
+        /// lblId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblId;
+
+        /// <summary>
         /// TxtFirstName control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace EffortWeb.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtFirstName;
+
+        /// <summary>
+        /// TxtIdCompany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtIdCompany;
 
         /// <summary>
         /// TxtPhone control.
@@ -168,6 +186,24 @@ namespace EffortWeb.Menu
         protected global::System.Web.UI.WebControls.TextBox TxtRetryPass;
 
         /// <summary>
+        /// LblIdUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblIdUser;
+
+        /// <summary>
+        /// TxtIdUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtIdUser;
+
+        /// <summary>
         /// Panel_Buttons control.
         /// </summary>
         /// <remarks>
@@ -202,5 +238,32 @@ namespace EffortWeb.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
+
+        /// <summary>
+        /// btnModify control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModify;
+
+        /// <summary>
+        /// BtnActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnActive;
+
+        /// <summary>
+        /// BtnReject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnReject;
     }
 }

@@ -34,15 +34,22 @@ namespace Business
 
             return aux;
         }
-        public List<User> Show()
+        public List<User> Show(int i=0)
         {
             List<User> list = new List<User>();
             AccessData data = new AccessData();
+            if (i == 0)
+            {
+                data.setQuery("Select * from Users where IsActive = true");
+            }
 
+            else
+            {
+                data.setQuery("Select * from Users");
+            }
             try
             {
                 //Se setea la query para traer los users 
-                data.setQuery("Select * from Users where IsActive = true");
                 data.executeQuery();
 
                 while (data.Reader.Read())
@@ -108,6 +115,7 @@ namespace Business
                 data.SetParameter("@Password", modifiedUser.Password);
                 data.SetParameter("@Permission", modifiedUser.Permission);
                 data.SetParameter("@State", modifiedUser.IsActive);
+                data.SetParameter("@Id", modifiedUser.Id);
                 data.executeQuery();
             }
             catch (Exception ex)
@@ -144,22 +152,35 @@ namespace Business
             User aux = new User();
             AccessData data = new AccessData();
 
-            data.setQuery("Select * from Users where Id = '" + idsearch + "';");
-            data.executeQuery();
-
-            while (data.Reader.Read())
+            try
             {
-                //Se cargan los productos de la base // Se deberian verificar nulls? 
+                data.setQuery("Select * from Users where Id = '" + idsearch + "';");
+                data.executeQuery();
 
-                aux.Id = Convert.ToInt16(data.Reader["Id"]);
-                aux.Email = data.Reader["Email"].ToString();
-                aux.Password = data.Reader["Password"].ToString();
-                aux.Permission = Convert.ToInt16(data.Reader["Permission"]);
-                aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
+                while (data.Reader.Read())
+                {
+                    //Se cargan los productos de la base // Se deberian verificar nulls? 
 
+                    aux.Id = Convert.ToInt16(data.Reader["Id"]);
+                    aux.Email = data.Reader["Email"].ToString();
+                    aux.Password = data.Reader["Password"].ToString();
+                    aux.Permission = Convert.ToInt16(data.Reader["Permission"]);
+                    aux.IsActive = Convert.ToBoolean(data.Reader["IsActive"]);
+
+                }
+
+                return aux;
             }
 
-            return aux;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
+                data.closeConnection();
+            }
         }
 
         /*public List<User> Filter(string searchBy, string when, string filter)
