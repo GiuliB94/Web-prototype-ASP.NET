@@ -14,6 +14,10 @@ namespace EffortWeb.Menu
     {
         public List<Product> ListaProductos { get; set; }
         public bool FilteredPrice { get; set; }
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["MasterPageString"] != null) this.MasterPageFile = Session["MasterPageString"].ToString();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (FilterDDown.SelectedItem.ToString() == "Precio")
@@ -26,12 +30,10 @@ namespace EffortWeb.Menu
             }
             if (!IsPostBack)
             {
-
                 if (Session["productList"] == null)
                 {
                     ProductBusiness list = new ProductBusiness();
                     ListaProductos = list.Show();
-                    Session.Add("productList", ListaProductos);
 
                 }
                 else
@@ -39,31 +41,9 @@ namespace EffortWeb.Menu
                     ListaProductos = (List<Product>)Session["productList"];
                 }
 
-                //ListView1.DataSource = ListaProductos;
-                //ListView1.DataBind();
-
-                if (Session["Cart"] == null)
-                {
-                    createCart();
-                }
+                ListView.DataSource = ListaProductos;
+                ListView.DataBind();
             }
-        }
-
-        protected void createCart()
-        {
-            DataTable dt = new DataTable();
-            DataColumn dc = new DataColumn("Fecha", Type.GetType("System.String"));
-            dt.Columns.Add(dc);
-            dc = new DataColumn("IdProduct", Type.GetType("System.String"));
-            dt.Columns.Add(dc);
-            dc = new DataColumn("NameProduct", Type.GetType("System.String"));
-            dt.Columns.Add(dc);
-            dc = new DataColumn("UnitPrice", Type.GetType("System.String"));
-            dt.Columns.Add(dc);
-            dc = new DataColumn("Quantity", Type.GetType("System.String"));
-            dt.Columns.Add(dc);
-
-            Session["Cart"] = dt;
         }
 
         protected new void Events(object sender, ListViewCommandEventArgs e)
@@ -71,20 +51,38 @@ namespace EffortWeb.Menu
             if (e.CommandName == "AddProduct")
             {
                 string idSelected = e.CommandArgument.ToString();
-                ProductBusiness aux = new ProductBusiness();
-                Product product = aux.GetProduct(Convert.ToInt16(idSelected));
-
-                DataTable table = (DataTable)Session["Cart"];
-                DataRow dr = table.NewRow();
-
-                dr[0] = DateTime.Today.ToShortDateString();
-                dr[1] = idSelected;
-                dr[2] = product.Name;
-                dr[3] = product.Price;
-                dr[4] = 1;
-
-                table.Rows.Add(dr);
-                Session["Cart"] = table;
+                ProductBusiness aux = new ProductBusiness(); //Abro conexion
+                Product product = aux.GetProduct(Convert.ToInt16(idSelected)); //Obtengo el producto
+                                                                               //OrderElement item = new OrderElement();
+                /*  LineItem smallint,
+                IdOrder int, //Cuando creo la orden, con un foreach les pongo a todos.
+                IdProduct int,
+                Quantity int,*/
+                //List<OrderElement> itemsList = new List<OrderElement>();
+                List<ItemAux> itemsCart = (List<ItemAux>)Session["Cart"];
+                if (itemsCart == null)
+                {
+                    itemsCart = new List<ItemAux>();
+                }
+                ItemAux item = new ItemAux();
+                item.IdProduct = product.Id;
+                item.ProductName = product.Name;
+                item.UnitPrice = product.Price;
+                //Buscar si el producto ya esta en la lista
+                ItemAux itemListed = itemsCart.Find(x => x.IdProduct == item.IdProduct);
+                if (itemListed != null)
+                {
+                    itemListed.Quantity++;
+                    itemListed.TotalAmount = itemListed.Quantity * itemListed.UnitPrice;
+                }
+                else
+                {
+                    item.Quantity = 1; //Averiguar como obtener ese numero.
+                    item.TotalAmount = item.UnitPrice;
+                    itemsCart.Add(item);
+                }
+                Session["Cart"] = itemsCart;
+                Response.Redirect("../Menu/Catalog.aspx");
             }
         }
 
@@ -121,6 +119,11 @@ namespace EffortWeb.Menu
                 Session.Add("error", ex);
                 throw;
             }
+        }
+
+        protected void Btn_Order_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../MenuUser/Cart.aspx");
         }
     }
 }

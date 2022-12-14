@@ -11,7 +11,12 @@ namespace EffortWeb.MasterPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            LogoutButton.Style.Add("color", "#C2C2C2");
+        }
+        protected void LogoutButton_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("../Menu/Home.aspx", false);
         }
     }
 }

@@ -13,6 +13,10 @@ namespace EffortWeb.MenuAdmin
 {
     public partial class ProductForm : System.Web.UI.Page
     {
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if ((int)Session["UserPermission"] != 0) Response.Redirect("~/Menu/Home.aspx");
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             btnModProduct.Visible = false;
@@ -109,12 +113,12 @@ namespace EffortWeb.MenuAdmin
                 List<Product> temportalList = (List<Product>)Session["productList"];
                 temportalList.Add(newProduct);
                 Session["addProduct"] = false;
-                Response.Redirect("PriceList.aspx");
+                Response.Redirect("PriceList.aspx", false);
             }
 
             //Si se viene desde el agregar, oculto los botones.
 
-            Response.Redirect("../MenuAdmin/PriceList.aspx");
+            Response.Redirect("../MenuAdmin/PriceList.aspx", false);
         }
 
         protected void btnModProduct_Click(object sender, EventArgs e)

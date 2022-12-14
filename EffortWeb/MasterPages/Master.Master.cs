@@ -24,7 +24,7 @@ namespace EffortWeb.MasterPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-     
+            
             if (!IsPostBack)
             {
                 ValidationText.Visible = false;
@@ -40,22 +40,16 @@ namespace EffortWeb.MasterPages
             UserBusiness userBusiness = new UserBusiness();
             User user = new User();
             user = userBusiness.GetUser(email, password);
-            if (user.Email != null)
+            if (user != null)
             {
-                this.Session["UserId"] = user.Id;
-                if (user.Permission == 1)
-                {
-                    //Response.Redirect("../MenuAdmin/PriceList.aspx");
-             
-                }
-                else
-                {
-                   //Response.Redirect("../MenuUser/Home.aspx");
-                }
+                this.Session["User"] = user;
+                this.Session["UserEmail"] = user.Email;
+                this.Session["UserPermission"] = user.Permission;
+                Response.Redirect("../Menu/Home.aspx", false);
             }
             else
             {
-                btnLogIn.OnClientClick = "return false";
+                //btnLogIn.OnClientClick = "return false";
                 ValidationText.Visible = true;
                 ValidationTimer.Enabled = true;
                 TxtPass.Text = "";

@@ -104,7 +104,6 @@
     <Content Include="MenuUser\Contact.aspx" />
     <Content Include="Menu\CreateAccount.aspx" />
     <Content Include="Menu\Home.aspx" />
-    <Content Include="Menu\Login.aspx" />
     <Content Include="Web.config" />
     <Content Include="WelcomeEmail.html" />
   </ItemGroup>
@@ -202,13 +201,6 @@
     </Compile>
     <Compile Include="Menu\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Menu\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Menu\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

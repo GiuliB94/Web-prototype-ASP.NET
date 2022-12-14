@@ -16,13 +16,19 @@ namespace EffortWeb.MasterPages
             lblUserEmail.Text = Session["UserEmail"].ToString();
             if (Session["Cart"] != null)
             {
-                DataTable table = (DataTable)Session["Cart"];
-               // CartProductsCount.Text = (table.Rows.Count).ToString();
+                //DataTable table = (DataTable)Session["Cart"];
+                //CartProductsCount.Text = (table.Rows.Count).ToString();
             }
         }
         protected void CartButtom_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("../MenuUser/Cart.aspx");
+            Response.Redirect("../MenuUser/Cart.aspx", false);
+        }
+
+        protected void LogoutButton_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("../Menu/Home.aspx", false);
         }
     }
 }

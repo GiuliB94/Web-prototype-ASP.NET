@@ -14,5 +14,14 @@ namespace Domain
         public int Permission { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreationDate { get; set; }
+
+        public User()
+        {
+            Id = -1;
+            Email = string.Empty;
+            Password = string.Empty;
+            Permission = -1;
+            IsActive = false;
+        }
     }
 }
