@@ -13,7 +13,7 @@ namespace EffortWeb.MasterPages
         protected void Page_Load(object sender, EventArgs e)
         {
             LogoutButton.Style.Add("color", "#C2C2C2");
-            //lblUserEmail.Text = Session["UserEmail"].ToString();
+            lblUserEmail.Text = Session["UserEmail"].ToString();
             if (Session["Cart"] != null)
             {
                 DataTable table = (DataTable)Session["Cart"];
