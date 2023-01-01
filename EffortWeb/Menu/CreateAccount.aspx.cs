@@ -69,6 +69,7 @@ namespace EffortWeb.Menu
                 }
 
                 else
+                        
                 {
                     btnModify.Visible = true;
                 }
@@ -96,7 +97,7 @@ namespace EffortWeb.Menu
 
             newUser.Email = TxtEmail.Text;
             newUser.Password = TxtPass.Text;
-            newUser.Permission = 0;
+            newUser.Permission = 1;
             newUser.IsActive = true;
 
             newCompany.Name = TxtFirstName.Text;
@@ -115,8 +116,7 @@ namespace EffortWeb.Menu
             if (TxtFirstName.Text == "" || TxtPhone.Text == "" || TxtCUIT.Text == "" || TxtAddress.Text == "" || TxtCity.Text == "" || TxtProvince.Text == "" || TxtPostalCode.Text == "" || TxtEmail.Text == "" || TxtPass.Text == "" || TxtRetryPass.Text == "")
             {
                 DataCheck = false;
-                lblErrorMSG.Text = "Por favor, complete todos los campos para que su solicitud pueda ser completada";
-                lblErrorMSG.Visible = true;
+                LabelMSG.Text= "Por favor, complete todos los campos para que su solicitud pueda ser completada";
             }
 
 
@@ -131,8 +131,7 @@ namespace EffortWeb.Menu
                     if (x.Email.ToLower() == newUser.Email.ToLower())
                     {
                         DataCheck = false;
-                        lblErrorMSG.Text = "Email ya registrado, intente recuperar su contraseña a través de nuestra página de login o bien contactese con nosotros si nunca se registró con anterioridad";
-                        lblErrorMSG.Visible = true;
+                        LabelMSG.Text = "Email ya registrado, intente recuperar su contraseña a través de nuestra página de login o bien contactese con nosotros si nunca se registró con anterioridad";
                     }
                 }
 
@@ -145,28 +144,28 @@ namespace EffortWeb.Menu
 
                         if (!aux.IsActive & !x.IsActive)
                         {
-                            lblErrorMSG.Text = "Error de prosesamiento, por favor contactenos a través de nuestros canales oficiales para validar su registro";
+                            LabelMSG.Text = "Error de prosesamiento, por favor contactenos a través de nuestros canales oficiales para validar su registro";
+                            
                         }
 
                         else if (aux.IsActive & !x.IsActive)
                         {
-                            lblErrorMSG.Text = "Recibimos su solicitud con anterioridad, por favor aguarde nuestro correo de confirmación";
+                            LabelMSG.Text = "Recibimos su solicitud con anterioridad, por favor aguarde nuestro correo de confirmación";
                         }
 
                         else if (!aux.IsActive & x.IsActive)
                         {
-                            lblErrorMSG.Text = "Parece que ya estás registrado como compañía , contactate con nosotros para reactivar tu cuenta";
+                            LabelMSG.Text = "Parece que ya estás registrado como compañía , contactate con nosotros para reactivar tu cuenta";
                         }
 
                         else if (aux.IsActive & x.IsActive)
                         {
-                            lblErrorMSG.Text = "Parece que ya estás registrado como compañía, intenta recuperar su contraseña a través de nuestra página de login";
+                            LabelMSG.Text = "Parece que ya estás registrado como compañía, intenta recuperar su contraseña a través de nuestra página de login";
                         }
 
-                        lblErrorMSG.Visible = true;
                     }
                 }
-
+                
             }
 
             if (DataCheck)
@@ -178,17 +177,18 @@ namespace EffortWeb.Menu
                     checkUser = auxUser.GetUser(newUser.Email, newUser.Password);
                     newCompany.IdUser = checkUser.Id;
                     auxCompany.Add(newCompany);
-                    lblErrorMSG.Text = "Solicitud recibida con éxito, estaremos enviando una confirmación a su correo una vez que la misma sea aprobada";
-                    lblErrorMSG.Visible = true;
+                    LabelMSG.Text = "Solicitud recibida con éxito, estaremos enviando una confirmación a su correo una vez que la misma sea aprobada";
                 }
 
                 else
                 {
-                    lblErrorMSG.Text = "Las contraseñas no coinciden";
-                    lblErrorMSG.Visible = true;
+                    LabelMSG.Text = "Las contraseñas no coinciden";
                 }
 
             }
+
+            ModalPopupExtender1.Show();
+
         }
 
         protected void btnModify_Click(object sender, EventArgs e)
@@ -224,8 +224,7 @@ namespace EffortWeb.Menu
             if (TxtFirstName.Text == "" || TxtPhone.Text == "" || TxtCUIT.Text == "" || TxtAddress.Text == "" || TxtCity.Text == "" || TxtProvince.Text == "" || TxtPostalCode.Text == "" || TxtEmail.Text == "" || TxtPass.Text == "" || TxtRetryPass.Text == "")
             {
                 DataCheck = false;
-                lblErrorMSG.Text = "Por favor, complete todos los campos para que su solicitud pueda ser completada";
-                lblErrorMSG.Visible = true;
+                LabelMSG.Text = "Por favor, complete todos los campos para que su solicitud pueda ser completada";
             }
 
 
@@ -240,8 +239,7 @@ namespace EffortWeb.Menu
                     if (x.Email.ToLower() == ModUser.Email.ToLower() && x.Id != ModUser.Id)
                     {
                         DataCheck = false;
-                        lblErrorMSG.Text = "Este correo pertenece a otro usuario registrado";
-                        lblErrorMSG.Visible = true;
+                        LabelMSG.Text = "Este correo pertenece a otro usuario registrado";
                     }
                 }
 
@@ -252,9 +250,8 @@ namespace EffortWeb.Menu
                         User aux = auxUser.GetUser(x.IdUser);
                         DataCheck = false;
 
-                        lblErrorMSG.Text = "Este CUIT ya pertenece a otro cliente";
+                        LabelMSG.Text = "Este CUIT ya pertenece a otro cliente";
 
-                        lblErrorMSG.Visible = true;
                     }
                 }
 
@@ -266,13 +263,11 @@ namespace EffortWeb.Menu
                 {
                     auxUser.Modify(ModUser);
                     auxCompany.Modify(ModCompany);
-                    lblErrorMSG.Text = "Cambios registrados con exito";
-                    lblErrorMSG.Visible = true;
+                    LabelMSG.Text = "Cambios registrados con exito";
                 }
                 catch (Exception ex)
                 {
-                    lblErrorMSG.Text = "La acción no pudo completarse";
-                    lblErrorMSG.Visible = true;
+                    LabelMSG.Text = "La acción no pudo completarse";
                     throw ex;
                 }
 
@@ -283,6 +278,8 @@ namespace EffortWeb.Menu
                 }
 
             }
+
+            ModalPopupExtender1.Show();
         }
 
         protected void BtnActive_Click(object sender, EventArgs e)
@@ -304,8 +301,7 @@ namespace EffortWeb.Menu
 
             catch (Exception ex)
             {
-                lblErrorMSG.Text = "La acción no pudo completarse";
-                lblErrorMSG.Visible = true;
+                LabelMSG.Text = "La acción no pudo completarse";
                 mail = false;
                 throw ex;
             }
@@ -331,6 +327,9 @@ namespace EffortWeb.Menu
 
                 message.Body = body;
 
+                LabelMSG.Text = "Acción completada con éxito";
+
+                
 
                 try
                 {
@@ -346,6 +345,8 @@ namespace EffortWeb.Menu
                 Session.Add("clientList", auxCompany.Show());
                 Response.Redirect("../MenuAdmin/Clients.aspx");
             }
+
+            ModalPopupExtender1.Show();
 
 
         }
@@ -371,8 +372,7 @@ namespace EffortWeb.Menu
 
             catch (Exception ex)
             {
-                lblErrorMSG.Text = "La acción no pudo completarse";
-                lblErrorMSG.Visible = true;
+                LabelMSG.Text = "La acción no pudo completarse";
                 throw ex;
             }
 
@@ -381,11 +381,25 @@ namespace EffortWeb.Menu
                 Response.Redirect("../MenuAdmin/Clients.aspx");
             }
 
+            ModalPopupExtender1.Show();
+
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("../MenuAdmin/Clients.aspx");
+        {   
+            if ((int)Session["UserPermission"] != 0)
+            {
+                Response.Redirect("~/Menu/Home.aspx");
+            }
+            else
+            {
+                Response.Redirect("../MenuAdmin/Clients.aspx");
+            }
+            
         }
+
+        
+
     }
+
 }

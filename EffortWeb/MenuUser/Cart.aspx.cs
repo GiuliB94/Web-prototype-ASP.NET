@@ -37,6 +37,7 @@ namespace EffortWeb.MenuUser
             OrderDetails newOrder = new OrderDetails();
             //Total Amount
             List<ItemAux> itemsList = (List<ItemAux>)Session["Cart"];
+
             foreach (ItemAux x in itemsList)
             {
                 newOrder.TotalAmount += x.TotalAmount; //Suma total del pedido
@@ -56,6 +57,11 @@ namespace EffortWeb.MenuUser
             int idOrder = auxOrderDetails.GetLastId();
             LoadItems(itemsList, idOrder);
             Session["Cart"] = null;
+            LabelMSG.Text = "Orden cargada correctamente bajo ID " + idOrder;
+            ModalPopupExtender1.Show();
+            
+
+
         }
 
         protected void LoadItems(List<ItemAux> list, int IdOrder)
@@ -73,6 +79,11 @@ namespace EffortWeb.MenuUser
                 newLine.Comment = x.Comment;
                 auxOrderElement.Add(newLine);
             }
+        }
+
+        protected void Okbtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Menu/Home.aspx");
         }
     }
 }

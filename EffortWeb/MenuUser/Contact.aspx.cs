@@ -10,6 +10,10 @@ using System.Text;
 using System.IO;
 using System.Security.Policy;
 using Business;
+using System.Collections;
+using System.Numerics;
+using System.Web.Services.Description;
+using System.Web.UI.WebControls.WebParts;
 
 namespace EffortWeb.MenuUser
 {
@@ -17,7 +21,7 @@ namespace EffortWeb.MenuUser
     {
         void Page_PreInit(Object sender, EventArgs e)
         {
-            if ((int)Session["UserPermission"] < 1) Response.Redirect("~/Menu/Home.aspx");
+            //if ((int)Session["UserPermission"] < 1) Response.Redirect("~/Menu/Home.aspx");
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,7 +39,8 @@ namespace EffortWeb.MenuUser
 
             if (Name == "" || LstName == "" || Mail == "" || Phone == "" || UserMsg == "")
             {
-                lblError.Visible = true;
+                LabelMSG.Text = "Ups! Por favor complete toda su información para que el mensaje pueda ser enviado. Si no posee ID de empresa puede omitirlo.";
+                ModalPopupExtender1.Show();
             }
             else
             {
@@ -72,8 +77,11 @@ namespace EffortWeb.MenuUser
                     Console.WriteLine("Exception caught in CreateTestMessage2(): {0}",
                         ex.ToString());
                 }
-                txtMsj.Text = "Gracias por tu mensaje, te estaremos respondiendo a la brevedad";
+                LabelMSG.Text = "Gracias por tu mensaje, te estaremos respondiendo a la brevedad";
+                
             }
+            ModalPopupExtender1.Show();
         }
+
     }
 }

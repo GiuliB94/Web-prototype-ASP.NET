@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="../MasterPages/MasterUser.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="EffortWeb.MenuUser.Contact" %>
 
 <asp:Content ID="ContactBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
+
+    <div style="display:none"><asp:Button ID="hiddenButton" runat="server"/></div>
+    
     <div style="margin-left: 25px">
         <p class="custom-font-red" style="font-size: 30px;">
             Contactate
@@ -72,11 +75,38 @@
         <div>
         </div>
         <br />
-        <p class="custom-font-text" style="font-style:italic; color:lightgrey">
+        <p class="custom-font-text" style="font-style: italic; color: lightgrey">
             No tenés correo electrónico? También podes contactarnos por whatsapp haciendo click en el siguiente enlace
             <a href="https://wa.me/1111111111">
-                <img src="../Extras/Images/WhatsAppButtonGreenSmall.png" alt="whatsapp" style="height: 30px; width:100px" />
+                <img src="../Extras/Images/WhatsAppButtonGreenSmall.png" alt="whatsapp" style="height: 30px; width: 100px" />
             </a>
         </p>
     </div>
+
+    <div>
+        <asp:Panel ID="MSGPanel" Style="display: none; background-color: var(--bg-color-effort-blue); align-content: center;" runat="server">
+            <div class="popup-margin" style="margin-top: 100px">
+                <div style="margin-top: 30px; margin-left: 30px; margin-right: 30px">
+                    <table>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="LabelMSG" Style="font-family: var(--mdb-body-font-family); color: white; margin-top: 10px" runat="server"></asp:Label></td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <asp:Button Text="Aceptar" ID="Okbtn" class="btn btn-outline-light" Style="margin-top: 10px; font-size: smaller;" runat="server"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    </div>
+    </asp:Panel>
+        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="hiddenButton" PopupControlID="MSGPanel" DropShadow="true" OkControlID="Okbtn" CancelControlID="Okbtn"></ajaxToolkit:ModalPopupExtender>
+
 </asp:Content>

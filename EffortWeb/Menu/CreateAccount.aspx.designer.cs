@@ -15,6 +15,15 @@ namespace EffortWeb.Menu
     {
 
         /// <summary>
+        /// hiddenButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button hiddenButton;
+
+        /// <summary>
         /// Panel_ClientInfo control.
         /// </summary>
         /// <remarks>
@@ -213,15 +222,6 @@ namespace EffortWeb.Menu
         protected global::System.Web.UI.WebControls.Panel Panel_Buttons;
 
         /// <summary>
-        /// lblErrorMSG control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMSG;
-
-        /// <summary>
         /// btnCreateUser control.
         /// </summary>
         /// <remarks>
@@ -265,5 +265,41 @@ namespace EffortWeb.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnReject;
+
+        /// <summary>
+        /// MSGPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MSGPanel;
+
+        /// <summary>
+        /// LabelMSG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelMSG;
+
+        /// <summary>
+        /// Okbtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Okbtn;
+
+        /// <summary>
+        /// ModalPopupExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1;
     }
 }

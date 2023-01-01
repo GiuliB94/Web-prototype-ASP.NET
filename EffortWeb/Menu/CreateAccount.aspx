@@ -2,6 +2,8 @@
 
 <asp:Content ID="CreateAccountBodyContent" ContentPlaceHolderID="MainBodyPlaceHolder" runat="server">
     <script type="text/javascript" src="js/JScript.js"></script>
+    <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+    <div style="display:none"> <asp:Button ID="hiddenButton" runat="server"/></div>
     <div style="margin-left: 25px; margin-top: 10px;">
         <p class="custom-font-red" style="font-size: 30px;">Ingrese sus datos</p>
         <asp:Panel ID="Panel_ClientInfo" runat="server" GroupingText="Datos Personales">
@@ -100,8 +102,8 @@
                 <tr>
                     <td>
                         <asp:Label runat="server" for="TxtIdCompany" CssClass="form-label" Visible="false" ID="LblIdUser">ID de Usuario</asp:Label></td>
-                        <td>
-                            <asp:TextBox runat="server" ID="TxtIdUser" Visible="False" ReadOnly="True" CssClass="form-control" Style="width: 100px" /></td>
+                    <td>
+                        <asp:TextBox runat="server" ID="TxtIdUser" Visible="False" ReadOnly="True" CssClass="form-control" Style="width: 100px" /></td>
 
                     </td>
                 </tr>
@@ -112,9 +114,8 @@
         <asp:Panel ID="Panel_Buttons" runat="server">
             <table>
                 <tr>
-                    <asp:Label Text="" runat="server" Visible="false" Style="font-weight: lighter" ID="lblErrorMSG" />
                     <td>
-                        <asp:Button Text="Crear Usuario" ID="btnCreateUser" CssClass="btn btn-primary" runat="server" OnClick="btnCreateUser_Click" /></td>
+                        <asp:Button Text="Crear Usuario" ID="btnCreateUser" CssClass="btn btn-primary" runat="server" OnClick="btnCreateUser_Click" data-bs-toggle="modal" data-bs-target="#PopupMSG" /></td>
                     <td>
                         <asp:Button Text="Cancelar" ID="btnBack" CssClass="btn btn-primary" runat="server" OnClick="btnBack_Click" /></td>
                     <td>
@@ -122,10 +123,36 @@
                     <td>
                         <asp:Button Text="Activar" runat="server" ID="BtnActive" CssClass="btn btn-primary" Visible="false" OnClick="BtnActive_Click" /></td>
                     <td>
-                        <asp:Button Text="Rechazar" runat="server" ID="BtnReject" CssClass="btn btn-primary" Visible="false" OnClick="BtnReject_Click" /></td>
+                        <asp:Button Text="Rechazar" runat="server" ID="BtnReject" CssClass="btn btn-primary" Visible="false" OnClick="BtnReject_Click" />
+                       
+                    </td>
 
                 </tr>
             </table>
+            <div>
+            </div>
         </asp:Panel>
+
+        <asp:Panel ID="MSGPanel" Style="display: none; background-color: var(--bg-color-effort-blue); align-content: center;" runat="server">
+            <div class="popup-margin" style="margin-top: 100px">
+                <div style="margin-top: 30px; margin-left: 30px; margin-right: 30px">
+                    <table>
+                        <tr><td></td></tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="LabelMSG" Style="font-family: var(--mdb-body-font-family); color: white; margin-top: 10px" runat="server"></asp:Label></td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <asp:Button Text="Aceptar" ID="Okbtn" class="btn btn-outline-light" Style="margin-top: 10px; font-size: smaller;" runat="server" /></td>
+                        </tr>
+                        <tr><td></td></tr>
+                    </table>
+                </div>
+            </div>
     </div>
+    </div>
+    </asp:Panel>
+        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="hiddenButton" PopupControlID="MSGPanel" DropShadow="true" OkControlID="Okbtn" CancelControlID="Okbtn"></ajaxToolkit:ModalPopupExtender>
+
 </asp:Content>

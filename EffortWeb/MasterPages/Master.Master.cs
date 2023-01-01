@@ -59,7 +59,7 @@ namespace EffortWeb.MasterPages
         protected void ValidationTimer_Tick(object sender, EventArgs e)
         {
             ValidationText.Visible = false;
-            ValidationTimer.Enabled = false;
+            ValidationTimer.Enabled = true;
         }
     }
 }
